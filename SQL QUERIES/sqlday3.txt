@@ -1,4 +1,5 @@
 Date:23-12-19
+_____________
 
 
 ->> SQL QUERIES TO SHOW WORKING OF SINGLE-ROW FUNCTION<<-
