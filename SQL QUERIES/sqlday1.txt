@@ -1,0 +1,171 @@
+SQL QUERIES
+----------------
+2019-12-19 {Thursday}
+-----------------
+
+Q1. WAQTD creation of the database?
+1.a.show database;
+  b. show tables;->> query to show table
+
+Q2.WAQTD creation of the database?
+->>create database bcits;
+
+Q3.WAQTD how to use the database?
+->>use bcits;
+o/p:database changed
+
+Q4.WAQTD the creation of table?
+->>create table student_info(
+    -> sid int(10) primary key,
+    -> sname varchar(200) not null,
+    -> mobile_no int(20),
+    -> marks double(8,3),
+    -> email varchar(100));
+
+->> employee database: create table emp(
+     eid int(10) primary key,
+     ename varchar(100) not null,
+     mob int(20) not null,
+     desig varchar(200),
+     salary double(10,4));
+
+
+Q5.WAQTD How to describe a table ?
+desc student_info;
+
+(describes the database)
+
+Q6. WAQTD the insertion operation into table?
+
+ eg>  1. insert into student_info values(1,'ram',7648395265,71.26,'ram@gmail.com');
+
+           2. insert into emp values(5,'ram',76483978,'cto',59039.01,0.0);
+
+Q7.WAQTD updation operation into table ?
+
+ ->>update student_info set sname='veena' where sid=2;
+
+Q8.WAQTD the delete operation?
+
+->>   delete from student_info where sid=4;
+
+Q10.WAQTD the marks of students between the range 60 and 80?
+
+->>select * from student_info where marks>=60 AND marks<=80;
+
+Q11.WAQTD the names of students whose name starts with s?
+
+->>select * from student_info where sname like 's%'
+
+Q12.WAQTD Dropping of a coloumn?
+
+->>drop database runner;->>for dropping the database
+
+
+Q13.WAQTD different alter opration?
+
+->> 1.alter table emp add depno int(10);
+
+->>2.alter table emp modify salary int;
+
+->>3. a.alter table emp change eid id int(10);  b. alter table emp change mob mobileno int(20);
+
+->>4. alter table emp drop depno;
+
+->>5.ALTER TABLE old_table RENAME new_table ;->> to rename table name
+
+->>6.alter table emp change name ename varchar(200);-> to change coloumnname with its datatype
+
+->>7.ALTER TABLE emp RENAME emplo; :for renaming table name--One more way to rename
+
+
+
+QUERIES TO SHOW USAGE OF OPERATORS
+----------------------------------------------
+->>1.select * from emp where id=2 and name='reema';
+
+->>2.select * from emp where name='ram' or id=4;
+
+->>3.update emp set comm=0.0 where id in(2,3,4);
+
+->>4.select desig from emp where id in(2,3,4);
+
+->>5.select * from emp where name in('shyam','sheema');
+
+->>6. select * from emp where comm is null;->> is operator
+
+->>7.select distinct ename from emp;->> to select distinct values from table
+
+->> select * from emp;--{Select operation}
+                       +----+--------+-----------+----------+--------+-------+
+                      | id | ename  | mobileno  | desig    | salary | comm  |
+                      +----+--------+-----------+----------+--------+-------+
+                      |  1 | ram    | 753725351 | manager  |  49000 | 50.00 |
+                      |  2 | anita  | 793652852 | ceo      |  50000 |  NULL |
+                      |  3 | reema | 653652852 | clerk    |  59870 |  NULL |
+                      |  4 | sheema | 897652852 | salesman |   8270 |  NULL |
+                      |  5 | ram    |  76483978 | cto      |  59039 |  0.00 |
+                      +----+--------+-----------+----------+--------+-------+
+
+
+->> select distinct ename from emp;
+                                     +--------+
+                                    | ename  |
+                                    +--------+
+                                    | ram    |
+                                    | anita  |
+                                    | reema  |
+                                    | sheema |
+                                     +--------+
+
+->>select distinct ename,desig from emp;->> combination of distinct values
+                  +--------+----------+
+                  | ename  | desig    |
+                  +--------+----------+
+                  | ram    | manager  |
+                  | anita  | ceo      |
+                  | reema  | clerk    |
+                  | sheema | salesman |
+                  | ram    | developer     |
+                 +--------+----------+
+
+->> select ename as name from emp as emp1;->> aliasing the coloumn name and table name
+                                    +--------+
+                                   | name   |
+                                   +--------+
+                                   | ram    |
+                                   | anita  |
+                                   | reema  |
+                                   | sheema |
+                                   | ram    |
+                                    +--------+
+
+->>select salary+50 salary from emp;->>50rs added
++--------+
+| salary |
++--------+
+|  49050 |
+|  50050 |
+|  59920 |
+|   8320 |
+|  59089 |
++--------+
+
+
+
+
+Q14.WAQTD to update the record of employee having id=1?
+->>update emp set comm=499.0 where id=1;
+
+Q15.WAQTD the truncate operation?
+->>truncate table student_info;->> to delete the table
+
+Q16.WAQTD how to rename a table name?
+ rename table emp to emp1;->> to rename table name
+
+Q17. SHOW COLUMNS FROM emp; --> to show coloumn from table
+
+
+
+
+
