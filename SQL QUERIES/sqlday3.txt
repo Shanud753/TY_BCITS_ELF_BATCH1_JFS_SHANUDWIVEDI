@@ -1,0 +1,104 @@
+Date:23-12-19
+
+->> SQL QUERIES TO SHOW WORKING OF SINGLE-ROW FUNCTION<<-
+
+>>select  upper(name) from Employee_info;
+
+>>select  lower(name) from Employee_info;
+
+>> select  length(name) from Employee_info;
+
+>>select  concat(name,designation) from Employee_info;
+
+>>select  reverse(name) from Employee_info;
+
+>>select substr(name,1,5) from Employee_info;
+
+>>select instr(name,'ee') from Employee_info;
+
+
+->> SQL QUERIES TO SHOW WORKING OF MULTI-ROW FUNCTION<<-
+
+>> select  avg (Salary) from Employee_info;
+
+>>select  max(salary) from Employee_info;
+
+>>select  min(Salary) from Employee_info;
+
+>>select  sum(salary) from Employee_info;
+
+>>select  count(salary) from Employee_info;
+
+
+
+->>Creation of new Department Table<<-
+
+->>create table Department (deptId int(10) primary key, dname varchar(150), location varchar(200));
+
+->>insert into Department values(10,'admin','bangalore'),(20,'HR','chennai'),(30,'Operation','pune'),(40,'sales','mumbai');
+
+
+
+->>QUERIES TO SHOW WORKING OF  ORDER BY,GROUP BY,HAVING CLAUSE<<-
+
+>>select salary from employee_info order by salary desc;
+
+>>select count(location) from department group by location;
+
+
+>>select * from Employee_info where salary<30000 group by deptid;
+
+
+>>select * from Employee_info where salary>50000group by deptid having count(deptid)>1;
+
+
+--->>SQL QUERIES TO SHOW TCL OPERATION<<-
+
+**ROLLBACK**--Thier will be no removal operation from table because autocommit is true by default
+
+1.ROLLBACK
+
+ 2.set autocommit=0;--to make autocommit false
+
+3. insert into employee_info values (13,'dik',9019578621,'dik@gmail.com','2003-03-11','hr',90087,40,'2019-01-11','ab+','f',22);--PERFORMING DML OPERATION
+
+4.   select * from employee_info;--seeing the updated table
+
+5.rollback;--it will remove the last updated reord/row
+
+6. select * from employee_info;--the last record would have been removed
+
+****SAVEPOINT****
+
+1. set autocommit=0;
+2. savepoint test;--NAMES TO SAVEPOINT
+3. update employee_info set name='leena' where eid=11;--PERFORMING DML OPERATION
+4. savepoint test1;
+5. insert into employee_info values (13,'rohan',9019578621,'roh@gmail.com','2001-11-01','software developer',97827,40,'2018-01-11','b+','m',33);
+6. rollback to test;--both the dml operation have been rolled back
+
+
+--->>SQL QUERIES TO SHOW SINGLE ROW SUBQUERY<<---
+1. select * from employee_info where deptid=(select deptid from department where location='chennai');
+
+
+-->>CROSS JOIN IN SQL YOG<<--
+
+>>select * from employee_info cross join department  --->it matches all the records from both the tables (  employee_info,    department)
+
+-->>INNER JOIN IN SQL YOG<<--
+>>select * from employee_info inner join department on employee_info.deptid=department.deptid --->  IT MATCHES ONLY THE SAME RECORD WITH SAME COLOUMNAME
+
+Q.WAQTD name,deptid,dname and deptid from employee and department table
+>>select e.deptid,e.name,d.deptid,d.dname from employee_info e inner join department d on e.deptid=d.deptid   -->>to display names ,dname and deptid from 2 tables      
+
+
+-->>NATURAL JOIN IN SQL YOG<<--                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+ ->>select * from employee_info natural join department--It will match the record if any common field is their
+
+-->LEFT OUTER JOIN<<--
+-->>select * from employee_info e left outer join department d on e.deptid=d.deptid --matched the record from both the tables and all the records from left table
+
+-->>RIGHT OUTER JOIN<<--
+-->>select * from employee_info e right outer join department d on e.deptid=d.deptid --matched the record from both the tables and all the records from right table
+
