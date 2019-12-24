@@ -10,7 +10,6 @@ public class Sorting {
 	public static void main(String[] args) {
 		System.out.println("enter the total number of students");
 		int total = Integer.parseInt(scanner.nextLine());
-		SortStudent sort = new SortStudent();
 		TreeSet<Student> tree = new TreeSet<Student>();
 
 		for (int i = 0; i < total; i++) {
