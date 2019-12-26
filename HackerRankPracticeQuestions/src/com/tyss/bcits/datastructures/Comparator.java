@@ -2,6 +2,7 @@ package com.tyss.bcits.datastructures;
 
 import java.util.*;
 
+
 public class Comparator {
 	static Scanner scanner = new Scanner(System.in);
 
