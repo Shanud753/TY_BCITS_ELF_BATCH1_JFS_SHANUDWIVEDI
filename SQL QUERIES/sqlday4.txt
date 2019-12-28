@@ -1,0 +1,148 @@
+Date:28-12-19
+---------------------
+
+->> create database Employee_Management_info;
+
+->> show databases;
+
+->> create table Employee_Primary_info(
+    -> empid int(10) primary key,
+    -> empname varchar(200) not null,
+    -> mobileno bigint(40),
+    -> official_mailid varchar(200),
+    -> Date_of_Birth  date,
+    -> Date_of_Joining  date,
+    -> designation varchar(200),
+    -> bld_grp varchar(100),
+    -> salary double(10,3),
+    -> Dept_id int(20),
+    -> manager_id int(20));
+
+
+->>desc employee_management_info;
+
+->> create table Employee_Secondary_info(
+    -> empid int primary key,
+    -> personal_mail_id varchar(200),
+    -> gender  varchar(40),
+    -> age int,
+    -> nationality varchar(200),
+    -> Ismarried varchar(200),
+    -> govt_id varchar(200),
+    -> gurdian_name varchar(200),
+    -> gurdian_contact_no bigint(40),
+    -> job_location varchar(200));      ---Creating employees secondary details
+
+->> create table Department_info(
+    -> deptid int primary key,
+    -> deptname varchar(200),
+    -> dept_manager_id int);-- creating department details
+
+->> create table Employee_Bank_info(
+    -> empid int primary key,
+    ->  Account_no bigint(40),
+    -> Bank_name varchar(200),
+    ->  Branch_name varchar(200),
+    ->  IFSC_code varchar(150));
+
+->> create table Employee_Address_info(
+    -> empid int,
+    -> Address_type varchar(200),
+    -> House_no int,
+    -> Address1 varchar(200),
+    -> Address2 varchar(200),
+    -> Landmark varchar(150),
+    -> City varchar(150),
+    -> Pincode bigint(40),
+    -> primary key(empid, Address_type));
+
+->> create table Employee_Education_info(
+    -> empid int,
+    -> Education_type varchar(200),
+    -> College_name varchar(200),
+    -> Year_of_Passout date,
+    -> Stream varchar(200),
+    -> Percentage double(6,2),
+    -> University_name varchar(200),
+    -> primary key(empid,Education_type));
+
+-->> create table Project_info(
+    -> Proj_id int primary key,
+    -> Proj_name varchar(200),
+    -> Technology varchar(200),
+    -> Start_date date,
+    -> End_date date,
+    -> Location varchar(150));
+
+->> create table Employee_Project_info(
+    ->  empid int,
+    ->  proj_id int,
+    ->  primary key(empid,proj_id));
+
+->>show tables;
+
++------------------------------------+
+| Tables_in_employee_management_info |
++------------------------------------+
+| department_info                    |
+| employee_address_info              |
+| employee_bank_info                 |
+| employee_education_info            |
+| employee_primary_info              |
+| employee_project_info              |
+| employee_secondary_info            |
+| project_info                       |
++------------------------------------+
+
+-->> insert into Employee_primary_info(empid,empname,mobileno,official_mailid,DOB,DOJ,designation,bld_grp,salary,Dept_id,manager_id)
+    -> values(1,'Diksha',7654876543,'diksha@gmail.com','1997-02-12','2019-01-22','manager','ab+',80000,10,3),
+    -> (2,'sargun',9876543234,'sargun@gmail.com','1995-01-14','2016-05-11','ceo','b+',67898,20,5),
+    -> (3,'harman',8755432341,'harman@gmail.com','1994-10-24','2014-12-24','tester','o+',56898,30,4),
+   ->  (4,'sheena',9876532341,'sheena@gmail.com','1992-08-22','2013-11-26','software developer','a+',96898,40,3),
+ ->    (5,'chetan',9876432341,'chetan@gmail.com','1993-11-23','2011-11-18','ceo','a+',90898,20,101),
+    ->  (6,'medha',9870432341,'medha@gmail.com','1995-01-14','2017-03-14','tester','o+',54898,10,106),
+    ->  (7,'arpita',8907632341,'arpita@gmail.com','1992-11-12','2015-10-22','manager','b+',86898,20,104),
+    ->  (8,'karishma',9876532341,'karishma1@gmail.com','1990-02-16','2015-08-06','software developer','b+',96898,10,101),
+    ->  (9,'Purnima',8071532341,'purnima2@gmail.com','1993-09-26','2011-09-15','hr','ab+',106898,20,100),
+    ->  (10,'ravi',9087532341,'ravi11@gmail.com','1991-03-26','2013-08-25','clerk','o-',46898,30,106);
+
+insert into Employee_Secondary_info(empid, personal_mail_id, gender, age,nationality,Ismarried,govt_id, gurdian_name,gurdian_contact_no, job_location)
+    -> values(1,'diksha@gmail.com',FEMALE,22','Indian','Adhaar-card','Rajendra kumar ','9404002012','bangalore'),
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE student
+(Student_ID int NOT NULL,
+Student_name varchar(255) NOT NULL,
+City varchar(255),
+Marks int
+CONSTRAINT CompKey_ID_NAME PRIMARY KEY (Student_ID, Student_name));
