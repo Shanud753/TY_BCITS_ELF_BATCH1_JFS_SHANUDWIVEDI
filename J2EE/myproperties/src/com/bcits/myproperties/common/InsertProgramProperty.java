@@ -1,33 +1,38 @@
-package com.bcits.jdbcapp.common;
+package com.bcits.myproperties.common;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
+import java.util.Properties;
 
-import com.mysql.jdbc.Driver; //not part of jdbc
-
-public class MyFirstJDBCProgram {
-
+public class InsertProgramProperty {
 	public static void main(String[] args) {
 		Connection con=null;
 		ResultSet rs=null;
 		Statement stmt=null;
+		
 		try {
+		FileInputStream fileInputStream = new FileInputStream("dbinfo.properties");
+		Properties properties = new Properties();
+		properties.load(fileInputStream);
+		String driverName= properties.getProperty("driveNm");
+		
+		
 			// 1.Load the "Driver"
 			/*
 			 * Driver driveRef = new Driver(); DriverManager.registerDriver(driveRef);
 			 */
-			Class.forName("com.mysql.jdbc.Driver").newInstance(); //helps to load the driver class dynamically at run time
+			Class.forName(driverName).newInstance(); //helps to load the driver class dynamically at run time
 
 			// 2.Get the "DB connection" via "Driver"
 
 			//String dburl = "jdbc:mysql://localhost:3306/Employee_management_info?user=root&password=root";
-			String dburl = "jdbc:mysql://localhost:3306/Employee_management_info";
-			//DriverManager driverManager= new DriverManager ();
-			con= DriverManager.getConnection(dburl, "root", "root");
+			//String dburl = "jdbc:mysql://localhost:3306/Employee_management_info";
+			con= DriverManager.getConnection(properties.getProperty("dbUrl"),properties.getProperty("user") ,properties.getProperty("password") );
 
 			// 3.Issue "SQL Queries" via "Connection"
 			String query = "select * from   employee_primary_info";
@@ -89,9 +94,9 @@ public class MyFirstJDBCProgram {
 				}
 
 			}
-			catch(SQLException e)
+			catch(Exception e)
 			{e.printStackTrace();
 			}
 		}
-	}// End of Main
+	}// End of the Main
 }// End of Class
