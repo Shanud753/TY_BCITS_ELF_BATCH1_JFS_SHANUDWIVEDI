@@ -1,0 +1,119 @@
+30-12-19
+------------
+
+->>show databases;
+
+->>use employee_management_info;
+
+->> desc employee_secondary_info;
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| empid              | int(11)      | NO   | PRI | NULL    |       |
+| personal_mail_id   | varchar(200) | YES  |     | NULL    |       |
+| gender             | varchar(40)  | YES  |     | NULL    |       |
+| age                | int(11)      | YES  |     | NULL    |       |
+| nationality        | varchar(200) | YES  |     | NULL    |       |
+| Ismarried          | varchar(200) | YES  |     | NULL    |       |
+| govt_id            | varchar(200) | YES  |     | NULL    |       |
+| gurdian_name       | varchar(200) | YES  |     | NULL    |       |
+| gurdian_contact_no | bigint(40)   | YES  |     | NULL    |       |
+| job_location       | varchar(200) | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+
+->> insert into Employee_Secondary_info(empid, personal_mail_id, gender, age,nationality,Ismarried,govt_id, gurdian_name,gurdian_contact_no, job_location)
+    values(1,'diksha@gmail.com',FEMALE,22','Indian','Adhaar-card','Rajendra kumar ','9404002012','bangalore'),
+          (2,'sargun1@gmail.com','Female',23,'Indian','No','AAdhar Card','Nimrit Kaur',8765432187,'bangalore'),
+          (3,'harman11@gmail.com','Male',24,'Indian','No','Pan Card','Jaspreet Kaur',9085432187,'Chennai'),
+          (4,'shena13@gmail.com','Female',22,'Indian','No','Pan Card','Sabina gupta',9087432187,'Mangalore'),
+          (5,'chetan13@gmail.com','Male',24,'Indian','No','Aadhar Card','Sushila raj',9886432187,'Bangalore'),
+          (6,'medhap@gmail.com','Female',23,'Indian','No','Aadhar Card','Seema pandey',9087432187,'Chennai'),
+          (7,'arpita1@gmail.com','Female',23,'Indian','No','Aadhar Card','Rajat Sharma',7658432187,'Mumbai'),
+          (8,'karishma1@gmail.com','Female',25,'Indian','No','Voter ID','kailash Sharma',9874532187,'Pune'),
+          (9,'Purnima41@gmail.com','Female',27,'Indian','No','Pan ID','R  k Dwivedi',9952132187,'Mumbai'),
+          (10,'ravi34@gmail.com','Male',25,'Indian','No','Pan CARD','Murali Manohar',9421132187,'Pune');
+
+
+02-01-2020
+-----------
+->>use employee_management_info;
+
+->>show tables;
++------------------------------------+
+| Tables_in_employee_management_info |
++------------------------------------+
+| department_info                    |
+| employee_address_info              |
+| employee_bank_info                 |
+| employee_education_info            |
+| employee_primary_info              |
+| employee_project_info              |
+| employee_secondary_info            |
+| project_info                       |
++------------------------------------+
+
+
+->>desc employee_address_info;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| empid        | int(11)      | NO   | PRI | NULL    |       |
+| Address_type | varchar(200) | NO   | PRI | NULL    |       |
+| House_no     | int(11)      | YES  |     | NULL    |       |
+| Address1     | varchar(200) | YES  |     | NULL    |       |
+| Address2     | varchar(200) | YES  |     | NULL    |       |
+| Landmark     | varchar(150) | YES  |     | NULL    |       |
+| City         | varchar(150) | YES  |     | NULL    |       |
+| Pincode      | bigint(40)   | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+
+->> insert into Employee_address_info(empid,Address_type,House_no,Address1,Address2,Landmark,City,Pincode)
+values(1,'Current',20,'Kalathur Layout','Jalahalli East','Axis bank Atm',' Banaglore',560013),
+(1,'Permanent',80,'MaharaniGanj','LalGanj','Bhitari','RaeBareli',229211),
+(2,'Current',21,'Wilson Garden','Gangamma Circle','Play Millenium School','Banaglore',560020),
+(2,'Permanent',30,'Sector 4','Bhim Layout','KidZee School','ChandiGarh',225142),
+(3,'Current',22,'Mahakuvempu main road','Rajajinagar','Nandini Parlour','Bangalore',560014),
+(3,'Permanent',40,'Eden layout','Marathalli','near Macdonalds','Bangalore',560023),
+(4,'Current',23,'IFS Stn','Yelahanka','Near Domminos','Bangalore',560022),
+(4,'Permanent',50,'Nagaarjuna Road','M g Road','Near SBI Bank','Mysore',469212),
+(5,'Current',25,'RMK Road','Sanjay Nagar','Near HDFC Bank','Bangalore',560024),
+(5,'Permanent',60,'Thalur Road','Shri Lekh Layout','Near ICICI Bank','Mangalore',562624),
+(6,'Current',26,'BhoopSandra','RMKV Extension','Near Kidzee PlaySchool','Bangalore',560028),
+(6,'Permanent',70,'Thrissur Nagar','BheemSandra Layout','Near BOB Bank','Trivendrum',605911),
+(7,'Current',27,'Sixth Camp','Jalahalli East','Near New Bazaar','Bangalore',560015),
+(7,'Permanent',80,'RaghuRaj Singh','RaeBareli','Near Bel Market','Lucknow',229212),
+(8,'Current',28,'Ms Palya','Jhumjhum Gate','Near Ramaiah College','Bangalore',560016),
+(8,'Permanent',90,'Vingal Park','Prakash Nagar','Near Smarts Kids','Chennai',229214),
+(9,'Current',29,'Rajouri Garden','VikasPuri','Near Nadini Parlour','Delhi',698741),
+(9,'Permanent',92,'RawatPur','Rachak Nagar','Near Juhu Choupaati','Mumbai',229225),
+(10,'Current',30,'Dwarka','JanakPuri','Near K V School','Delhi',698742),
+(10,'Permanent',93,'Chrimmar Layout','Rajat Nagar','Near HDFC Atm','Kanpur',229312);
+
+->> select * from employee_address_info;
++-------+--------------+----------+-----------------------+--------------------+------------------------+------------+---------+
+| empid | Address_type | House_no | Address1              | Address2           | Landmark               | City       | Pincode |
++-------+--------------+----------+-----------------------+--------------------+------------------------+------------+---------+
+|     1 | Current      |       20 | Kalathur Layout       | Jalahalli East     | Axis bank Atm          | Banaglore  |  560013 |
+|     1 | Permanent    |       80 | MaharaniGanj          | LalGanj            | Bhitari                | RaeBareli  |  229211 |
+|     2 | Current      |       21 | Wilson Garden         | Gangamma Circle    | Play Millenium School  | Banaglore  |  560020 |
+|     2 | Permanent    |       30 | Sector 4              | Bhim Layout        | KidZee School          | ChandiGarh |  225142 |
+|     3 | Current      |       22 | Mahakuvempu main road | Rajajinagar        | Nandini Parlour        | Bangalore  |  560014 |
+|     3 | Permanent    |       40 | Eden layout           | Marathalli         | near Macdonalds        | Bangalore  |  560023 |
+|     4 | Current      |       23 | IFS Stn               | Yelahanka          | Near Domminos          | Bangalore  |  560022 |
+|     4 | Permanent    |       50 | Nagaarjuna Road       | M g Road           | Near SBI Bank          | Mysore     |  469212 |
+|     5 | Current      |       25 | RMK Road              | Sanjay Nagar       | Near HDFC Bank         | Bangalore  |  560024 |
+|     5 | Permanent    |       60 | Thalur Road           | Shri Lekh Layout   | Near ICICI Bank        | Mangalore  |  562624 |
+|     6 | Current      |       26 | BhoopSandra           | RMKV Extension     | Near Kidzee PlaySchool | Bangalore  |  560028 |
+|     6 | Permanent    |       70 | Thrissur Nagar        | BheemSandra Layout | Near BOB Bank          | Trivendrum |  605911 |
+|     7 | Current      |       27 | Sixth Camp            | Jalahalli East     | Near New Bazaar        | Bangalore  |  560015 |
+|     7 | Permanent    |       80 | RaghuRaj Singh        | RaeBareli          | Near Bel Market        | Lucknow    |  229212 |
+|     8 | Current      |       28 | Ms Palya              | Jhumjhum Gate      | Near Ramaiah College   | Bangalore  |  560016 |
+|     8 | Permanent    |       90 | Vingal Park           | Prakash Nagar      | Near Smarts Kids       | Chennai    |  229214 |
+|     9 | Current      |       29 | Rajouri Garden        | VikasPuri          | Near Nadini Parlour    | Delhi      |  698741 |
+|     9 | Permanent    |       92 | RawatPur              | Rachak Nagar       | Near Juhu Choupaati    | Mumbai     |  229225 |
+|    10 | Current      |       30 | Dwarka                | JanakPuri          | Near K V School        | Delhi      |  698742 |
+|    10 | Permanent    |       93 | Chrimmar Layout       | Rajat Nagar        | Near HDFC Atm          | Kanpur     |  229312 |
++-------+--------------+----------+-----------------------+--------------------+------------------------+------------+---------+
+
+
