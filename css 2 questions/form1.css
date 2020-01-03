@@ -1,0 +1,42 @@
+form {
+    background-color: rgb(247, 144, 60);
+    width: 500px;
+    height: 300px;
+    background-position: center;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 400px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sign {
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+p {
+    padding: 0px;
+}
+
+input[type="email"] {
+    width: 306px;
+    height: 39px;
+    margin-top: 30px;
+}
+
+.LINE1 {
+    padding-bottom: 0px;
+    height: 4px;
+}
+
+input[type="submit"] {
+    width: 85px;
+    height: 44px;
+    margin-left: -5px;
+    color: rgb(247, 232, 234);
+    text-align: center;
+    background-color: rgb(235, 78, 164);
+    border-radius: 3px;
+    padding-right: 0px;
+}

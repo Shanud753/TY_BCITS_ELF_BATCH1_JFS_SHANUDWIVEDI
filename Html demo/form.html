@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <label for="fname">Name</label> <br>
+            <input type="text" name="name" id="fname" required placeholder="enter your name">
+        </div>
+        <div>
+            <label for="mobile">Mobile</label><br>
+            <input type="tel" name="mobile" id="mobile">
+        </div>
+        <div>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email">
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <input type="radio" name="gender" id="gender">Male
+            <input type="radio" name="gender" id="gender">Female
+            <input type="radio" name="gender" id="gender">Others
+        </div>
+        <div>
+            <label for="">Upload CV :</label>
+            <input type="file" name="cv" id="cv">
+        </div>
+        <div>
+            <label for="month">Joining Month :</label>
+            <select name="month" id="month">
+                <option value="0" selected disabled>Select</option>
+                <option value="jan">January</option>
+                <option value="feb">Febuary</option>
+                <option value="mar">March</option>
+                <option value="apr">April</option>
+            </select>
+        </div>
+        <div>
+            <label for="">Comments:</label><br>
+            <textarea name="comments" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="checkbox" name="chk" id="">
+            <label for="">I agree the Terms & Conditions</label>
+        </div>
+        <input type="submit" value="Submit">
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+
+</html>
