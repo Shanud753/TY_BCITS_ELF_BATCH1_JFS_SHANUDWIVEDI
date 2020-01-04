@@ -1,0 +1,70 @@
+form {
+    background-color: rgb(2, 26, 28);
+    width: 500px;
+    height: 500px;
+    color: white;
+    text-align: center;
+    background-position: center;
+}
+
+input[type="submit"][value="Sign Up"] {
+    width: 216px;
+    height: 40px;
+    margin-top: 44px;
+    margin-left: -4px;
+    background-color: rgb(26, 202, 135);
+    color: white;
+    background-color: rgb(26, 202, 135);
+}
+
+input[type="submit"][value="Log In"] {
+    width: 216px;
+    height: 40px;
+    margin-top: 44px;
+    margin-left: -4px;
+    background-color: rgb(74, 99, 99);
+    border: rgb(74, 99, 99);
+    color: white;
+}
+
+h1 {
+    margin-top: 40px;
+}
+
+input[type="text"][placeholder="First Name*"] {
+    width: 222px;
+    height: 34px;
+    background-color: rgb(2, 26, 28);
+    padding-left: 10px;
+}
+
+input[type="text"][placeholder="Last Name*"] {
+    width: 207px;
+    height: 34px;
+    background-color: rgb(2, 26, 28);
+    padding-left: 10px;
+}
+
+input[type="email"][placeholder="Email Address*"] {
+    width: 450px;
+    height: 34px;
+    background-color: rgb(2, 26, 28);
+    padding-left: 10px;
+}
+
+input[type="password"][placeholder="Set A password*"] {
+    width: 450px;
+    height: 34px;
+    background-color: rgb(2, 26, 28);
+    padding-left: 10px;
+}
+
+input[type="button"][value="GET STARTED"] {
+    width: 462px;
+    height: 75px;
+    background-color: rgb(26, 202, 135);
+    border: rgb(26, 202, 135);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    color: white;
+}
