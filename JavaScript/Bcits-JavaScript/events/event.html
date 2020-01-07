@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events</title>
+    <!-- <script src="event.js"></script> -->
+    <style>
+        .prop {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button onclick="showAlert()"> Click Me</button>
+    <button onclick="createEle()"> Click to create Element</button>
+    <h3></h3>
+    <h2 onclick=" displayElement()"> Click </h2>
+    <!-- <p onclick="alert( 'this is p tag')"> p tag</p> -->
+    <h1 id="disp" class="prop">Display properties</h1>
+    <button id="myBtn" onclick=" displayElement()">Click this to show h1 Element</button>
+    <p onmouseover="changeBgcolorToBlue()" onmouseout="changeBgcolorToWhite()" id="cgColor"> Hello World</p>
+    <input onkeyup="showData()" onkeydown="showDetail()" id="myIpt">
+    <input id="inp" onkeyup="getInputValue()">
+    <p id="show"></p>
+
+    <script src="event.js"></script>
+</body>
+
+</html>
