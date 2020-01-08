@@ -1,0 +1,33 @@
+.navbar navbar-expand-lg navbar-light bg-lightimg {
+    width: 200px;
+    height: 200px;
+}
+
+h1 {
+    margin-left: 70px;
+}
+
+div.portal {
+    color: rgb(27, 121, 35);
+    margin-left: 600px;
+}
+
+
+/* 
+div.form-group {
+    width: 200px;
+    height: 200px;
+} */
+
+div.card {
+    width: 500px;
+    height: 400px;
+}
+
+div.table {
+    border: 1px solid green;
+    width: 300px;
+    height: 250px;
+    margin-left: 40px;
+    margin-top: -370px;
+}
