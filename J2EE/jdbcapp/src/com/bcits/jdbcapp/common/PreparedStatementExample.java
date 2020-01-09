@@ -23,7 +23,7 @@ public class PreparedStatementExample {
 
 			// 3.Issue SQL Queries Via Connection
 			String query = " select * from  employee_primary_info " 
-			                + " where empid=? ";
+			                + " where empid=? ";               
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, Integer.parseInt(args[0]));
 			rs = pstmt.executeQuery();

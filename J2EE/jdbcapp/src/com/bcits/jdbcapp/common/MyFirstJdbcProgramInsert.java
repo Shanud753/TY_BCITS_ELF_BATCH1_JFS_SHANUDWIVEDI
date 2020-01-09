@@ -23,7 +23,7 @@ public class MyFirstJdbcProgramInsert {
 
 			// 3.Issue the Sql queries via Connection
 			String query = " insert into employee_primary_info "
-					+ " values(13,'hanu',8564876543,'shanu1@gmail.com','1997-10-28','2019-02-24',"
+					+ " values(12,'hanu',8564876543,'shanu1@gmail.com','1997-10-28','2019-02-24',"
 					+ " 'Software Dveloper','a+',90000,30,3)";
 			stmt = con.createStatement();
 			int i = stmt.executeUpdate(query);
