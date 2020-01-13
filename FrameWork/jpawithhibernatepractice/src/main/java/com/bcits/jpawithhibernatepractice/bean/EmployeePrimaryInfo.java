@@ -1,12 +1,26 @@
 package com.bcits.jpawithhibernatepractice.bean;
 
 import java.io.Serializable;
-import java.sql.*;
 
+import java.sql.*;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.bcits.jpawithhibernatepractice.manytomany.ProjectInfo;
+import com.bcits.jpawithhibernatepractice.manytoone.EmployeeAddressInfo;
+import com.bcits.jpawithhibernatepractice.onetoone.EmployeeSecondaryInfo;
+
+import lombok.Data;
+import lombok.ToString.Exclude;
+
 @Entity
 @Table(name="employee_primary_info")
 public class EmployeePrimaryInfo implements Serializable {
@@ -18,7 +32,7 @@ public class EmployeePrimaryInfo implements Serializable {
     @Column
 	private long mobile_no;
     @Column
-	private String official_mailid;
+	private String officialMailid;
     @Column
 	private Date dob;
     @Column
@@ -26,14 +40,37 @@ public class EmployeePrimaryInfo implements Serializable {
     @Column
 	private String designation;
     @Column
-	private String bld_grp;
+	private String bldGrp;
     @Column
 	private double salary;
     @Column
 	private int depId;
     @Column
 	private int mrgId;
+    
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "primaryInfo")
+    private EmployeeSecondaryInfo secondaryInfo;
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "primaryInfo")
+    private List<EmployeeAddressInfo> address;
+    
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "primaryInfo")
+    private List<ProjectInfo> projectInfos;
+    
+    public List<EmployeeAddressInfo> getAddress() {
+		return address;
+	}
+	public void setAddress(List<EmployeeAddressInfo> address) {
+		this.address = address;
+	}
 	
+	
+	public EmployeeSecondaryInfo getSecondaryInfo() {
+		return secondaryInfo;
+	}
+	public void setSecondaryInfo(EmployeeSecondaryInfo secondaryInfo) {
+		this.secondaryInfo = secondaryInfo;
+	}
 	public int getEid() {
 		return eid;
 	}
@@ -52,11 +89,18 @@ public class EmployeePrimaryInfo implements Serializable {
 	public void setMobile_no(long mobile_no) {
 		this.mobile_no = mobile_no;
 	}
-	public String getOfficial_mailid() {
-		return official_mailid;
+	
+	public String getOfficialMailid() {
+		return officialMailid;
 	}
-	public void setOfficial_mailid(String official_mailid) {
-		this.official_mailid = official_mailid;
+	public void setOfficialMailid(String officialMailid) {
+		this.officialMailid = officialMailid;
+	}
+	public String getBldGrp() {
+		return bldGrp;
+	}
+	public void setBldGrp(String bldGrp) {
+		this.bldGrp = bldGrp;
 	}
 	public Date getDob() {
 		return dob;
@@ -76,12 +120,7 @@ public class EmployeePrimaryInfo implements Serializable {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getBld_grp() {
-		return bld_grp;
-	}
-	public void setBld_grp(String bld_grp) {
-		this.bld_grp = bld_grp;
-	}
+
 	public double getSalary() {
 		return salary;
 	}

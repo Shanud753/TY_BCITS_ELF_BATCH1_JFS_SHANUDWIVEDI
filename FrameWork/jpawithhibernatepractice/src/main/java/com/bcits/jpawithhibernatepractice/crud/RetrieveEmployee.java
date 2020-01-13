@@ -18,10 +18,10 @@ public class RetrieveEmployee {
 	    System.out.println(info.getDepId());
 	    System.out.println(info.getEname());
 	    System.out.println(info.getMobile_no());
-	    System.out.println(info.getBld_grp());
+	    System.out.println(info.getBldGrp());
 	    System.out.println(info.getDesignation());
 	    System.out.println(info.getMrgId());
-	    System.out.println(info.getOfficial_mailid());
+	    System.out.println(info.getOfficialMailid());
 	    System.out.println(info.getSalary());
 	    System.out.println(info.getDob());
 	    System.out.println(info.getDoj());

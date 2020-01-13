@@ -17,7 +17,7 @@ import com.bcits.jpawithhibernatepractice.bean.EmployeePrimaryInfo;
 @Table(name="employee_secondary_info")
 public class EmployeeSecondaryInfo implements Serializable{
 	@Id
-	private int empid;
+	private int eid;
 	@Column
 	private String personalMailId;
 	@Column
@@ -42,17 +42,19 @@ public class EmployeeSecondaryInfo implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="empid")
 	private EmployeePrimaryInfo primaryInfo;
+	
 	public EmployeePrimaryInfo getPrimaryInfo() {
 		return primaryInfo;
 	}
 	public void setPrimaryInfo(EmployeePrimaryInfo primaryInfo) {
 		this.primaryInfo = primaryInfo;
 	}
-	public int getEmpid() {
-		return empid;
+	
+	public int getEid() {
+		return eid;
 	}
-	public void setEmpid(int empid) {
-		this.empid = empid;
+	public void setEid(int eid) {
+		this.eid = eid;
 	}
 	public String getPersonalMailId() {
 		return personalMailId;

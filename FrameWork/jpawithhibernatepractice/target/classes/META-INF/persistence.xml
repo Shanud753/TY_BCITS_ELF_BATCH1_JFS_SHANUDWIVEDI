@@ -6,7 +6,7 @@
         <class>com.bcits.jpawithhibernatepractice.bean.EmployeePrimaryInfo</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/employee_management_info?" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/emmapping_db?" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="root" />
             

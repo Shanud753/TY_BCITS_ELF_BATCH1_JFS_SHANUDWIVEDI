@@ -14,17 +14,17 @@ public class InsertOneToOne {
 		EntityTransaction transaction = null;  
 		EntityManager manager = null;
 		EmployeePrimaryInfo demo = new EmployeePrimaryInfo();
-		demo.setEid(12);
-		demo.setEname("Manish");
-		demo.setMobile_no(9876543251l);
-		demo.setOfficial_mailid("manish1@gmail.com");
-		demo.setDob(java.sql.Date.valueOf("1996-12-14"));
-		demo.setDoj(java.sql.Date.valueOf("2017-10-24"));
-		demo.setDesignation("manager");
-		demo.setBld_grp("b+");
-		demo.setSalary(50000.0);
-		demo.setDepId(40);
-		demo.setMrgId(103);
+//		demo.setEid(11);
+//		demo.setEname("Manish");
+//		demo.setMobile_no(9876543251l);
+//		demo.setOfficialMailid("manish1@gmail.com");
+//		demo.setDob(java.sql.Date.valueOf("1996-12-14"));
+//		demo.setDoj(java.sql.Date.valueOf("2017-10-24"));
+//		demo.setDesignation("manager");
+//		demo.setBldGrp("b+");
+//		demo.setSalary(50000.0);
+//		demo.setDepId(40);
+//		demo.setMrgId(103);
 		
 		EmployeeSecondaryInfo demo1 = new EmployeeSecondaryInfo();
 		
@@ -38,13 +38,14 @@ public class InsertOneToOne {
 		demo1.setGurdianContactNo(9876543234l);
 		demo1.setJobLocation("Mumbai");
 		demo1.setPrimaryInfo(demo);
+//		demo.setSecondaryInfo(demo1);
 
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("demo");
 			manager = entityManagerFactory.createEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			manager.persist(demo1);
+//			manager.persist(demo);
 			System.out.println("Record Saved");
 			transaction.commit();
 		} catch (Exception e) {
