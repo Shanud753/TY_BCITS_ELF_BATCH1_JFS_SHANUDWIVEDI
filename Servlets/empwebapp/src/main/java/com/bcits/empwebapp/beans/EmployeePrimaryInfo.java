@@ -2,7 +2,7 @@ package com.bcits.empwebapp.beans;
 
 import java.io.Serializable;
 
-import java.sql.*;
+import java.util.*;
 
 
 import javax.persistence.Column;
