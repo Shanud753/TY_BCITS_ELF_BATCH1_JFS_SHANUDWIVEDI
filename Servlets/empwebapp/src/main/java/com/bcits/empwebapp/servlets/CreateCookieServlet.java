@@ -24,7 +24,7 @@ public class CreateCookieServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.print("<h1 style='color: green'> Cookie Created Successfully </h1>");
+		out.println("<h1 style='color: green'> Cookie Created Successfully </h1>");
 		out.println("</body>");
 		out.println("</html>");
 		

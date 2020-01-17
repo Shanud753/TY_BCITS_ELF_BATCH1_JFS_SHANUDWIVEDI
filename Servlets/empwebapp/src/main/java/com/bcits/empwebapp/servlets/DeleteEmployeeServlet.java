@@ -21,6 +21,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
 		//Get the form Data
 		String empIdVal = req.getParameter("empId");
 		int empId = Integer.parseInt(empIdVal);

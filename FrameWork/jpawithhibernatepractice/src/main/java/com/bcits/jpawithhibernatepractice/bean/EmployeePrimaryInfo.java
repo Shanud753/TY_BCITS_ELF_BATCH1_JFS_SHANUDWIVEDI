@@ -39,6 +39,7 @@ public class EmployeePrimaryInfo implements Serializable {
 	private Date doj;
     @Column
 	private String designation;
+    
     @Column
 	private String bldGrp;
     @Column
