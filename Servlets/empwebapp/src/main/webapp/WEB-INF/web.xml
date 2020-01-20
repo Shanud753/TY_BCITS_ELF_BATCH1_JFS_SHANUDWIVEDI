@@ -19,6 +19,15 @@
 	</context-param>
 	
 	<servlet>
+	<servlet-name>myFirstJsp</servlet-name>
+	<jsp-file>/myFirstJsp.jsp</jsp-file>
+	 </servlet>
+	 <servlet-mapping>
+	 <servlet-name>myFirstJsp</servlet-name>
+	 <url-pattern>/firstJsp</url-pattern>
+	 </servlet-mapping>
+	
+	<servlet>
 		<servlet-name>currentDate</servlet-name>
 		<servlet-class>com.bcits.empwebapp.servlets.DateServlet</servlet-class>
 		<init-param>
