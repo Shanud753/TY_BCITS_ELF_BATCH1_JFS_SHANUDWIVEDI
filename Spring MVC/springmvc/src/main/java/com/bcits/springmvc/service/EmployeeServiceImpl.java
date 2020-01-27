@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bcits.springmvc.beans.EmployeeInfoBean;
+import com.bcits.springmvc.customexceptions.EmployeeException;
 import com.bcits.springmvc.dao.EmployeeDao;
 
 @Service
@@ -20,11 +21,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return dao.authenticate(empId, password);
 	}
 
-	@Override
-	public boolean addEmployee(EmployeeInfoBean bean) {
-		
-		return dao.addEmployee(bean);
-	}
 
 	@Override
 	public boolean deleteEmployee(int empId) {
@@ -32,13 +28,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return false;
 		}
 		return dao.deleteEmployee(empId);
-	}//End of Delete
+	}//End of deleteEmployee()
 
 	@Override
 	public EmployeeInfoBean getEmployee(int empId) {
+		if(empId<1) {
+			throw new EmployeeException("Invalid Employee Id!!");
+		}
 		
-		return dao.getEmployee(empId);
-	}
+		EmployeeInfoBean employeeInfoBean = dao.getEmployee(empId);
+		if(employeeInfoBean != null) {
+			throw new EmployeeException("Employee Id Not Found!!");
+		}
+		return employeeInfoBean;
+	}//End of getEmployee()
 
 	@Override
 	public List<EmployeeInfoBean> getAllEmployees() {
@@ -48,8 +51,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean updateEmployee(EmployeeInfoBean bean) {
-		
+		if(bean != null) {
+			return dao.updateEmployee(bean);
+		}
 		return dao.updateEmployee(bean);
+	}
+
+	@Override
+	public boolean addEmployee(EmployeeInfoBean bean, String cnfpassword) {
+		if(!bean.getPassword().equals(cnfpassword)) {
+			return false;
+		}
+		return dao.addEmployee(bean);
 	}
 
 }

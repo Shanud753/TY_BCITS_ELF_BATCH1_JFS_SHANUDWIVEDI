@@ -7,7 +7,7 @@ import com.bcits.springmvc.beans.EmployeeInfoBean;
 public interface EmployeeService {
 	
 	public EmployeeInfoBean authenticate(int empId,String password);
-	public boolean addEmployee(EmployeeInfoBean bean);
+	public boolean addEmployee(EmployeeInfoBean bean,String cnfpassword);
 	public boolean deleteEmployee(int empId);
 	public EmployeeInfoBean getEmployee(int empId);
 	public List<EmployeeInfoBean> getAllEmployees();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%String errMsg = (String) request.getAttribute("errMsg"); %>
+    <% System.out.println("Inside Jsp File...");%>
 <!DOCTYPE html>
 <html>
 <head>

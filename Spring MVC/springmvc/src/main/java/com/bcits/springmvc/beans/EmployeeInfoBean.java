@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.Data;
 @Data
 @Entity
@@ -17,21 +20,23 @@ public class EmployeeInfoBean  {
 
 	@Id
     @Column(name="emp_id")
-	private int empId;
+	private Integer empId;
 	
     @Column
 	private String ename;
     
     @Column(name="mobile")
-	private long mobileNo;
+	private Long mobileNo;
     
     @Column(name="official_mail_id")
 	private String officialMailid;
     
     @Column(name="date_of_birth")
+//    @DateTimeFormat(iso = ISO.DATE)
 	private Date dob;
     
     @Column(name="date_of_joining")
+//    @DateTimeFormat(iso=ISO.DATE)
 	private Date doj;
     
     @Column
@@ -41,13 +46,13 @@ public class EmployeeInfoBean  {
 	private String bldGrp;
     
     @Column
-	private double salary;
+	private Double salary;
     
     @Column(name="department_id")
-	private int depId;
+	private Integer depId;
     
     @Column(name="manager_id")
-	private int mrgId;
+	private Integer mrgId;
     
     @Column
     private String password;
