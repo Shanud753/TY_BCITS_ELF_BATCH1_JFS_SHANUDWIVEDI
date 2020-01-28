@@ -1,0 +1,13 @@
+{
+	"employeeID": 1234,
+	"ename": "Shanu",
+	"designation": "SSD",
+	"mobileNo": 8746543214,
+	"officialMailid": "shanu@email.com",
+	"dob": 1580208401133,
+	"doj": 1580208401133,
+	"bldGrp": "AB+",
+	"salary": 98765.0,
+	"deptId": 22,
+	"mgrId": 0
+}

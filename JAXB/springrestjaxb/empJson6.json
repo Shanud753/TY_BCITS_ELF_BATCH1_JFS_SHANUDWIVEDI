@@ -1,0 +1,19 @@
+{
+	"ename": "Shanu",
+	"designation": "SSD",
+	"mobileNo": 9876543214,
+	"officialMailid": "shanu@email.com",
+	"dob": 1580208960259,
+	"doj": 1580208960259,
+	"bldGrp": "AB+",
+	"salary": 98765.0,
+	"deptId": 22,
+	"mgrId": 0,
+	"password": "qwerty",
+	"userOtherInfo": {
+		"gender": "Female",
+		"aadharNo": 1234565679
+	},
+	"userAddressesList": null,
+	"userID": 1234
+}

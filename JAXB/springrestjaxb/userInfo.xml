@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user-info user-id="1234">
+    <ename>Shanu</ename>
+    <mobile-no>9876543214</mobile-no>
+    <officialMailid>shanu@email.com</officialMailid>
+    <dob>2020-01-28T13:04:22.040+05:30</dob>
+    <doj>2020-01-28T13:04:22.040+05:30</doj>
+    <designation>SSD</designation>
+    <bldGrp>A+</bldGrp>
+    <salary>98765.0</salary>
+    <dept-id>22</dept-id>
+    <mgrId>0</mgrId>
+    <password>qwerty</password>
+    <user-other-info>
+        <gender>Female</gender>
+        <aadhar>8734565679</aadhar>
+    </user-other-info>
+</user-info>

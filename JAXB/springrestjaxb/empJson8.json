@@ -1,0 +1,32 @@
+{
+	"userID": 1234,
+	"ename": "Shanu",
+	"designation": "SSD",
+	"userAddressInfo": [
+		{
+			"houseNum": 55,
+			"street": "xyz Street",
+			"city": "Blr",
+			"addressType": "t"
+		},
+		{
+			"houseNum": 1,
+			"street": "Litle milenium",
+			"city": "Delhi",
+			"addressType": "p"
+		}
+	],
+	"mobileNo": 9876543214,
+	"officialMailid": "shanu@email.com",
+	"dob": 1580209705302,
+	"doj": 1580209705302,
+	"bldGrp": "AB+",
+	"salary": 98765.0,
+	"deptId": 22,
+	"mgrId": 0,
+	"password": "qwerty",
+	"userOtherInfo": {
+		"gender": "Female",
+		"aadharNo": 1234565679
+	}
+}

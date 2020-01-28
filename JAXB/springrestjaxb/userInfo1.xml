@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user-info user-id="1234">
+    <ename>Shanu</ename>
+    <mobile-no>9876543214</mobile-no>
+    <officialMailid>shanu@email.com</officialMailid>
+    <dob>2020-01-28T13:43:10.920+05:30</dob>
+    <doj>2020-01-28T13:43:10.920+05:30</doj>
+    <designation>SSD</designation>
+    <bldGrp>AB+</bldGrp>
+    <salary>98765.0</salary>
+    <dept-id>22</dept-id>
+    <mgrId>0</mgrId>
+    <password>qwerty</password>
+    <user-other-info>
+        <gender>Female</gender>
+        <aadhar>1234565679</aadhar>
+    </user-other-info>
+    <user-address-list>
+        <userAddressesList>
+            <house-number>55</house-number>
+            <street>xyz Street</street>
+            <city>Blr</city>
+            <address-type>116</address-type>
+        </userAddressesList>
+        <userAddressesList>
+            <house-number>1</house-number>
+            <street>Litle milenium</street>
+            <city>Delhi</city>
+            <address-type>112</address-type>
+        </userAddressesList>
+    </user-address-list>
+</user-info>

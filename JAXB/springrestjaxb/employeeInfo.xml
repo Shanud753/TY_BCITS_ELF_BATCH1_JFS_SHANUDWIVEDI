@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Employee_info e-name="Shanu">
+    <employee-id>1234</employee-id>
+    <mobile-no>9876543214</mobile-no>
+    <officialMailid>shanu@email.com</officialMailid>
+    <dob>2020-01-28T12:41:00.891+05:30</dob>
+    <doj>2020-01-28T12:41:00.891+05:30</doj>
+    <designation>SSD</designation>
+    <bldGrp>AB+</bldGrp>
+    <salary>98765.0</salary>
+    <dept-id>22</dept-id>
+    <mgrId>0</mgrId>
+    <password>qwerty</password>
+</Employee_info>
