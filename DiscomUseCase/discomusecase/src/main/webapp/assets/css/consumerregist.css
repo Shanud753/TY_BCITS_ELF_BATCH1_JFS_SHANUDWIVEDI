@@ -1,0 +1,156 @@
+body{
+    background-image: url('../images/b19.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+nav.navbar{
+    width: 1590px;
+    height: 110px;
+}
+#h3{
+    padding-left:21px; 
+    padding-bottom: 70px;
+     padding-top: 20px;
+}
+#h6{
+     padding-top: 62px;
+     padding-right: 598px; 
+     padding-left:  575px; 
+      margin-left: -1010px;
+}
+#lang{
+    font-size:larger;
+    margin-left: 120px;
+    margin-top: -59px;
+}
+#consumerlogo{
+    width: 140px; 
+    height: 130px;
+     margin-left: -10px;
+      margin-top: -30px;
+}
+
+
+div.container {
+    width: 850px;
+    height: 750px;
+    border: 1px solid black;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    box-shadow: 0 0 20px;
+    margin-top: 55px;
+}
+.form{
+	background-image: url("../images/background.jpg");
+}
+
+div.heading {
+    font-size: 30px;
+    padding-left: 170px;
+    padding-top: 20px;
+}
+
+input[type="email"][placeholder="enter your email"] {
+    width: 220px;
+    height: 30px;
+    font-size: 14px;
+    margin-left: 30px;
+}
+
+input[type="text"][placeholder="Address Line 1"] {
+    width: 240px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+div.address2 {
+    font-size: 14px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+input[type="text"][placeholder="Address Line 2"] {
+    width: 240px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+div.address1 {
+    font-size: 14px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+input[type="text"][placeholder="enter your city"] {
+    width: 240px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+div.city {
+    font-size: 14px;
+    padding-left: 70px;
+    padding-top: 20px;
+}
+
+input[type="text"][placeholder="enter your state"] {
+    width: 240px;
+    height: 30px;
+    margin-left: 25px;
+}
+
+div.state {
+    font-size: 14px;
+    padding-left: 70px;
+    padding-top: 20px;
+}
+
+div.email {
+    padding-left: 30px;
+    padding-top: 30px;
+    font-size: 14px;
+}
+
+div.meter {
+    padding-left: 30px;
+    padding-top: 30px;
+    font-size: 14px;
+}
+
+select {
+    width: 160px;
+    height: 30px;
+    font-size: 14px;
+}
+
+div.address {
+    font-size: 20px;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+.btn{
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: 300px;
+}
+div.form-check{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+#gridCheck{
+    /* width: 20px; */
+    /* height: 10px;
+    width: 20px; */
+    margin-left: -30px;
+    padding: 0;
+    border: 2px solid #5bb9ec;
+    width: 15px;
+    height: 15px;
+    -webkit-appearance:none;
+    background-color: #fff;
+    outline: none;
+    /* box-sizing: border-box; */
+}
