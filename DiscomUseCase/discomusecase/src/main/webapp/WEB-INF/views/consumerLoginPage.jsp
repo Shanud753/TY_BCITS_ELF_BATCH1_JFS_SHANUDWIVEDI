@@ -4,7 +4,6 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
-    
         
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +43,7 @@
 
     <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;">
-            <form id="formData" onsubmit="validation(); return false" method="post" >
+            <form id="formData" onsubmit="validation(); return false" method="post" action="./consumerContent" >
                 <legend style="font-size: 25px;">Consumer Login</legend>
                 <div id="consumerlogo1">
                     <img src="${images}/img-01.png" alt="IMG" style="width: 160px; height:140px; margin-top: 60px;">
@@ -59,7 +58,7 @@
                     <input type="password" class="form-control" id="pwd" placeholder="enter  password" style="font-size: 14px;">
                     <span id="userpass" class="text-danger font-weight-bold"></span>
                 </div>
-                <button type="submit" class="btn btn-success mx-auto d-block" id="btn" formaction="./homePage" >Submit </button><br>
+                <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Submit </button><br>
                 <div class="text-center p-t-12">
                     <span id="txt1" style=" color: black;">
                     Forgot
@@ -70,7 +69,7 @@
                 </div><br>
 
                 <div class="text-center p-t-136">
-                    <a class="txt2" href="./homePage" style="font-weight: bolder; font: size 380px;  color: white;">
+                    <a class="txt2" href="./consumerRegister" style="font-weight: bolder; font: size 380px;  color: white;">
                     Regiter Now
                     <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                 </a>
@@ -94,5 +93,4 @@
     <script src="${js}/consumerlogin.js"></script>
 
 </body>
-
 </html>

@@ -12,6 +12,9 @@ import lombok.Data;
 @Entity
 @Table(name="consumers_master_info")
 public class ConsumersMaster implements Serializable {
+	
+	
+
 	@Id
 	@Column(name="rr_number")
 	private String rrNumber;

@@ -30,6 +30,6 @@ public class MonthlyConsumption implements Serializable {
    @Column(name="final_reading")
 	private Double finalReading;
    
-   @Column(name="initial_Date")
+   @Column(name="units_consumption")
    private double unitsConsumption;
 }

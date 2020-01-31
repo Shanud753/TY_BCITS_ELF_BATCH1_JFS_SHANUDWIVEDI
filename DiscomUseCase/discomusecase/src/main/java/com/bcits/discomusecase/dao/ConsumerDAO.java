@@ -1,5 +1,8 @@
 package com.bcits.discomusecase.dao;
 
-public interface ConsumerDAO {
+import com.bcits.discomusecase.beans.ConsumersMaster;
 
+public interface ConsumerDAO {
+	public ConsumersMaster authenticate(int empId,String password);
+	public boolean addConsumer(ConsumersMaster consumersMaster);
 }

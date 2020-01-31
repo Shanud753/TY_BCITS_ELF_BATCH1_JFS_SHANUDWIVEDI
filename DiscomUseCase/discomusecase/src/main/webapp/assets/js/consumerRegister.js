@@ -13,14 +13,14 @@ function validation() {
     
     var userfNameregx = /^[A-Za-z]{4,20}$/;
     var userlNameregx = /^[A-Za-z]{4,20}$/;
-    var emailregx = /^[A-Za-z_]{3,}@[A-Za-z]{3,}{.}{1}[A-Za-z]{2,6}$/;
+//    var emailregx = /^[A-Za-z_]{3,}@[A-Za-z]{3,}{.}{1}[A-Za-z]{2,6}$/;
     var mobileregx = /^[6789]{1}[0-9]{9}$/;
-    var passregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    var cpassregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    var rrNumregx = /^[0-9A-Z]$/;
-    var address1regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
-    var address2regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
-    var cityregx = /^[A-Za-z]$/;
+//    var passregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+//    var cpassregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+    var rrNumregx = /^[0-9]{5}[A-Z]{2}$/;
+//    var address1regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
+//    var address2regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
+//    var cityregx = /^[A-Za-z]$/;
     
     var ufNameValid = false;
     var ulNameValid = false;
@@ -41,9 +41,9 @@ function validation() {
     } else if ((userfirstNameVal.length <= 2) || (userfirstNameVal.length > 20)) {
         document.getElementById('userfName').innerHTML = " ** Username length must be between 2 and 20";
         return false;
-    } else if (userfNameregx.test(userfirstNameVal)) {
+    } else if (!userfNameregx.test(userfirstNameVal)) {
         document.getElementById('userfName').innerHTML = " ** No Special Characters and Numbers Allowed";
-        return false;
+        return true;
     } else {
         document.getElementById('userfName').style.display = 'none ';
         ufNameValid = true;
@@ -57,9 +57,9 @@ function validation() {
     } else if ((userlastNameVal.length <= 2) || (userlastNameVal.length > 20)) {
         document.getElementById('userlName').innerHTML = " ** Username length must be between 2 and 20";
         return false;
-    } else if (userlNameregx.test(userlastNameVal)) {
+    } else if (!userlNameregx.test(userlastNameVal)) {
         document.getElementById('userlName').innerHTML = " ** No Special Characters and Numbers Allowed";
-        return false;
+        return true;
     } else {
         document.getElementById('userlName').style.display = 'none';
         ulNameValid = true;
@@ -70,10 +70,7 @@ function validation() {
     if (emailVal == "") {
         document.getElementById('emailid').innerHTML = " ** Please fill the email field";
         return false;
-    
-    } else if (emailregx.test(emailVal)) {
-        document.getElementById('emailid').innerHTML = " ** Please Enter the Proper Email-id";
-        return false;
+
     } else {
         document.getElementById('emailid').style.display = 'none';
         emailValid = true;
@@ -83,9 +80,6 @@ function validation() {
     
     if (mobileNumVal == "") {
         document.getElementById('phnnumber').innerHTML = " ** Please fill the mobile field";
-        return false;
-    } else if (mobileregx.test(mobileNumVal)) {
-        document.getElementById('phnnumber').innerHTML = " ** Please Enter the  Valid Number";
         return false;
     } else {
         document.getElementById('phnnumber').style.display = 'none';
@@ -97,9 +91,6 @@ function validation() {
     if (passwordVal == "") {
         document.getElementById('userpass').innerHTML = " ** Please fill the password field";
         return false;
-    } else if (passregx.test(passwordVal)) {
-        document.getElementById('userpass').innerHTML = " ** Please Enter the Valid password";
-        return false;
     } else {
         document.getElementById('userpass').style.display = 'none';
         passValid = true;
@@ -110,13 +101,6 @@ function validation() {
     if (cpasswordVal == "") {
         document.getElementById('usercpass').innerHTML = " ** Please fill the password field";
         return false;
-    }else if(passwordVal == cpasswordVal){
-        document.getElementById('usercpass').innerHTML = " ** Both password Values must be Same";
-        return false;
-
-    } else if (cpassregx.test(cpasswordVal)) {
-        document.getElementById('usercpass').innerHTML = " ** Please  confirm Your password";
-        return false;
     } else {
         document.getElementById('usercpass').style.display = 'none';
         cpassValid = true;
@@ -124,12 +108,14 @@ function validation() {
     
     //rr-Number Validation
     
-    if (rrNumVal == "") {
-        document.getElementById('rrnum').innerHTML = " ** Please fill the RR-number field";
+    
+    if (rrNumVal === '') {
+        document.getElementById('rrnum').innerHTML = " ** Please fill the RR-Number field";
         return false;
-    } else if (rrNumregx.test(rrNumVal)) {
+
+    } else if (!rrNumregx.test(rrNumVal)) {
         document.getElementById('rrnum').innerHTML = " ** Please Enter the Correct RR-number";
-        return false;
+        return true;
     } else {
         document.getElementById('rrnum').style.display = 'none';
         rrNumValid = true;
@@ -138,9 +124,6 @@ function validation() {
     //Address1 validation
     if (address1Val == "") {
         document.getElementById('addressval1').innerHTML = " ** Please fill the Address field-1";
-        return false;
-    } else if (address1regx.test(address1Val)) {
-        document.getElementById('addressval1').innerHTML = " ** Please Enter the valid address";
         return false;
     } else {
         document.getElementById('addressval1').style.display = 'none';
@@ -152,9 +135,6 @@ function validation() {
     if (address2Val == "") {
         document.getElementById('addressval2').innerHTML = " ** Please fill the Address field-2";
         return false;
-    } else if (address2regx.test(address2Val)) {
-        document.getElementById('addressval2').innerHTML = " ** Please Enter the valid address";
-        return false;
     } else {
         document.getElementById('addressval2').style.display = 'none';
         address2Valid = true;
@@ -164,15 +144,16 @@ function validation() {
     if (cityVal == "") {
         document.getElementById('city1').innerHTML = " ** Please fill the field";
         return false;
-    } else if (cityregx.test(cityVal)) {
-        document.getElementById('city1').innerHTML = " ** Please Enter the correct city";
-        return false;
     } else {
         document.getElementById('city1').style.display = 'none';
         cityValid = true;
     }
     
+
     if (ufNameValid && ulNameValid && emailValid && mobilValid && passValid && cpassValid && rrNumValid && address1Valid && address2Valid && cityValid) {
-        window.location.href = "consumerlogin.html";
+    	document.body.appendChild(form);
+    	form.submit();
+      return true;
+     }
     }
-    }
+    

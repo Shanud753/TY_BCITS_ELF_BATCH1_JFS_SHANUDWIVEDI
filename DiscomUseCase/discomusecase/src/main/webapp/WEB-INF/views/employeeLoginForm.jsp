@@ -43,11 +43,8 @@
     </header>
     <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;">
-            <form onsubmit="validation(); return false">
+            <form id="formData" onsubmit="validation(); return false" method="post" action="./employeeContent">
                 <legend style="font-size: 25px; color: white;"><u>Employee Login</u></legend>
-                <!-- <div id="consumerlogo1">
-                    <img src="images logo/img-01.png" alt="IMG" style="width: 160px; height:140px; margin-top: 60px;">
-                </div> -->
                 <div id="form">
                 <div id="form-group">
                     <label for="empId" style="font-size: 17px; padding-top: 20px; font-weight: bolder; color: white;">Employee Id</label>
@@ -67,33 +64,14 @@
                     Password?
                 </a>
                 </div><br>
-
-                <!-- <div class="text-center p-t-136">
-                    <a class="txt2" href="/consumerReg.html" style="font-weight: bolder; font: size 380px;  color: white;">
-                    Regiter Now
-                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                </a>
-                </div> -->
             </div>
             </form>
         </div>
     </div>
-
-
-    <!-- <div class="list-group" style="width: 270px; height: 300px; margin-left: 160px; margin-top: 0px;">
-        <button type="button" class="list-group-item list-group-item-action active">
-          Consumer Login
-        </button>
-        <button type="button" class="list-group-item list-group-item-action">Consumer Registration</button>
-        <button type="button" class="list-group-item list-group-item-action">View Bill</button>
-        <button type="button" class="list-group-item list-group-item-action" disabled>Download Payment Reciept</button>
-    </div> -->
-
   
     <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
     <script src="${js}/employee.js"></script>
 
 </body>
-
 </html>
