@@ -10,11 +10,11 @@ import javax.persistence.Table;
 import lombok.Data;
 @Data
 @Entity
-@Table(name="employee_login_info")
+@Table(name="employee_master_info")
 public class EmployeeMaster implements Serializable{
 	@Id
 	@Column(name="emp_Id")
-	private int empId;
+	private Integer empId;
 	
 	@Column(name="designation")
 	private String designation;

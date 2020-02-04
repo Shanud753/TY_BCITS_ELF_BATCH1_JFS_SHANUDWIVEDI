@@ -4,6 +4,8 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+    
+    <%String errMsg = (String) request.getAttribute("errMsg");%>
         
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +42,12 @@
             </div>
         </nav>
     </header>
-
+<% if(errMsg != null && !errMsg.isEmpty()) { %>
+<h2 style ="color:red;"><%=errMsg %></h2>
+<%} %>
     <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;">
-            <form id="formData" onsubmit="validation(); return false" method="post" action="./consumerContent" >
+            <form id="formData" onsubmit="validation(); return false" method="post" action="./consumerLoginPage" >
                 <legend style="font-size: 25px;">Consumer Login</legend>
                 <div id="consumerlogo1">
                     <img src="${images}/img-01.png" alt="IMG" style="width: 160px; height:140px; margin-top: 60px;">
@@ -51,11 +55,11 @@
                 <div id="form">
                 <div id="form-group">
                     <label for="rrnumber" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">RR-Number</label>
-                    <input type="text" class="form-control" id="rrnumber" placeholder="enter  RR-Number" style="font-size: 14px;">
+                    <input type="number" class="form-control" id="rrnumber" placeholder="enter  RR-Number" style="font-size: 14px;" name="rrNumber">
                     <span id="rrnum"  class="text-danger font-weight-bold"></span>
                     <br>
                     <label for="pwd" style="font-size: 17px;  padding-top: 22px; font-weight: bolder;">Password</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="enter  password" style="font-size: 14px;">
+                    <input type="password" class="form-control" id="pwd" placeholder="enter  password" style="font-size: 14px;"name="password">
                     <span id="userpass" class="text-danger font-weight-bold"></span>
                 </div>
                 <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Submit </button><br>
@@ -90,7 +94,6 @@
 
     <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
-    <script src="${js}/consumerlogin.js"></script>
 
 </body>
 </html>

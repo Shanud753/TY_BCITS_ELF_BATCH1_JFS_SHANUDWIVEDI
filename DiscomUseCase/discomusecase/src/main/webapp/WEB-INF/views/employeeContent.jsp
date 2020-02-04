@@ -1,3 +1,4 @@
+<%@page import="com.bcits.discomusecase.beans.EmployeeMaster"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -5,6 +6,9 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+    
+    <% EmployeeMaster master = (EmployeeMaster) session.getAttribute("loggedInEmp"); %>
+    <% int count = (int) request.getAttribute("count"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,13 +45,24 @@
     </header>
 
     <div class="list-group" id="list">
-        <button type="button" class="list-group-item list-group-item-action active">
-         No of Consumer's
-        </button>
-        <button type="button" class="list-group-item list-group-item-action">Months Bill Generation</button>
-        <button type="button" class="list-group-item list-group-item-action">Month Bill Collection</button>
-        <button type="button" class="list-group-item list-group-item-action">Bill History</button>
-        <button type="button" class="list-group-item list-group-item-action" disabled>Month on Month revenue</button>
+        <a href="./billGeneration"><button type="button" class="list-group-item list-group-item-action active">Months Bill Generation</button></a>
+        <a href=""><button type="button" class="list-group-item list-group-item-action">Month Bill Collection</button></a>
+        <a href=""><button type="button" class="list-group-item list-group-item-action">Bill History</button></a>
+       <a href="./getAllConsumer"> <button type="button" class="list-group-item list-group-item-action">Consumer Details</button></a>
+        <a href=""><button type="button" class="list-group-item list-group-item-action" >Month on Month revenue</button></a>
+        <a href="./employeeLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
+    </div>
+    
+  <div class="card"  id="card">
+        <div class="card-body">
+            <h5 class="card-title" style="color: white;">Employee Details</h5>
+            <h6 class="card-subtitle mb-2 text-muted"style="color:white" > Meter Number:<%=master.getDesignation() %> </h6>
+            <p id="card-text" style="color:white">Employee  Id:            <%=master.getEmpId() %></p>
+            <p id="card-text" style="color:white">Employee  Name:          <%=master.getEmpName() %></p>
+            <p id="card-text" style="color:white">Region:            <%=master.getRegion() %></p>
+            <p id="card-text" style="color:white">No Of Consumers:            <%=count %></p>
+            <a href="./homePage" class="card-link">Home Page</a>
+        </div>
     </div>
 
     <script src="/jquery-3.4.1.js"></script>

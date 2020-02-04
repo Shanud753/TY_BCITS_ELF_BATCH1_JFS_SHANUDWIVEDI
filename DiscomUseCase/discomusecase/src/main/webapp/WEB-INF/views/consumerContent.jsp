@@ -1,9 +1,13 @@
+<%@page import="com.bcits.discomusecase.beans.ConsumersMaster"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
       <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+    
+    <%ConsumersMaster conMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");%>
+<!-- /*     String errMsg = (String) request.getAttribute("errMsg"); */  -->
     
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
     <link rel="stylesheet" href="${css}/consumerContent.css">
+     <link rel="stylesheet" href="${css}/consumerlogin.css">
     
 </head>
 
@@ -36,26 +41,37 @@
                     <a href="">Kannada</a>
                 </div>
             </div>
-            </div>
+           
         </nav>
     </header>
-
+<%-- <% if(errMsg != null && !errMsg.isEmpty()) { %>
+<h2 style ="color:red;"><%=errMsg %></h2>
+<%} %> --%>
     <div class="list-group" id="list">
-        <button type="button" class="list-group-item list-group-item-action active">
+      <button type="button" class="list-group-item list-group-item-action active">
+          My Account
+        </button> 
+      <a href="./electricityConsumption"><button type="button" class="list-group-item list-group-item-action active">
           Electricity Consumption
-        </button>
-        <button type="button" class="list-group-item list-group-item-action">Bill History</button>
-        <button type="button" class="list-group-item list-group-item-action">Current Bill</button>
-        <button type="button" class="list-group-item list-group-item-action" disabled>Due Date</button>
+        </button></a> 
+        
+       <a href="./displayBillHistorysPage"><button type="button" class="list-group-item list-group-item-action">Bill History</button></a>
+        <a href="./currentBill"><button type="button" class="list-group-item list-group-item-action">Current Bill</button></a>
+         <a href="./payment"><button type="button" class="list-group-item list-group-item-action" >Pay Online</button></a>
+        <a href="./dueDate"><button type="button" class="list-group-item list-group-item-action" disabled>Forgot Password</button></a>
     </div>
 
-    <div class="card" style="width: 18rem;" id="card">
+    <div class="card"  id="card">
         <div class="card-body">
             <h5 class="card-title" style="color: white;">Consumer Details</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Meter Number:12345BC</h6>
-            <p id="card-text" style="color:white">Name: Shanu Dwivedi</p>
-            <p id="card-text" style="color:white">City: Bangalore</p>
-            <p id="card-text" style="color:white">Mobile Number: 9398107370</p>
+            <h6 class="card-subtitle mb-2 text-muted"style="color:white" > Meter Number:<%=conMaster.getMeterNumber() %> </h6>
+            <p id="card-text" style="color:white">Name:            <%=conMaster.getFirstName() %></p>
+            <p id="card-text" style="color:white">Address:         <%=conMaster.getAddressLine1() %></p>
+            <p id="card-text" style="color:white">&nbsp;&nbsp;&nbsp;<%=conMaster.getAddressLine2() %></p>
+             <p id="card-text" style="color:white">RR-Number        <%=conMaster.getRrNumber() %></p>
+            <p id="card-text" style="color:white">Mobile Number    <%=conMaster.getPhnNo() %></p>
+             <p id="card-text" style="color:white">Region          <%=conMaster.getRegion() %></p>
+             <p id="card-text" style="color:white">City             <%=conMaster.getCity() %></p>
             <a href="./homePage" class="card-link">Home Page</a>
         </div>
     </div>

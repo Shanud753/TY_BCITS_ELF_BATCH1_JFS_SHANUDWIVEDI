@@ -11,12 +11,15 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 @Configuration
 public class EntityManagerFactoryConfig {
 	
-	  @Bean public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
+	  @Bean
+	  public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
 		  LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
 		  factoryBean.setPersistenceUnitName("discomPersistenceUnit");
 		  
 		  return factoryBean; 
 		  }//End of getEntityManagerFactoryBean()
+    
+ 
     
  
 }

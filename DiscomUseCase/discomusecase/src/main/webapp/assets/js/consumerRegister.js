@@ -17,7 +17,7 @@ function validation() {
     var mobileregx = /^[6789]{1}[0-9]{9}$/;
 //    var passregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 //    var cpassregx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    var rrNumregx = /^[0-9]{5}[A-Z]{2}$/;
+//    var rrNumregx = /^[0-9]{5}[A-Z]{2}$/;
 //    var address1regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
 //    var address2regx = /^(?=.*[#][0-9][0-9][-][0-9])(?=.*[A-Za-z]){10,40}$/;
 //    var cityregx = /^[A-Za-z]$/;
@@ -28,7 +28,7 @@ function validation() {
     var mobilValid = false;
     var passValid = false;
     var cpassValid = false;
-    var rrNumValid = false;
+    var rrNumValid = true;
     var address1Valid = false;
     var address2Valid = false;
     var cityValid = false;
@@ -106,20 +106,6 @@ function validation() {
         cpassValid = true;
     }
     
-    //rr-Number Validation
-    
-    
-    if (rrNumVal === '') {
-        document.getElementById('rrnum').innerHTML = " ** Please fill the RR-Number field";
-        return false;
-
-    } else if (!rrNumregx.test(rrNumVal)) {
-        document.getElementById('rrnum').innerHTML = " ** Please Enter the Correct RR-number";
-        return true;
-    } else {
-        document.getElementById('rrnum').style.display = 'none';
-        rrNumValid = true;
-    }
     
     //Address1 validation
     if (address1Val == "") {

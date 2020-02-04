@@ -1,6 +1,7 @@
 package com.bcits.discomusecase.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +13,9 @@ import lombok.Data;
 @Entity
 @Table(name="consumers_master_info")
 public class ConsumersMaster implements Serializable {
-	
-	
-
 	@Id
 	@Column(name="rr_number")
-	private String rrNumber;
+	private Integer rrNumber;
 	
 	@Column(name="first_Name")
 	private String firstName;
@@ -50,6 +48,12 @@ public class ConsumersMaster implements Serializable {
 	private String addressLine2;
 	@Column
 	private String city;
+	
+	@Column(name="meter_number")
+	private Long meterNumber;
+	
+	@Column(name="date_of_connection")
+	private Date dateOfConnection;
 	
 
 }

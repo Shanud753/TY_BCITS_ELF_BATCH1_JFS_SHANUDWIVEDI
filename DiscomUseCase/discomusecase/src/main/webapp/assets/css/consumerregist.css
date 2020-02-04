@@ -36,13 +36,10 @@ div.container {
     width: 850px;
     height: 750px;
     border: 1px solid black;
-    background-image: url('../images/background.jpg');
+    background-image: url('/images2/back2.jpg');
     background-size: cover;
     box-shadow: 0 0 20px;
     margin-top: 55px;
-}
-.form{
-	background-image: url("../images/background.jpg");
 }
 
 div.heading {
@@ -140,4 +137,17 @@ div.form-check{
     margin-left: 40px;
     margin-top: 30px;
 }
-
+#gridCheck{
+    /* width: 20px; */
+    /* height: 10px;
+    width: 20px; */
+    margin-left: -30px;
+    padding: 0;
+    border: 2px solid #5bb9ec;
+    width: 15px;
+    height: 15px;
+    -webkit-appearance:none;
+    background-color: #fff;
+    outline: none;
+    /* box-sizing: border-box; */
+}
