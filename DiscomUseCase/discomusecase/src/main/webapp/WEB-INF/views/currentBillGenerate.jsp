@@ -36,7 +36,7 @@
             <a class="navbar-brand" href="index.html"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <h3 id="h3">Electicity Supply Company Limited
+                    <h3 id="h3">Electricity Supply Company Limited
                     </h3>
                     <h6 id="h6">
                         CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
@@ -60,7 +60,7 @@
 	
     <div class="container">
         <div class="card col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto d-block mt-5" style="width: 600px; height: 850px; box-shadow: 0 0 20px; background-image: url('/images/b19.jpg');">
-            <form id="formData" onsubmit="validation(); return false" method="post" action="./" >
+            <form id="formData" onsubmit="validation(); return false"  action="./billGenerated" >
                 <legend style="font-size: 25px;"><u>Current Bill Generation</u></legend>
                 <div id="consumerlogo1">
                     <img src="${images}/img-01.png" alt="IMG" style="width: 160px; height:140px; margin-top: 60px;">
@@ -79,20 +79,15 @@
                     <input type="number" class="form-control" id="finalReading" placeholder="enter Reading" style="font-size: 14px;" name="finalReading">
                     <span id="finalRead"  class="text-danger font-weight-bold"></span>
                     <br>
-                    <label for="unitsConsumed" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Units</label>
-                    <input type="number" class="form-control" id="unitsConsumed" placeholder="enter units" style="font-size: 14px;" name="unitsConsumed">
-                    <span id="unitsConsume"  class="text-danger font-weight-bold"></span>
+                    <label for="dueDte" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Due Date</label>
+                    <input type="date" class="form-control" id="dueDte" placeholder="enter dueDate" style="font-size: 14px;" name="dueDate">
+                    <span id="finaldate"  class="text-danger font-weight-bold"></span>
                     <br>
                     <div class="form-group col-md-6">
 					<label for="inputState"
 						style="font-weight: bolder; font-size: 18px;">Type of
-						Consumer</label> <select id="inputConsumer" class="form-control"
-						name="typeOfConsumer">
-						<option selected>Select</option>
-						<option>Residential</option>
-						<option>Commercial</option>
-						<option>Industries</option>
-					</select>
+						Consumer</label> 
+				 <input type="text" class="form-control" id="type" style="font-size: 14px;" name="typeOfConsumer" value=<%=consumerMaster.getTypeOfConsumer()%> >
 				</div>
                 </div>
                 <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Generate Bill </button><br>

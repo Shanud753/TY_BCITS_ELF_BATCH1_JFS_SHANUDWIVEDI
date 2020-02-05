@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,23 +14,24 @@ import lombok.Data;
 @Entity
 @Table(name="monthly_consumption")
 public class MonthlyConsumption implements Serializable {
-   @Id
-   @Column(name="rr_number")
-   private Integer rrNumber;
+    
+	 @EmbeddedId
+	 private MonthlyConsumptionPK consumptionPk;
    
-   @Column(name="initial_Date")
-   private Date initialDate;
+     @Column(name="units_consumed")
+     private double unitsConsumed;
    
-   @Column(name="final_Date")
-   private Date finalDate;
+     @Column(name="bill_amount")
+     private double billAmount;
    
-   @Column(name="initial_reading")
-	private Double initialReading;
-	 
+     @Column(name="initial_reading")
+	  private double initialReading; 
 	
-   @Column(name="final_reading")
-	private Double finalReading;
+     @Column(name="final_reading")
+	  private double finalReading;
+     
+     @Column
+     private String status;
    
-   @Column(name="units_consumption")
-   private Double unitsConsumption;
+  
 }

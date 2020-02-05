@@ -128,14 +128,14 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 
 
 		@Override
-		public MonthlyConsumption getConsumption(int rrNumber) {
+		public List<MonthlyConsumption> getConsumption(int rrNumber) {
 			EntityManager manager = factory.createEntityManager();
-			String jpql = " from MonthlyConsumption where rrNumber= :rrNum";
+			String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum";
 			Query query = manager.createQuery(jpql);
 			query.setParameter("rrNum", rrNumber);
-			MonthlyConsumption consumption = (MonthlyConsumption) query.getSingleResult();
-			if(consumption != null) {
-				return consumption;
+			List<MonthlyConsumption> consumptionList = (List<MonthlyConsumption>) query.getResultList();
+			if(consumptionList != null) {
+				return consumptionList;
 			}
 			manager.close();
 			return null;
@@ -161,6 +161,13 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 		public boolean billPayment(int rrNumber, Date date, Double amount) {
 			EntityManager manager = factory.createEntityManager();
 			EntityTransaction transaction = manager.getTransaction();
+//			String jpql = " from MonthlyConsumption where rrNumber= :rrNum order by finalReading DESC ";
+//			Query query = manager.createQuery(jpql);
+//			query.setMaxResults(1);
+//			query.setParameter("rrNum", rrNumber);
+//			MonthlyConsumption monthlyConsumption = (MonthlyConsumption) query.getSingleResult();
+			
+			
             BillHistory bill = new BillHistory();
             BillHistoryPK billPk = new BillHistoryPK();
             bill.setAmount(amount);
@@ -170,6 +177,7 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
             bill.setBillHistoryPk(billPk);
             if(billPk != null) {
             	transaction.begin();
+//            	monthlyConsumption.setStatus("paid");
             	manager.persist(bill);
             	transaction.commit();
             	return true;

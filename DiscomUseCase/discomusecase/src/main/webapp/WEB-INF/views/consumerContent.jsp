@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="/index.html"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <h3 id="h3">Electicity Supply Company Limited
+                    <h3 id="h3">Electricity Supply Company Limited
                     </h3>
                     <h6 id="h6">
                         CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
@@ -51,14 +51,14 @@
       <button type="button" class="list-group-item list-group-item-action active">
           My Account
         </button> 
-      <a href="./electricityConsumption"><button type="button" class="list-group-item list-group-item-action active">
+      <a href="./electricityConsumption"><button type="button" class="list-group-item list-group-item-action ">
           Electricity Consumption
         </button></a> 
         
        <a href="./displayBillHistorysPage"><button type="button" class="list-group-item list-group-item-action">Bill History</button></a>
         <a href="./currentBill"><button type="button" class="list-group-item list-group-item-action">Current Bill</button></a>
          <a href="./payment"><button type="button" class="list-group-item list-group-item-action" >Pay Online</button></a>
-        <a href="./dueDate"><button type="button" class="list-group-item list-group-item-action" disabled>Forgot Password</button></a>
+        <a href="./ConsumerLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
     </div>
 
     <div class="card"  id="card">
@@ -72,7 +72,7 @@
             <p id="card-text" style="color:white">Mobile Number    <%=conMaster.getPhnNo() %></p>
              <p id="card-text" style="color:white">Region          <%=conMaster.getRegion() %></p>
              <p id="card-text" style="color:white">City             <%=conMaster.getCity() %></p>
-            <a href="./homePage" class="card-link">Home Page</a>
+            <a href="./index" class="card-link">Home Page</a>
         </div>
     </div>
 

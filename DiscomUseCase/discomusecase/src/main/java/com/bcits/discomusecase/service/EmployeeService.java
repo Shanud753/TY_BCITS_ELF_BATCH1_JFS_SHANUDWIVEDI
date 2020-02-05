@@ -3,6 +3,7 @@ package com.bcits.discomusecase.service;
 import java.util.List;
 
 import com.bcits.discomusecase.beans.ConsumersMaster;
+import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 
 public interface EmployeeService {
@@ -12,5 +13,6 @@ public interface EmployeeService {
 	public List<ConsumersMaster> getAllConsumer(String region );
 	public int noOfConsumers(String region);
 	 public Double getPreviousReading(int rrNumber);
+	 public boolean addCurrentBill(CurrentBill currentBill);
 
 }

@@ -30,7 +30,7 @@
 				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<h3 id="h3">Electicity Supply Company Limited</h3>
+					<h3 id="h3">Electricity Supply Company Limited</h3>
 					<h6 id="h6">CIN - U04010KA2002SGC030438 | GST No -
 						29AACCB1412G1Z5</h6>
 				</div>
@@ -105,7 +105,7 @@
 							<div class="col-xs-12">
 								<label>Amount</label> <input type="text"
 										
-                         	class="form-control" placeholder="Bill Amount"  value="<%= currentBillBean.getAmount() %>"/>
+                         	class="form-control" placeholder="Bill Amount"  value="<%= currentBillBean.getBillAmount() %>"/>
 							</div>
 						</div>
 					</div>

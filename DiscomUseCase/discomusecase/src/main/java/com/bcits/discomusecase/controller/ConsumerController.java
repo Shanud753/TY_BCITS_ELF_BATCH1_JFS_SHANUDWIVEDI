@@ -41,6 +41,12 @@ public class ConsumerController {
 	public String displayConsumerLoginForm() {
 		return "consumerLoginPage";
 	}
+	
+	@GetMapping("/ConsumerLogout")
+	public String employeeLogOut(ModelMap modelMap, HttpSession session) {
+		session.invalidate();
+		return "consumerLoginPage";
+	}//end of employeeLogOut()
 
 	@PostMapping("/consumerLoginPage")
 	public String authenticate(int rrNumber ,String password,HttpServletRequest req, ModelMap modelMap) {
@@ -77,37 +83,7 @@ public class ConsumerController {
 
 	}//End of addEmployee()
 
-	//	@GetMapping(name="/currentBillPage")
-	//	public String generateBillPage() {
-	//		return "currentBillGenerate";
-	//	}
-	//	
-	//	@PostMapping(name="/addCurrentBillData")
-	//	public String addCurrentBillData(CurrentBill billInfo,ModelMap modelMap) {
-	//		if(service.addCurrentBillDetails(billInfo)) {
-	//			modelMap.addAttribute("msg", "Current bill Record Added SuccessFully!!");
-	//			return "currentBillGenerate";
-	//		}else {
-	//			 modelMap.addAttribute("errMsg", "Current bill Not Added");
-	//			 return "currentBillGenerate";
-	//		}
-	//	}
-	//	
-	//	@GetMapping("/generateBill")
-	//	public String generateBill(CurrentBill billDetails,HttpServletRequest req,ModelMap modelMap) {
-	//		List<CurrentBill> consumerList = service.currentBillGeneration(billDetails);
-	//		if(consumerList != null) {
-	//			//Valid Credentials
-	//			HttpSession session = req.getSession(true);
-	//			session.setAttribute("loggedInBillInfo", consumerList);
-	//			
-	//			return "generateBill";
-	//		}else {
-	//			//Invalid Credentials
-	//			modelMap.addAttribute("errMsg", "Invalid Credentials!!");
-	//			return "currentBillGenerate";
-	//		}	
-	//	}
+	
 
 	@GetMapping("/electricityConsumption")
 	public String consumptionPage(HttpSession session, ModelMap modelMap) {
@@ -115,7 +91,7 @@ public class ConsumerController {
 		int rrNumber = master.getRrNumber();
 		if(!session.isNew()) {
 			if(master != null) {
-				MonthlyConsumption consumption2 = service. getConsumption(rrNumber);
+				List<MonthlyConsumption> consumption2 = service. getConsumption(rrNumber);
 				modelMap.addAttribute("monthlyConsumption", consumption2);
 				return "electricityConsumption";
 
@@ -169,7 +145,7 @@ public class ConsumerController {
 	  if(master != null) {
 		    int meterNumber = master.getRrNumber();
 			CurrentBill currentBillBean = service.getBillAmount(meterNumber);
-			 Double amount = currentBillBean.getAmount();
+			 Double amount = currentBillBean.getBillAmount();
 		  if(service.billPayment(master.getRrNumber(), date, amount)) {
 			  modelMap.addAttribute("currentBillBean",currentBillBean);
 			  return "paymentSuccessFullPage";

@@ -25,7 +25,7 @@ public interface ConsumerService {
 	
 	public boolean addCurrentBillDetails(CurrentBill billInfo);
 	
-	public MonthlyConsumption getConsumption(int rrNumber);
+	public List<MonthlyConsumption> getConsumption(int rrNumber);
 	
 	public CurrentBill currentBillDetails(int rrNumber);
 	

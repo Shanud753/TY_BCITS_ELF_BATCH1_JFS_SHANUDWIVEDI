@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bcits.discomusecase.beans.ConsumersMaster;
+import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.service.ConsumerService;
 import com.bcits.discomusecase.service.EmployeeService;
@@ -45,9 +46,9 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employeeLoginHome")
-	public String authenticate(Integer empId, String designation, ModelMap modelMap,HttpServletRequest req) {
-		EmployeeMaster employeeMasterBean=service.authentication(empId,designation); 
-		String region = employeeMasterBean.getRegion();
+	public String authenticate(Integer empId, String password, ModelMap modelMap,HttpServletRequest req) {
+		EmployeeMaster employeeMasterBean=service.authentication(empId,password); 
+	    String region = employeeMasterBean.getRegion();
         if( employeeMasterBean!= null) { 
 	        HttpSession session = req.getSession(true);
        	    session.setAttribute("loggedInEmp", employeeMasterBean);
@@ -133,6 +134,25 @@ public class EmployeeController {
 			return "currentBillGenerate";	
 	}//end of displayCurrentBillPage()
 	
-}	
+	@GetMapping("/billGenerated")
+	public String generateBill(ModelMap modelMap,HttpSession session,CurrentBill currentBill) {
+		EmployeeMaster employeeMaster= (EmployeeMaster)session.getAttribute("loggedInEmp");
+		if(employeeMaster!= null) {
+			List<ConsumersMaster> consumerList = service.getAllConsumer(employeeMaster.getRegion());
+			modelMap.addAttribute("consumerList", consumerList);
+			if(service.addCurrentBill(currentBill)) {
+				modelMap.addAttribute("msg", "Bill generated for  rr Number" + currentBill.getRrNumber() +  " SuccessFully...");
+			}else {
+				modelMap.addAttribute("errMsg", "Failed to Generate the Bill");
+			}
+			return "employeeBillGeneration";
+		}else {
+				modelMap.addAttribute("errMsg","Please Login First");
+				return "employeeLoginForm";
+			}
+		}
+
+	}
+	
 	
 

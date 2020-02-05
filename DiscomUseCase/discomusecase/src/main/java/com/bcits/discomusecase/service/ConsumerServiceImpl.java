@@ -73,7 +73,7 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		}
 
 		@Override
-		public MonthlyConsumption getConsumption(int rrNumber) {
+		public List<MonthlyConsumption> getConsumption(int rrNumber) {
 			
 			return dao.getConsumption(rrNumber);
 		}

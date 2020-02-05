@@ -20,7 +20,7 @@ public interface ConsumerDAO {
 	public boolean updateConsumer(ConsumersMaster bean);
 	public List<CurrentBill>  currentBillGeneration(CurrentBill billDetails);
 	public boolean addCurrentBillDetails(CurrentBill billInfo);
-	public MonthlyConsumption getConsumption(int rrNumber);
+	public List<MonthlyConsumption> getConsumption(int rrNumber);
 	public CurrentBill currentBillDetails(int rrNumber);
 	public boolean billPayment(int rrNumber, Date date, Double amount);
 	public List<BillHistory> getBillHistory(int rrNumber);

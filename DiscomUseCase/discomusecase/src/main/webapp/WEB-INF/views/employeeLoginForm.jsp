@@ -30,7 +30,7 @@
             <a class="navbar-brand" href="/index.html"><img src="/images logo/discomlogo.png" alt="" id="consumerlogo"></a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <h3 id="h3">Electicity Supply Company Limited
+                    <h3 id="h3">Electricity Supply Company Limited
                     </h3>
                     <h6 id="h6">
                         CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
@@ -54,8 +54,8 @@
                     <input type="number" class="form-control" id="emp" placeholder="Enter  Employee ID" style="font-size: 14px;" name="empId">
                     <span id="emp1"  class="text-danger font-weight-bold"></span>
                     <br>
-                    <label for="desig" style="font-size: 17px;  padding-top: 22px; font-weight: bolder; color: white;">Designation</label>
-                    <input type="text" class="form-control" id="desig" placeholder="Enter Employee Designation" style="font-size: 14px;" name="designation">
+                    <label for="passwd" style="font-size: 17px;  padding-top: 22px; font-weight: bolder; color: white;">Password</label>
+                    <input type="password" class="form-control" id="passwd" placeholder="Enter Employee Password" style="font-size: 14px;" name="password">
                     <span id="desig1" class="text-danger font-weight-bold"></span>
                 </div>
                 <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Submit </button><br>
@@ -75,8 +75,8 @@
 
     <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
-    <script src="${js}/employee.js"></script>
-
+<%--     <script src="${js}/employee.js"></script>
+ --%>
 </body>
 
 </html>

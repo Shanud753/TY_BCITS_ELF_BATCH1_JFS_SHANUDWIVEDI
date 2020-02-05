@@ -19,6 +19,9 @@ public class CurrentBill implements Serializable{
 	@Column(name="rr_number")
 	private Integer rrNumber;
 	
+	@Column(name="due_date")
+	private Date dueDate;
+	
 	@Column(name="meter_number")
 	private Long meterNumber;
 	
@@ -31,8 +34,11 @@ public class CurrentBill implements Serializable{
 	@Column(name="units_consumed")
 	private Double unitsConsumed;
 	
-	 @Column
-	 private Double amount;
+	 @Column(name="bill_amount")
+	 private Double billAmount;
+	 
+	 @Column(name="type_of_consumer")
+	 private String typeOfConsumer;
 	
 	 
 }

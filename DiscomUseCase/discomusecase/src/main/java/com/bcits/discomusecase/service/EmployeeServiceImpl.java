@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bcits.discomusecase.beans.ConsumersMaster;
+import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.dao.EmployeeDAO;
 
@@ -37,6 +38,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public Double getPreviousReading(int rrNumber) {
 			
 			return dao.getPreviousReading(rrNumber);
+		}
+
+		@Override
+		public boolean addCurrentBill(CurrentBill currentBill) {
+			
+			return dao.addCurrentBill(currentBill);
 		}
 
 		

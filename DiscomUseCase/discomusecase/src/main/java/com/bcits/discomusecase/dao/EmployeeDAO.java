@@ -3,6 +3,7 @@ package com.bcits.discomusecase.dao;
 import java.util.List;
 
 import com.bcits.discomusecase.beans.ConsumersMaster;
+import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 
 public interface EmployeeDAO {
@@ -13,5 +14,6 @@ public interface EmployeeDAO {
 	public List<ConsumersMaster> getAllConsumer(String region );
 	public int noOfConsumers(String region);
 	 public Double getPreviousReading(int rrNumber);
+	 public boolean addCurrentBill(CurrentBill currentBill);
 
 }

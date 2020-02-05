@@ -24,5 +24,8 @@ public class EmployeeMaster implements Serializable{
 	
 	@Column(name="region")
 	private String region;
+	
+	@Column(name="password")
+	private String password;
 
 }
