@@ -26,16 +26,16 @@ public class CurrentBill implements Serializable{
 	private Long meterNumber;
 	
 	@Column(name="initial_reading")
-	private Double initialReading;
+	private double initialReading;
 	
 	@Column(name="final_reading")
-	private Double finalReading;
+	private double finalReading;
 	
 	@Column(name="units_consumed")
-	private Double unitsConsumed;
+	private double unitsConsumed;
 	
 	 @Column(name="bill_amount")
-	 private Double billAmount;
+	 private double billAmount;
 	 
 	 @Column(name="type_of_consumer")
 	 private String typeOfConsumer;

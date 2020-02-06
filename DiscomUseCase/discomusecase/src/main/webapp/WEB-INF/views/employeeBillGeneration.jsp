@@ -4,9 +4,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%List<ConsumersMaster> consumersMasterList = (List<ConsumersMaster>)request.getAttribute("consumersMasterList"); %>
-<%String msg = (String) request.getAttribute("msg");
+ <%String msg = (String) request.getAttribute("msg");
   String errMsg = (String) request.getAttribute("errMsg");
   %>
+
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
@@ -22,7 +23,8 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-<link rel="stylesheet" href="${css}/employeeContent.css">
+<link rel="stylesheet" href="${css}/navbar.css">
+<link rel="stylesheet" href="${css}/generate.css">
 
 </head>
 
@@ -46,11 +48,20 @@
 		</nav>
 	</header>
 	<% if(msg != null && !msg.isEmpty()) { %>
-	<h3 style="color: green;"><%=msg %></h3>
+	<h1 style="color: green;"><%=msg %></h1>
 	<%} %>
 	<% if(errMsg != null && !errMsg.isEmpty()) { %>
 	<h2 style="color: red;"><%=errMsg %></h2>
 	<%} %>
+
+	
+<!-- Search form -->
+<form action="" class="form-inline active-white-4">
+  <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+    aria-label="Search" id="search">
+  <i class="fas fa-search" aria-hidden="true"></i>
+</form>
+
 
 	<% if(consumersMasterList != null ){ %>
 

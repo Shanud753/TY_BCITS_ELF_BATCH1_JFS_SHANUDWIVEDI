@@ -121,7 +121,7 @@ public class EmployeeController {
 		
 			if(employeeMasterBean != null) {
 				ConsumersMaster master = conService.getConsumer(rrNumber);
-				Double previousReading = service.getPreviousReading(rrNumber);
+				double previousReading = service.getPreviousReading(rrNumber);
 				if(master != null) {
 					 modelMap.addAttribute("conMaster", master);	
 					 modelMap.addAttribute("previousReading", previousReading);		  

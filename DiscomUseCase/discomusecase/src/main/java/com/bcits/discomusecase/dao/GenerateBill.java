@@ -33,17 +33,24 @@ public class GenerateBill {
 		double initialAmount =  tarrifList.get(0).getAmount();
 		double middleAmount =  tarrifList.get(1).getAmount();
 		double finalAmount =  tarrifList.get(2).getAmount();
+		System.out.println(initialRange + " " + middleRange + " " + finalRange);
+		System.out.println(initialAmount + " " + middleAmount + " " + finalAmount);
+
 		
 		
-		double billAmount = 200.0;
+		double billAmount = 0.0;
 		if(units < initialRange) {
 			billAmount = units * initialAmount;
+			
 		}else if(units < middleRange){
 			billAmount = (initialRange * initialAmount) + (units - initialRange * middleAmount);
+			
 		}else if(units > finalRange) {
 			billAmount = (initialRange * initialAmount) + (initialRange * middleAmount) + ((units - middleRange)*finalAmount);
+			
 		}
-	
-		return billAmount;	
+		System.out.println(billAmount);
+		return billAmount;
+		
 	}	
 }

@@ -158,26 +158,26 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 
 
 		@Override
-		public boolean billPayment(int rrNumber, Date date, Double amount) {
+		public boolean billPayment(int rrNumber, Date date, double amount) {
 			EntityManager manager = factory.createEntityManager();
 			EntityTransaction transaction = manager.getTransaction();
-//			String jpql = " from MonthlyConsumption where rrNumber= :rrNum order by finalReading DESC ";
-//			Query query = manager.createQuery(jpql);
-//			query.setMaxResults(1);
-//			query.setParameter("rrNum", rrNumber);
-//			MonthlyConsumption monthlyConsumption = (MonthlyConsumption) query.getSingleResult();
+			String jpql = " from MonthlyConsumption where rrNumber= :rrNum order by finalReading DESC ";
+			Query query = manager.createQuery(jpql);
+			query.setMaxResults(1);
+			query.setParameter("rrNum", rrNumber);
+			MonthlyConsumption monthlyConsumption = (MonthlyConsumption) query.getSingleResult();
 			
 			
             BillHistory bill = new BillHistory();
             BillHistoryPK billPk = new BillHistoryPK();
-            bill.setAmount(amount);
+            bill.setBillAmount(amount);;
             bill.setStatus("Success");
             billPk.setPayDate(date);
             billPk.setRrNumber(rrNumber);
             bill.setBillHistoryPk(billPk);
             if(billPk != null) {
             	transaction.begin();
-//            	monthlyConsumption.setStatus("paid");
+            	monthlyConsumption.setStatus("paid");
             	manager.persist(bill);
             	transaction.commit();
             	return true;

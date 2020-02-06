@@ -50,7 +50,7 @@ public class ConsumersMaster implements Serializable {
 	private String city;
 	
 	@Column(name="meter_number")
-	private Long meterNumber;
+	private long meterNumber;
 	
 	@Column(name="date_of_connection")
 	private Date dateOfConnection;

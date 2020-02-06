@@ -85,7 +85,7 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		}
 
 		@Override
-		public boolean billPayment(int rrNumber, Date date, Double amount) {
+		public boolean billPayment(int rrNumber, Date date, double amount) {
 			
 			return dao.billPayment(rrNumber, date, amount);
 		}

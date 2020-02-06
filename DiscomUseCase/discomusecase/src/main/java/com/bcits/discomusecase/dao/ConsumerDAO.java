@@ -22,7 +22,7 @@ public interface ConsumerDAO {
 	public boolean addCurrentBillDetails(CurrentBill billInfo);
 	public List<MonthlyConsumption> getConsumption(int rrNumber);
 	public CurrentBill currentBillDetails(int rrNumber);
-	public boolean billPayment(int rrNumber, Date date, Double amount);
+	public boolean billPayment(int rrNumber, Date date, double amount);
 	public List<BillHistory> getBillHistory(int rrNumber);
 	public CurrentBill getBillAmount(int meterNumber);
 

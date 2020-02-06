@@ -84,13 +84,13 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 		Query query = manager.createQuery(jpql);
 		query.setMaxResults(1);
 		query.setParameter("rrNum", rrNumber);
-		 Double  previousReading=null;
+		 double  previousReading=0.0;
 		 try {
-	      previousReading =(Double) query.getSingleResult();
+	      previousReading =(double) query.getSingleResult();
 	      return previousReading;
 		 }catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return 0.0;
 		}
 		
 		
@@ -100,7 +100,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 	@Override
 	public boolean addCurrentBill(CurrentBill currentBill) {
-		Double units = currentBill.getFinalReading()-currentBill.getInitialReading();
+		double units = currentBill.getFinalReading()-currentBill.getInitialReading();
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		MonthlyConsumption monthlyConsumption = new MonthlyConsumption();

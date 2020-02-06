@@ -11,7 +11,7 @@
    <%String msg = (String) request.getAttribute("msg");
   String errMsg = (String) request.getAttribute("errMsg");
  ConsumersMaster consumerMaster =(ConsumersMaster) request.getAttribute("conMaster");
- Double previousReading = (Double)request.getAttribute("previousReading");
+ double previousReading = (double)request.getAttribute("previousReading");
   %>
  
         

@@ -18,8 +18,10 @@ public class BillHistory implements Serializable {
 
     @EmbeddedId
 	private BillHistoryPK billHistoryPk;
-    @Column
-    private Double amount;
+    
+    @Column(name="bill_amount")
+	 private double billAmount;
+    
     @Column
     private String status;
     
