@@ -27,7 +27,7 @@
 <body>
 	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="index.html"><img
+			<a class="navbar-brand" href="./homePage"><img
 				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
@@ -56,7 +56,7 @@
     <%for(BillHistory history: billHistory){ %>
     <tr style="height:35px; color:black">
      <td><%=history.getBillHistoryPk().getPayDate() %></td>
-    <td><%=history.getAmount() %></td>
+    <td><%=history.getBillAmount() %></td>
      <td><%=history.getStatus() %></td>
     </tr>
     <%} %>

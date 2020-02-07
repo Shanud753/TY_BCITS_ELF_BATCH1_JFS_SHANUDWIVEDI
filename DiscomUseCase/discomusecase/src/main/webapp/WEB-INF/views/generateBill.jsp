@@ -22,7 +22,7 @@
 <body>
 <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
+            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <h3 id="h3">Electricity Supply Company Limited

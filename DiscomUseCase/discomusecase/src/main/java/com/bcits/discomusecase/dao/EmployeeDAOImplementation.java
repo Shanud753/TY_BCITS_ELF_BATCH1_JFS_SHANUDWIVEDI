@@ -100,6 +100,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 	@Override
 	public boolean addCurrentBill(CurrentBill currentBill) {
+	
 		double units = currentBill.getFinalReading()-currentBill.getInitialReading();
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();

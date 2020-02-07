@@ -1,11 +1,11 @@
 body{
-    background-image: url('/images2/b19.jpg');
+    background-image: url('../images/b19.jpg');
     background-position: center;
     background-size: cover;
 }
 
 nav.navbar{
-    width: 1590px;
+    width: 1610px;
     height: 110px;
 }
 #h3{

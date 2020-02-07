@@ -138,13 +138,15 @@ public class EmployeeController {
 	public String generateBill(ModelMap modelMap,HttpSession session,CurrentBill currentBill) {
 		EmployeeMaster employeeMaster= (EmployeeMaster)session.getAttribute("loggedInEmp");
 		if(employeeMaster!= null) {
-			List<ConsumersMaster> consumerList = service.getAllConsumer(employeeMaster.getRegion());
-			modelMap.addAttribute("consumerList", consumerList);
+
 			if(service.addCurrentBill(currentBill)) {
+				
 				modelMap.addAttribute("msg", "Bill generated for  rr Number" + currentBill.getRrNumber() +  " SuccessFully...");
-			}else {
+			}
+			else {
 				modelMap.addAttribute("errMsg", "Failed to Generate the Bill");
 			}
+
 			return "employeeBillGeneration";
 		}else {
 				modelMap.addAttribute("errMsg","Please Login First");

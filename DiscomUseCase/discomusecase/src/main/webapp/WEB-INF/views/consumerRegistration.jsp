@@ -4,7 +4,9 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
-    
+      <%String msg = (String) request.getAttribute("msg");
+  String errMsg = (String) request.getAttribute("errMsg");
+  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
+            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <h3 id="h3">Electricity Supply Company Limited
@@ -37,47 +39,53 @@
             </div>
         </nav>
     </header>
+    <% if(msg != null && !msg.isEmpty()) { %>
+	<h1 style="color: white;"><%=msg %></h1>
+	<%} %>
+	<% if(errMsg != null && !errMsg.isEmpty()) { %>
+	<h2 style="color: red;"><%=errMsg %></h2>
+	<%} %>
 
     <div class="container">
-        <form onsubmit="validation(); return false">
+        <form onsubmit="validation(); return false" action="./addConsumer" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="fname" style="padding-top: 30px; font-weight: bolder; font-size: 18px;">First-Name</label>
-                  <input type="text" class="form-control" id="fname">
+                  <input type="text" class="form-control" id="fname" name="firstName">
                   <span id="userfName" class="text-danger font-weight-bold"></span>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="lname"  style="padding-top: 30px; font-weight: bolder; font-size: 18px;" >Last-Name</label>
-                  <input type="text" class="form-control" id="lname">
+                  <input type="text" class="form-control" id="lname" name="lastName">
                   <span id="userlName" class="text-danger font-weight-bold"></span>
                 </div>
               </div>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="email" style="font-weight: bolder; font-size: 18px;">Email</label>
-                <input type="email" class="form-control" id="email">
+                <label for="emai" style="font-weight: bolder; font-size: 18px;">Email</label>
+                <input type="email" class="form-control" id="emai" name="email">
                 <span id="emailid"  class="text-danger font-weight-bold"></span>
               </div>
               <div class="form-group col-md-4">
-                <label for="inputPassword4" style="font-weight: bolder; font-size: 18px;">Password</label>
-                <input type="password" class="form-control" id="pwd">
+                <label for="pwd" style="font-weight: bolder; font-size: 18px;">Password</label>
+                <input type="password" class="form-control" id="pwd" name="password">
                 <span id="userpass" class="text-danger font-weight-bold"></span>
               </div>
               <div class="form-group col-md-4">
                 <label for="cpwd" style="font-weight: bolder; font-size: 18px;">Confirm Password</label>
-                <input type="password" class="form-control" id="cpwd">
+                <input type="password" class="form-control" id="cpwd" name="confirmPassword">
                 <span id="usercpass"  class="text-danger font-weight-bold"></span>
               </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="rrnumber" style="font-weight: bolder; font-size: 18px;">RR-Number</label>
-                  <input type="text" class="form-control" id="rrnumber">
+                  <label for="rrnumb" style="font-weight: bolder; font-size: 18px;">RR-Number</label>
+                  <input type="text" class="form-control" id="rrnumb" name="rrNumber">
                   <span id="rrnum"  class="text-danger font-weight-bold"></span>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="inputState" style="font-weight: bolder; font-size: 18px;">Type of Consumer</label>
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" class="form-control" name="typeOfConsumer">
                     <option selected>Select</option>
                     <option>Residential</option>
                     <option>Commercial</option>
@@ -86,7 +94,7 @@
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputState" style="font-weight: bolder; font-size: 18px;">Region</label>
-                    <select id="inputState" class="form-control">
+                    <select id="inputState" class="form-control" name="region">
                       <option selected>Select</option>
                       <option>Bangalore North</option>
                       <option>Bangalore South</option>
@@ -95,24 +103,34 @@
               </div>
             <div class="form-group">
               <label for="address1" style="font-weight: bolder; font-size: 18px;">Address</label>
-              <input type="text" class="form-control" id="address1" placeholder="1234 Main St">
+              <input type="text" class="form-control" id="address1" placeholder="1234 Main St" name="addressLine1">
               <span id="addressval1"  class="text-danger font-weight-bold"></span>
             </div>
             <div class="form-group">
               <label for="address2" style="font-weight: bolder; font-size: 18px;">Address 2</label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor">
+              <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor" name="addressLine2">
               <span id="addressval2"  class="text-danger font-weight-bold"></span>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="city" style="font-weight: bolder; font-size: 18px;">City</label>
-                <input type="text" class="form-control" id="city" placeholder="City">
+              <div class="form-group col-md-4">
+                <label for="cit" style="font-weight: bolder; font-size: 18px;">City</label>
+                <input type="text" class="form-control" id="cit" placeholder="City" name="city">
                 <span id="city1"  class="text-danger font-weight-bold"></span>
              </div>
               <div class="form-group col-md-4">
                 <label for="mobile" style="font-weight: bold; font-size: 18px;">Mobile number</label>
-                <input type="tel" class="form-control" id="mobile" placeholder="Mobile Number">
+                <input type="tel" class="form-control" id="mobile" placeholder="Mobile Number" name="phnNo">
                 <span id="phnnumber"  class="text-danger font-weight-bold"></span>
+                </div>
+                 <div class="form-group col-md-2">
+                <label for="meterNum" style="font-weight: bold; font-size: 18px;">Meter number</label>
+                <input type="tel" class="form-control" id="meterNum" placeholder="Mobile Number" name="meterNumber">
+                <span id="meterNumber"  class="text-danger font-weight-bold"></span>
+                </div>
+                 <div class="form-group col-md-2">
+                <label for="dateConnection" style="font-weight: bold; font-size: 18px;">Date of Connection</label>
+                <input type="date" class="form-control" id="dateConnection" placeholder="Enter Date Of Connection" name="dateOfConnection">
+                <span id="meterNumber"  class="text-danger font-weight-bold"></span>
                 </div>
             </div>
             <div class="form-group">

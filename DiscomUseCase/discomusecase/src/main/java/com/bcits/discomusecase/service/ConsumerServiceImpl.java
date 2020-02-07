@@ -26,8 +26,10 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 
 		@Override
 		public boolean addConsumer(ConsumersMaster consumersMaster) {
-
+            if(consumersMaster != null) {
 			return dao.addConsumer(consumersMaster);
+            }
+            return false;
 		}
 
 		@Override

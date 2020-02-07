@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Embeddable
 public class BillHistoryPK implements Serializable{
-	@Column
+	@Column(name="rr_number")
 	private Integer rrNumber;
 	@Column
 	private Date PayDate;

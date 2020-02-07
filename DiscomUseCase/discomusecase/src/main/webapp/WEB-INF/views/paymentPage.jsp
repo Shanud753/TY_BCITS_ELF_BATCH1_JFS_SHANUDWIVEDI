@@ -26,7 +26,7 @@
 <body>
 	<header class="header">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="index.html"><img
+			<a class="navbar-brand" href="./homePage"><img
 				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
@@ -105,7 +105,7 @@
 							<div class="col-xs-12">
 								<label>Amount</label> <input type="text"
 										
-                         	class="form-control" placeholder="Bill Amount"  value="<%= currentBillBean.getBillAmount() %>"/>
+                         	class="form-control" placeholder="Bill Amount"  value="<%= currentBillBean.getBillAmount() %>" readonly="readonly"/>
 							</div>
 						</div>
 					</div>

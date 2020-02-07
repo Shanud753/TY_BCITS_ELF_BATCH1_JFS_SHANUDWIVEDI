@@ -38,8 +38,9 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 			}catch(Exception e) {
 				e.printStackTrace();
 				transaction.rollback();	
+				return false;
 			}
-			return isAdded;
+			
 		}
 
 
@@ -161,7 +162,7 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 		public boolean billPayment(int rrNumber, Date date, double amount) {
 			EntityManager manager = factory.createEntityManager();
 			EntityTransaction transaction = manager.getTransaction();
-			String jpql = " from MonthlyConsumption where rrNumber= :rrNum order by finalReading DESC ";
+			String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum  ";
 			Query query = manager.createQuery(jpql);
 			query.setMaxResults(1);
 			query.setParameter("rrNum", rrNumber);

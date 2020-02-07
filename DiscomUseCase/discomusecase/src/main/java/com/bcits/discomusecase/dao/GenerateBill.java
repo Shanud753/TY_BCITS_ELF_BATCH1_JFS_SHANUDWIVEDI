@@ -18,39 +18,30 @@ public class GenerateBill {
 	@PersistenceUnit
 	private EntityManagerFactory factory ;
 	
-	public double billCalculator(double units, String typeOfConsumer) {
-	
+	public double billCalculator(double unit, String typeOfConsumer) {
 		EntityManager manager = factory.createEntityManager();
 		String jpql = " from TarrifMaster where type= :typeOfCons ";
 		Query query = manager.createQuery(jpql);
 		query.setParameter("typeOfCons", typeOfConsumer);
-		List<TarrifMaster> tarrifList = query.getResultList();
-		
-		long initialRange = tarrifList.get(0).getTarrifMasterPk().getRange();
-		long middleRange = tarrifList.get(1).getTarrifMasterPk().getRange();
-		long finalRange = tarrifList.get(2).getTarrifMasterPk().getRange();
-		
-		double initialAmount =  tarrifList.get(0).getAmount();
-		double middleAmount =  tarrifList.get(1).getAmount();
-		double finalAmount =  tarrifList.get(2).getAmount();
-		System.out.println(initialRange + " " + middleRange + " " + finalRange);
-		System.out.println(initialAmount + " " + middleAmount + " " + finalAmount);
+		List<TarrifMaster> tariffList = query.getResultList();
 
-		
-		
-		double billAmount = 0.0;
-		if(units < initialRange) {
-			billAmount = units * initialAmount;
-			
-		}else if(units < middleRange){
-			billAmount = (initialRange * initialAmount) + (units - initialRange * middleAmount);
-			
-		}else if(units > finalRange) {
-			billAmount = (initialRange * initialAmount) + (initialRange * middleAmount) + ((units - middleRange)*finalAmount);
-			
+		long initRange = tariffList.get(0).getTarrifMasterPk().getRange();
+		long midRange = tariffList.get(1).getTarrifMasterPk().getRange();
+		long finalRange = tariffList.get(2).getTarrifMasterPk().getRange();
+
+		double initAmount = tariffList.get(0).getAmount();
+		double midAmount = tariffList.get(1).getAmount();
+		double finalAmount = tariffList.get(2).getAmount();
+
+		double bill = 0.0;
+
+		if (unit < initRange) {
+			bill = unit * initAmount;
+		}else if(unit < midRange) {
+			bill = ( initRange * initAmount) +((unit -initRange) * midAmount);
+		}else if (unit > finalRange) {
+			bill = (initRange * initAmount) +((midRange-initRange) * midAmount) +((unit - midRange) * finalAmount);
 		}
-		System.out.println(billAmount);
-		return billAmount;
-		
-	}	
+		return bill;
+	}
 }
