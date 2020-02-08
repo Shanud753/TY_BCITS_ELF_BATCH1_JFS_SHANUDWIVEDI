@@ -11,11 +11,14 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+
 import com.bcits.discomusecase.beans.BillHistory;
 import com.bcits.discomusecase.beans.BillHistoryPK;
 import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.MonthlyConsumption;
+import com.bcits.discomusecase.beans.SupportCustBean;
+import com.bcits.discomusecase.beans.SupportCustBeanPK;
 
 	@Repository
 	public class ConsumerDAOImplementation implements ConsumerDAO {
@@ -45,17 +48,18 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 
 
 		@Override
-		public ConsumersMaster authenticate(int rrNumber,String password) {
+		public ConsumersMaster authenticate(String email, String password) {
+			EntityManager manager = factory.createEntityManager();
+			Query query = manager.createQuery(" from ConsumersMaster where email= :email ");
+			query.setParameter("email", email);
+			ConsumersMaster conInfoBean = (ConsumersMaster) query.getSingleResult();
+			if (conInfoBean != null && conInfoBean.getPassword().equals(password)) {
+				return conInfoBean;
+			}
+			manager.close();
+			return null;
+		}
 			
-				EntityManager manager = factory.createEntityManager();
-				ConsumersMaster consumerInfoBean = manager.find(ConsumersMaster.class, rrNumber);
-				if(consumerInfoBean != null && consumerInfoBean.getPassword().equals(password)) {
-					return consumerInfoBean;
-				}else {
-					return null;
-				}
-				
-			}//End of authenticate()
 				 
 		@Override
 		public ConsumersMaster getConsumer(int rrNumber) {
@@ -162,7 +166,7 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 		public boolean billPayment(int rrNumber, Date date, double amount) {
 			EntityManager manager = factory.createEntityManager();
 			EntityTransaction transaction = manager.getTransaction();
-			String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum  ";
+			String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum ";
 			Query query = manager.createQuery(jpql);
 			query.setMaxResults(1);
 			query.setParameter("rrNum", rrNumber);
@@ -212,8 +216,52 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 			manager.close();
 			return null;
 		}//end of getBillAmount()
+
+
+		@Override
+		public boolean setSupportRequest(String supportMsg, Integer rrNumber, String region) {
+			EntityManager manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			SupportCustBean supportBean = new SupportCustBean();
+			SupportCustBeanPK supportCustBeanPK = new SupportCustBeanPK();
+			try {
+				transaction.begin();
+				supportCustBeanPK.setRrNumber(rrNumber);
+				supportBean.setRegion(region);
+				supportCustBeanPK.setDate(new Date());
+				supportBean.setRequest(supportMsg);
+				supportBean.setResponse("Not Sent");
+				supportBean.setSupportBeanCustPK(supportCustBeanPK);
+				manager.persist(supportBean);
+				transaction.commit();
+				return true;
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+
+
+		@Override
+		public List<SupportCustBean> getResponse(Integer rrNumber) {
+			EntityManager manager = factory.createEntityManager();
+			try {
+				String jpql =" from SupportCustBean where supportBeanCustPK.rrNumber = :rrNum ";
+				Query query =manager.createQuery(jpql);
+				query.setParameter("rrNum", rrNumber);
+				List<SupportCustBean> supportList = query.getResultList();
+				if(supportList == null && supportList.isEmpty()) {
+					return null;
+				}
+				return supportList;
+				}catch (Exception e) {
+					return null;
+				}
+		}
+}
+		
 			
 		
-	}
+	
 	
 

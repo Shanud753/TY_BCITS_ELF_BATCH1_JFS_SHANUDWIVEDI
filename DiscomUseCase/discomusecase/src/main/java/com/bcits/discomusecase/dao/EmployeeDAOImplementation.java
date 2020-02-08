@@ -17,6 +17,7 @@ import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.beans.MonthlyConsumption;
 import com.bcits.discomusecase.beans.MonthlyConsumptionPK;
+import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.config.EntityManagerFactoryConfig;
 
 @Repository
@@ -134,4 +135,47 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 		}
 		
 	}//End of addCurrentBill()
+
+
+
+	@Override
+	public List<SupportCustBean> getComplaints(String region) {
+		EntityManager manager = factory.createEntityManager();
+		try {
+			String jpql =" from SupportCustBean where region = :reg ";
+			Query query =manager.createQuery(jpql);
+			query.setParameter("reg", region);
+			List<SupportCustBean> supportList = query.getResultList();
+			if(supportList == null && supportList.isEmpty()) {
+				return null;
+			}
+			return supportList;
+			}catch (Exception e) {
+				return null;
+			}
+	}
+
+
+
+	@Override
+	public boolean sendResponse(Integer rrNumber, String response, Date date) {
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			String jpql = " from SupportCustBean where supportBeanCustPK.rrNumber= :rrNum and supportBeanCustPK.date= :date ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("rrNum", rrNumber);
+			query.setParameter("date", date);
+			
+			SupportCustBean supportBean = (SupportCustBean) query.getSingleResult();
+			supportBean.setResponse(response);
+			transaction.commit();
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }//End of Class

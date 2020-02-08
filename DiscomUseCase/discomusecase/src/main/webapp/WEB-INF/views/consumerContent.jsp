@@ -58,6 +58,7 @@
        <a href="./displayBillHistorysPage"><button type="button" class="list-group-item list-group-item-action">Bill History</button></a>
         <a href="./currentBill"><button type="button" class="list-group-item list-group-item-action">Current Bill</button></a>
          <a href="./payment"><button type="button" class="list-group-item list-group-item-action" >Pay Online</button></a>
+          <a href="./consumerComplaintResolvedDetails"><button type="button" class="list-group-item list-group-item-action" >Complaints Details</button></a>
         <a href="./ConsumerLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
     </div>
 
@@ -72,7 +73,8 @@
             <p id="card-text" style="color:white">Mobile Number    <%=conMaster.getPhnNo() %></p>
              <p id="card-text" style="color:white">Region          <%=conMaster.getRegion() %></p>
              <p id="card-text" style="color:white">City             <%=conMaster.getCity() %></p>
-            <a href="./index" class="card-link">Home Page</a>
+            <a href="./homePage" class="card-link">Home Page</a>
+            <a href="./queryPage" class="card-link">HelpLine</a>
         </div>
     </div>
 

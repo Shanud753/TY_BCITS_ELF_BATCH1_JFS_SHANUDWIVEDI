@@ -1,0 +1,62 @@
+body{
+    background-image: url('../images/b19.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+nav.navbar{
+    width: 1610px;
+    height: 110px;
+}
+#h3{
+    padding-left:21px; 
+    padding-bottom: 70px;
+     padding-top: 20px;
+     color: black;
+}
+#h6{
+     padding-top: 62px;
+     padding-right: 598px; 
+     padding-left:  575px; 
+      margin-left: -1010px;
+}
+#lang{
+    font-size:larger;
+    margin-left: 120px;
+    margin-top: -59px;
+}
+#consumerlogo{
+    width: 140px; 
+    height: 130px;
+     margin-left: -10px;
+      margin-top: -30px;
+}
+
+form{
+    border: 2px solid white;
+    margin-top: 40px;
+    padding: 60px 40px;
+    margin-bottom: 100px;
+    -webkit-box-shadow: -30px 30px 15px 2px rgba(0,0,0,0.75);
+-moz-box-shadow: -30px 30px 15px 2px rgba(0,0,0,0.75);
+box-shadow: -30px 30px 15px 2px rgba(0,0,0,0.75);
+}
+h3{
+    color:whitesmoke;
+    text-align:center;
+     
+}
+img{
+    width: 141px;
+    margin-left: 119px;
+    
+}
+label{
+    color:rgb(12, 12, 12);
+    font-size: 15px;
+}
+input[type="button"]{
+    font-size: 20px;
+    margin-top: 86px;
+    margin-left: -16pxpx;
+ }

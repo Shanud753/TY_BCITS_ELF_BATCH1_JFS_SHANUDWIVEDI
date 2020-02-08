@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
+import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.service.ConsumerService;
 import com.bcits.discomusecase.service.EmployeeService;
 
@@ -153,6 +154,38 @@ public class EmployeeController {
 				return "employeeLoginForm";
 			}
 		}
+	
+	@GetMapping("/consumerComplaintsDetails")
+	public String diplayComplaintPage(ModelMap modelMap, HttpSession session) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+			List<SupportCustBean> supportList = service.getComplaints(empMasterInfo.getRegion());
+			if(supportList != null) {
+				modelMap.addAttribute("supportList",supportList);
+			}else {
+				modelMap.addAttribute("errMsg","No Querys found..");
+			}
+			return "complaintsResolvedPage";
+		}else {
+			modelMap.addAttribute("errMsg", "Invalid Credential !!");
+			return "employeeLoginPage";
+		}
+	}
+	
+	@GetMapping("/sendResponse")
+	public String sendResponseToConsumer(ModelMap modelMap, HttpSession session,Integer rrNumber,String response, Date date) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		
+		if (empMasterInfo != null) {
+			if(service.sendResponse(rrNumber, response, date)) {
+				modelMap.addAttribute("msg","response sent.");
+			}
+			return "complaintsResolvedPage";
+		}else {
+			modelMap.addAttribute("errMsg", "Please Login First..");
+			return "employeeLoginPage";
+		}
+	}
 
 	}
 	

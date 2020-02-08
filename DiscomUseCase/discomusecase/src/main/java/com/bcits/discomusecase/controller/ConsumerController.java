@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bcits.discomusecase.beans.BillHistory;
 import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
+import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.beans.MonthlyConsumption;
+import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.service.ConsumerService;
 
 @Controller
@@ -49,20 +51,17 @@ public class ConsumerController {
 	}//end of employeeLogOut()
 
 	@PostMapping("/consumerLoginPage")
-	public String authenticate(int rrNumber ,String password,HttpServletRequest req, ModelMap modelMap) {
-
-		ConsumersMaster consumerInfoBean = service.authenticate(rrNumber,password);	
-		if(consumerInfoBean != null) {
-			//Valid Credentials
+	public String authenticate(String email ,String password,HttpServletRequest req, ModelMap modelMap) {
+		ConsumersMaster consumerInfoBean = service.authenticate(email,password);
+		if (consumerInfoBean != null) {
 			HttpSession session = req.getSession(true);
 			session.setAttribute("loggedInconInfo", consumerInfoBean);
-
 			return "consumerContent";
-		}else {
-			//Invalid Credentials
-			modelMap.addAttribute("errMsg", "Invalid Credentials!!");
+		} else {
+			modelMap.addAttribute("errMsg", "Invalid Credential !!");
 			return "consumerLoginPage";
 		}
+		
 	}//End of authenticate()
 
 
@@ -176,6 +175,39 @@ public class ConsumerController {
 		}
 	}
 	
+	@GetMapping("/queryPage")
+	public String getQueryPage() {
+		return "complaintsDetailsPage";
+	}
+	@PostMapping("/getQueryInfo")
+	public String getQuery(HttpSession session, ModelMap modelMap,String request) {
+		ConsumersMaster consumersMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");
+		if (consumersMaster != null) {
+			if(service.setSupportRequest(request, consumersMaster.getRrNumber(), consumersMaster.getRegion())) {
+				modelMap.addAttribute("msg","request sent.");
+			}
+			return "complaintsDetailsPage";
+		}else {
+			modelMap.addAttribute("errMsg", "Please Login First..");
+			return "consumerLoginPage";
+		}
+	}
+	@GetMapping("/consumerComplaintResolvedDetails")
+	public String displayconsumerComplaintResolvedDetails(ModelMap modelMap, HttpSession session) {
+		ConsumersMaster consumersMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");
+		if(consumersMaster != null) {
+			List<SupportCustBean> supportList = service.getResponse(consumersMaster.getRrNumber());
+			if(supportList != null) {
+				modelMap.addAttribute("supportList",supportList);
+			}else {
+				modelMap.addAttribute("errMsg","No Response found..");
+			}
+			return "consumerComplaintResolvedPage";
+		}else {
+			modelMap.addAttribute("errMsg", "Invalid Credential !!");
+			return "consumerLoginPage";
+		}
+	}
 	
 	
 	@GetMapping("/homePage")

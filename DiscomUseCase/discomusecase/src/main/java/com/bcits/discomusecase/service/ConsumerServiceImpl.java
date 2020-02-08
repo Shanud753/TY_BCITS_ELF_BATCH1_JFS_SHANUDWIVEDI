@@ -10,6 +10,7 @@ import com.bcits.discomusecase.beans.BillHistory;
 import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.MonthlyConsumption;
+import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.dao.ConsumerDAO;
 
 	@Service
@@ -19,9 +20,9 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		private ConsumerDAO dao;
 
 		@Override
-		public ConsumersMaster authenticate(int rrNumber,String password) {
+		public ConsumersMaster authenticate(String email, String password) {
 
-			return dao.authenticate(rrNumber,password);
+			return dao.authenticate(email,password);
 		}
 
 		@Override
@@ -102,5 +103,17 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		public CurrentBill getBillAmount(int meterNumber) {
 			
 			return dao.getBillAmount(meterNumber);
+		}
+
+		@Override
+		public boolean setSupportRequest(String supportMsg, Integer rrNumber, String region) {
+			
+			return dao.setSupportRequest(supportMsg, rrNumber, region);
+		}
+
+		@Override
+		public List<SupportCustBean> getResponse(Integer rrNumber) {
+			
+			return dao.getResponse(rrNumber);
 		}
 }

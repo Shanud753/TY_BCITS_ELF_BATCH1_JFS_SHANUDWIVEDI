@@ -54,9 +54,9 @@
                 </div>
                 <div id="form">
                 <div id="form-group">
-                    <label for="rrnumber" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">RR-Number</label>
-                    <input type="number" class="form-control" id="rrnumber" placeholder="enter  RR-Number" style="font-size: 14px;" name="rrNumber">
-                    <span id="rrnum"  class="text-danger font-weight-bold"></span>
+                    <label for="emai" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Email-Id</label>
+                    <input type="email" class="form-control" id="emai" placeholder="enter  email" style="font-size: 14px;" name="email">
+                    <span id="ema"  class="text-danger font-weight-bold"></span>
                     <br>
                     <label for="pwd" style="font-size: 17px;  padding-top: 22px; font-weight: bolder;">Password</label>
                     <input type="password" class="form-control" id="pwd" placeholder="enter  password" style="font-size: 14px;"name="password">
