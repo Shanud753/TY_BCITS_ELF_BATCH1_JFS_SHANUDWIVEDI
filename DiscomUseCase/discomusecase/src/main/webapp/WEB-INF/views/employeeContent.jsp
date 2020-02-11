@@ -46,11 +46,11 @@
 
     <div class="list-group" id="list">
         <a href="./billGeneration"><button type="button" class="list-group-item list-group-item-action active">Months Bill Generation</button></a>
-        <a href=""><button type="button" class="list-group-item list-group-item-action">Month Bill Collection</button></a>
-        <a href=""><button type="button" class="list-group-item list-group-item-action">Bill History</button></a>
+        <a href="./BillCollected"><button type="button" class="list-group-item list-group-item-action">Month Bill Collection</button></a>
+        <a href="./billPending"><button type="button" class="list-group-item list-group-item-action">Bills Pending</button></a>
         <a href="./getAllConsumer"> <button type="button" class="list-group-item list-group-item-action">Consumer Details</button></a>
         <a href="./consumerComplaintsDetails"> <button type="button" class="list-group-item list-group-item-action">Consumer Complaints</button></a>
-        <a href=""><button type="button" class="list-group-item list-group-item-action" >Month on Month revenue</button></a>
+        <a href="./monthlyrevenue"><button type="button" class="list-group-item list-group-item-action" >Month on Month revenue</button></a>
         <a href="./employeeLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
     </div>
     

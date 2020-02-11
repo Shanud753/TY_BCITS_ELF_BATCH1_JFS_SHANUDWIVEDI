@@ -56,11 +56,14 @@
 	         <th>Address1</th>
 	         <th>Address2</th>
 	         <th>City</th>
-	         <th>Meter Number/th>
+	         <th>Meter Number</th>
+	         <th>Remove Consumer</th>
 	         </tr>
 	     </thead>
 	     <% for(ConsumersMaster consumersMasterBean
 	    		 :consumersMasterList){ %>
+	    		 <form action="./deleteConsumer">
+	    		 <input name="rrNumber" type="text" value=" <%= consumersMasterBean.getRrNumber() %>" hidden="true">
 	      <tr style="height:35px">
 	        <td><%= consumersMasterBean.getMeterNumber() %></td>
 	        <td><%= consumersMasterBean.getFirstName() %></td>
@@ -73,7 +76,9 @@
 	        <td><%= consumersMasterBean.getAddressLine2()%></td>
 	        <td><%= consumersMasterBean.getCity() %></td>
 	        <td><%= consumersMasterBean.getMeterNumber() %></td>
+	        <td> <input type="submit" value="Click to Delete" ></td>
 	        </tr>
+	        </form>
 	<%} 
 	}else {%>
 	<h2 style="color: red">No Record To Display..</h2>

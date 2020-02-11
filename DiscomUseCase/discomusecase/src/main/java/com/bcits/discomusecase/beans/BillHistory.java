@@ -24,5 +24,7 @@ public class BillHistory implements Serializable {
     
     @Column
     private String status;
+    @Column
+    private String region;
     
 }

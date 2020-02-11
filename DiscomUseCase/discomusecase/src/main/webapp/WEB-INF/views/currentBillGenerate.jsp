@@ -90,7 +90,7 @@
 				 <input type="text" class="form-control" id="type" style="font-size: 14px;" name="typeOfConsumer" value=<%=consumerMaster.getTypeOfConsumer()%> >
 				</div>
                 </div>
-                <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Generate Bill </button><br>
+                <button type="submit" class="btn btn-success mx-auto d-block" id="btn" style="width: 100px; height: 40px;">Generate Bill </button><br>
             </div>
             </form>
         </div>

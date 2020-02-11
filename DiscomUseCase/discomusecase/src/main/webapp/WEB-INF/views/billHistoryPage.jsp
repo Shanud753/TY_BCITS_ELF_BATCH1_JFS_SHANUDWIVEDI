@@ -51,6 +51,7 @@
     <th>Pay Date</th> 
     <th>Amount</th>
      <th>Status</th>
+      <th>Region</th>
     </tr>
     </thead>
     <%for(BillHistory history: billHistory){ %>
@@ -58,6 +59,7 @@
      <td><%=history.getBillHistoryPk().getPayDate() %></td>
     <td><%=history.getBillAmount() %></td>
      <td><%=history.getStatus() %></td>
+     <td><%=history.getRegion() %></td>
     </tr>
     <%} %>
   </table>

@@ -32,6 +32,8 @@ public interface ConsumerService {
 	
 	public boolean billPayment(int rrNumber, Date date, double amount);
 	
+	public boolean changePassword(String password, String confPassword,int rrNumber);
+	
 	public List<BillHistory> getBillHistory(int rrNumber);
 	public CurrentBill getBillAmount(int meterNumber);
 	public boolean setSupportRequest(String supportMsg,Integer rrNumber,String region);

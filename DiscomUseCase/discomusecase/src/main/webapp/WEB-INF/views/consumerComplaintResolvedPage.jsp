@@ -3,6 +3,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+  <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+   <spring:url var="css" value="/resources/css" />
+    <spring:url var="js" value="/resources/js" />
+    <spring:url var="images" value="/resources/images" />
      <% String errMsg = (String) request.getAttribute("errMsg");%>
      <% 
      List<SupportCustBean> supportList =(List<SupportCustBean>) request.getAttribute("supportList");
@@ -17,8 +21,7 @@
     <title>Consumer Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-      <link rel="stylesheet" href="${css}/complaint.css">
-        <link rel="stylesheet" href="${css}/navbar.css">
+     <link rel="stylesheet" href="${css}/navbar.css">
      
 
 

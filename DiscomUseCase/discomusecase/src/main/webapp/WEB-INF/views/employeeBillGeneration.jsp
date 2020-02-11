@@ -71,7 +71,7 @@
 				<th>Sl No</th>
 				<th>Meter Number</th>
 				<th>Name</th>
-				<th>Email</th>
+				<th>Email Id</th>
 				<th>Phone Number</th>
 				<th>Region</th>
 				<th>Consumer Type</th>
@@ -100,10 +100,10 @@
 		</form>
 		<% i++;} 
 	}else {%>
-		
+		<h3><%=errMsg %></h3>
 		<%} %>
 
-		<script src="/Jquery/jquery-3.4.1.js"></script>
-		<script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+		<script src="${js}/Jquery/jquery-3.4.1.js"></script>
+		<script src="${js}/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

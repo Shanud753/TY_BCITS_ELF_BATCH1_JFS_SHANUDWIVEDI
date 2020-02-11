@@ -20,8 +20,13 @@ import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.beans.SupportCustBean;
+import com.bcits.discomusecase.sendemail.EmailGenerator;
 import com.bcits.discomusecase.service.ConsumerService;
 import com.bcits.discomusecase.service.EmployeeService;
+import com.bcits.discomusecase.beans.BillHistory;
+import com.bcits.discomusecase.beans.EmployeeMaster;
+import com.bcits.discomusecase.beans.MonthlyConsumption;
+
 
 @Controller
 public class EmployeeController {
@@ -30,51 +35,53 @@ public class EmployeeController {
 	private EmployeeService service;
 	@Autowired
 	private ConsumerService conService;
-	
-	  @InitBinder public void initBinder(WebDataBinder binder) { CustomDateEditor
-	  dateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
-	  binder.registerCustomEditor(Date.class, dateEditor); }
-	 
+
+
+
+	@InitBinder public void initBinder(WebDataBinder binder) { CustomDateEditor
+		dateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
+	binder.registerCustomEditor(Date.class, dateEditor); }
+
 	@GetMapping("/employeeLogin")
 	public String displayemployeeLoginForm() {
 		return "employeeLoginForm";
 	}
-	
-	
+
+
 	@PostMapping("/employeeContent")
 	public String employeeContent(int empId ,String designation,HttpServletRequest req, ModelMap modelMap) {
 		return "employeeContent";
 	}
-	
+
 	@PostMapping("/employeeLoginHome")
-	public String authenticate(Integer empId, String password, ModelMap modelMap,HttpServletRequest req) {
+	public String authenticate(int empId, String password, ModelMap modelMap,HttpServletRequest req) {
 		EmployeeMaster employeeMasterBean=service.authentication(empId,password); 
-	    String region = employeeMasterBean.getRegion();
-        if( employeeMasterBean!= null) { 
-	        HttpSession session = req.getSession(true);
-       	    session.setAttribute("loggedInEmp", employeeMasterBean);
-       	   int count = service.noOfConsumers(region);
-       	   modelMap.addAttribute("count", count);
-       	    return "employeeContent";
-        }else {
-	     modelMap.addAttribute("errMsg","Invalid Creadential");
-	    return "employeeLoginForm";
-        }     
+		String region = employeeMasterBean.getRegion();
+		if( employeeMasterBean!= null) { 
+			HttpSession session = req.getSession(true);
+			session.setAttribute("loggedInEmp", employeeMasterBean);
+			int count = service.noOfConsumers(region);
+			modelMap.addAttribute("count", count);
+			return "employeeContent";
+		}else {
+			modelMap.addAttribute("errMsg","Invalid Creadential");
+			return "employeeLoginForm";
+		}     
 	}// end of authenticate()
-	
+
 	@GetMapping("/employeeLogout")
 	public String employeeLogOut(ModelMap modelMap, HttpSession session) {
 		session.invalidate();
 		return "employeeLoginForm";
 	}//end of employeeLogOut()
-	
+
 	@GetMapping("/currentBillPageGen")
 	public String displayCurrentBillPageGen() {
 		return "currentBillGenerate";
-		
+
 	}// end of displayCurrentBillPage()
-	
-	
+
+
 	@GetMapping("/getAllConsumer")
 	public String getAllConsumer(HttpSession session ,ModelMap modelMap) {
 		EmployeeMaster employeeMasterBean = (EmployeeMaster)session.getAttribute("loggedInEmp");
@@ -84,18 +91,18 @@ public class EmployeeController {
 			return "employeeLoginForm";
 		}else {
 			if(employeeMasterBean != null) {
-			  String region = employeeMasterBean.getRegion();
-			  List<ConsumersMaster> consumersMasterList=service.getAllConsumer(region);
-			  modelMap.addAttribute("consumersMasterList",consumersMasterList);
-			  return "employeeConsumerDetails";
+				String region = employeeMasterBean.getRegion();
+				List<ConsumersMaster> consumersMasterList=service.getAllConsumer(region);
+				modelMap.addAttribute("consumersMasterList",consumersMasterList);
+				return "employeeConsumerDetails";
 			}else {
 				modelMap.addAttribute("errMsg","Unable to Load");
 				return "consumerFailedPage";
 			}
 		}
 	}//end of getAllConsumer()
-	
-	
+
+
 	@GetMapping("/billGeneration")
 	public String dispalyBillGeneration(HttpSession session ,ModelMap modelMap) {
 		EmployeeMaster employeeMasterBean = (EmployeeMaster)session.getAttribute("loggedInEmp");
@@ -105,56 +112,67 @@ public class EmployeeController {
 			return "employeeLoginForm";
 		}else {
 			if(employeeMasterBean != null) {
-			  String region = employeeMasterBean.getRegion();
-			  List<ConsumersMaster> consumersMasterList=service.getAllConsumer(region);
-			  modelMap.addAttribute("consumersMasterList",consumersMasterList);
-			  return "employeeBillGeneration";
+				String region = employeeMasterBean.getRegion();
+				List<ConsumersMaster> consumersMasterList=service.getAllConsumer(region);
+				modelMap.addAttribute("consumersMasterList",consumersMasterList);
+				return "employeeBillGeneration";
 			}else {
 				modelMap.addAttribute("errMsg","Unable to Load");
 				return "consumerFailedPage";
 			}
 		}
 	}//end of dispalyBillGeneration()
-	
+
 	@GetMapping("/billGeneratePage")
 	public String displayCurrentBillPage(HttpSession session ,ModelMap modelMap,int rrNumber) {
 		EmployeeMaster employeeMasterBean = (EmployeeMaster)session.getAttribute("loggedInEmp");
-		
-			if(employeeMasterBean != null) {
-				ConsumersMaster master = conService.getConsumer(rrNumber);
-				double previousReading = service.getPreviousReading(rrNumber);
-				if(master != null) {
-					 modelMap.addAttribute("conMaster", master);	
-					 modelMap.addAttribute("previousReading", previousReading);		  
-				}
-				
-			}else {
-				modelMap.addAttribute("errMsg","Unable to Load");
-				return "consumerFailedPage";
+
+		if(employeeMasterBean != null) {
+			ConsumersMaster master = conService.getConsumer(rrNumber);
+			double previousReading = service.getPreviousReading(rrNumber);
+			if(master != null) {
+				modelMap.addAttribute("conMaster", master);	
+				modelMap.addAttribute("previousReading", previousReading);		  
 			}
-			return "currentBillGenerate";	
+
+		}else {
+			modelMap.addAttribute("errMsg","Unable to Load");
+			return "consumerFailedPage";
+		}
+		return "currentBillGenerate";	
 	}//end of displayCurrentBillPage()
-	
+
 	@GetMapping("/billGenerated")
 	public String generateBill(ModelMap modelMap,HttpSession session,CurrentBill currentBill) {
 		EmployeeMaster employeeMaster= (EmployeeMaster)session.getAttribute("loggedInEmp");
 		if(employeeMaster!= null) {
+			CurrentBill currentBill1 = service.addCurrentBill(currentBill,employeeMaster.getRegion());
+			if (currentBill1 != null) {
+				if(service.sendMail(currentBill1.getRrNumber())) {
+					modelMap.addAttribute("msg", "Bill Generated for RR Number " + currentBill.getRrNumber() + " Sucessfully..");
+					return "actionSuccessFullPage";
 
-			if(service.addCurrentBill(currentBill)) {
-				
-				modelMap.addAttribute("msg", "Bill generated for  rr Number" + currentBill.getRrNumber() +  " SuccessFully...");
-			}
-			else {
-				modelMap.addAttribute("errMsg", "Failed to Generate the Bill");
-			}
+				}else {
 
-			return "employeeBillGeneration";
+					modelMap.addAttribute("errMsg", "This Month Bill is Already Generated" + currentBill.getRrNumber());
+					return "actionSuccessFullPage";
+				}
+
+
+			}else {
+				modelMap.addAttribute("errMsg", "No Record Found");
+				return "actionSuccessFullPage";
+
+			}
 		}else {
-				modelMap.addAttribute("errMsg","Please Login First");
-				return "employeeLoginForm";
-			}
+			modelMap.addAttribute("errMsg","Please Login First");
+			return "employeeLoginForm";
 		}
-	
+
+	}
+
+
+
 	@GetMapping("/consumerComplaintsDetails")
 	public String diplayComplaintPage(ModelMap modelMap, HttpSession session) {
 		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
@@ -171,11 +189,11 @@ public class EmployeeController {
 			return "employeeLoginPage";
 		}
 	}
-	
+
 	@GetMapping("/sendResponse")
 	public String sendResponseToConsumer(ModelMap modelMap, HttpSession session,Integer rrNumber,String response, Date date) {
 		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
-		
+
 		if (empMasterInfo != null) {
 			if(service.sendResponse(rrNumber, response, date)) {
 				modelMap.addAttribute("msg","response sent.");
@@ -187,7 +205,72 @@ public class EmployeeController {
 		}
 	}
 
+	@GetMapping("/BillCollected")
+	public String displayBillCollectedPage(ModelMap modelMap, HttpSession session) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+			List<BillHistory> billHistoryLists = service.getBillList(empMasterInfo.getRegion());
+			if(billHistoryLists != null && !billHistoryLists.isEmpty()) {
+				modelMap.addAttribute("billHistroy",billHistoryLists);
+			}else {
+				modelMap.addAttribute("errMsg","No record is found.");
+			}
+			return "billCollected";
+		}else {
+			modelMap.addAttribute("errMsg", "Invalid Credential !!");
+			return "employeeLoginPage";
+		}
+	}
+
+	@GetMapping("/billPending")
+	public String displayBillCollected(ModelMap modelMap, HttpSession session) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+			List<MonthlyConsumption> billList = service.getCollectedBill(empMasterInfo.getRegion());
+			if(billList != null && !billList.isEmpty()) {
+				modelMap.addAttribute("billList",billList);
+			}else {
+				modelMap.addAttribute("errMsg","No record is found.");
+			}
+			return "PendingBills";
+		}else {
+			modelMap.addAttribute("errMsg", "Invalid Credential !!");
+			return "employeeLoginPage";
+		}
+	}
+
+	@GetMapping("/deleteConsumer")
+	public String removeConsumer(ModelMap modelMap, HttpSession session,int rrNumber) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+			if(service.removeConsumer(rrNumber)) {
+				modelMap.addAttribute("msg","Consumer Profile Deleted.");
+			}
+			return "complaintsResolvedPage";
+		}else {
+			modelMap.addAttribute("errMsg", "Please Login First..");
+			return "employeeLoginPage";
+		}
 	}
 	
-	
+	@GetMapping("/monthlyrevenue")
+	public String consumptionPage(HttpSession session, ModelMap modelMap) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+		       List<MonthlyConsumption> consumptionslist =service.getCollectedBill();
+		       if(consumptionslist != null) {
+		    	   modelMap.addAttribute("consumptionslist",consumptionslist); 
+		    	   return "monthRevenue";
+		       }else {
+		    	   modelMap.addAttribute("errMsg","No record is found.");
+		    	   return "employeeLoginPage";
+		       }
+		}else {
+			session.invalidate();
+			return "consumerLoginPage";
+		}
+	}
+}
+
+
 

@@ -7,6 +7,8 @@ import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 import com.bcits.discomusecase.beans.SupportCustBean;
+import com.bcits.discomusecase.beans.BillHistory;
+import com.bcits.discomusecase.beans.MonthlyConsumption;
 
 public interface EmployeeDAO {
    
@@ -15,9 +17,14 @@ public interface EmployeeDAO {
 	
 	public List<ConsumersMaster> getAllConsumer(String region );
 	public int noOfConsumers(String region);
-	 public Double getPreviousReading(int rrNumber);
-	 public boolean addCurrentBill(CurrentBill currentBill);
+	 public double getPreviousReading(int rrNumber);
+	 public CurrentBill addCurrentBill(CurrentBill currentBill,String region);
 	 public List<SupportCustBean> getComplaints(String region);
 	 public boolean sendResponse(Integer rrNumber,String response, Date date);
+	 public  List<MonthlyConsumption> getCollectedBill(String region);
+	 public List<BillHistory> getBillList(String region);
+	 public boolean removeConsumer(int rrNumber);
+	 public boolean sendMail(int rrNumber);
+	 public  List<MonthlyConsumption> getCollectedBill();
 
 }

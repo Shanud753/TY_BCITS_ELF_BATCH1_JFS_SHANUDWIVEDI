@@ -6,7 +6,9 @@
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
 
-<% CurrentBill billInfo = (CurrentBill) request.getAttribute("billInfo");%>
+<% CurrentBill billInfo = (CurrentBill) request.getAttribute("billInfo");
+String errMsg = (String) request.getAttribute("errMsg");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +44,9 @@
             </div>
         </nav>
     </header>
-
+<% if(errMsg != null && !errMsg.isEmpty()) { %>
+	<h2 style="color: red;"><%=errMsg %></h2>
+	<%} %>
 
 <h1 style="color:white" >    Current Bill!</h1>
    

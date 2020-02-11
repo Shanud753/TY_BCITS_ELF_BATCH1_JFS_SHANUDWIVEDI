@@ -67,7 +67,7 @@
                     <span id="txt1" style=" color: black;">
                     Forgot
                 </span>
-                    <a id="txt1" href="./consumerRegistration">
+                    <a id="txt1" href="./displayForgotPasswordPage">
                     Password?
                 </a>
                 </div><br>

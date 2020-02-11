@@ -32,6 +32,7 @@ public class MonthlyConsumption implements Serializable {
      
      @Column
      private String status;
-   
+     @Column
+     private String region;
   
 }

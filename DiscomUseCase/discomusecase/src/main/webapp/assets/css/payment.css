@@ -1,3 +1,65 @@
-#card{
-	
-} 
+body{
+    background-image: url('../images/b19.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+nav.navbar{
+    width: 1610px;
+    height: 110px;
+}
+#h3{
+    padding-left:21px; 
+    padding-bottom: 70px;
+     padding-top: 20px;
+}
+#h6{
+     padding-top: 62px;
+     padding-right: 598px; 
+     padding-left:  575px; 
+      margin-left: -1010px;
+}
+#lang{
+    font-size:larger;
+    margin-left: 120px;
+    margin-top: -59px;
+}
+#consumerlogo{
+    width: 140px; 
+    height: 130px;
+     margin-left: -10px;
+      margin-top: -30px;
+}
+
+form{
+    width: 520px;
+    height: 400px;
+    margin-left: 11px;
+    margin-top: 27px;
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: rgb(218, 229, 238);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+ .homelink{
+    margin-top: 15px;
+    font-size: 22px;
+   margin-right: -100px;
+
+}
+#payButton{
+	margin-top: -100px;
+	margin-left: 120px;
+}
+#amount{
+	margin-top: -86px;
+	margin-left: 280px;
+}
+#cardNumber{
+	margin-left: -8px;
+}
+
+#owner{
+	margin-left: 10px;
+}

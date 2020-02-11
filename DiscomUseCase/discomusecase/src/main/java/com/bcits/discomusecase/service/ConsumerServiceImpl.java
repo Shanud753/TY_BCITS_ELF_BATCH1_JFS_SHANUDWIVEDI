@@ -13,6 +13,7 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.dao.ConsumerDAO;
 
+
 	@Service
 	public class ConsumerServiceImpl implements ConsumerService{
 
@@ -100,9 +101,9 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		}
 
 		@Override
-		public CurrentBill getBillAmount(int meterNumber) {
+		public CurrentBill getBillAmount(int rrNumber) {
 			
-			return dao.getBillAmount(meterNumber);
+			return dao.getBillAmount(rrNumber);
 		}
 
 		@Override
@@ -116,4 +117,13 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 			
 			return dao.getResponse(rrNumber);
 		}
-}
+
+		@Override
+		public boolean changePassword(String password, String confPassword, int rrNumber) {
+				if(!password.equals(confPassword)) {
+					return false;
+				}
+				return dao.changePassword(password,rrNumber); 
+			}
+		}
+

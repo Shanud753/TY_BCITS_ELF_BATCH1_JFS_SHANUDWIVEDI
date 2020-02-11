@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-<link rel="stylesheet" href="${css}/actionSuccessFullPage.css">
+<link rel="stylesheet" href="${css}/navbar.css">
 
 
 </head>

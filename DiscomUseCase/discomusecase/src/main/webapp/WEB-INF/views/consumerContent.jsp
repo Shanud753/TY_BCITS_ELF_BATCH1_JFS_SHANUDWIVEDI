@@ -59,6 +59,7 @@
         <a href="./currentBill"><button type="button" class="list-group-item list-group-item-action">Current Bill</button></a>
          <a href="./payment"><button type="button" class="list-group-item list-group-item-action" >Pay Online</button></a>
           <a href="./consumerComplaintResolvedDetails"><button type="button" class="list-group-item list-group-item-action" >Complaints Details</button></a>
+         <a href="./displayForgotPasswordPage"><button type="button" class="list-group-item list-group-item-action" >Change Password</button></a>
         <a href="./ConsumerLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
     </div>
 

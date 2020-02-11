@@ -20,6 +20,7 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.beans.SupportCustBeanPK;
 
+
 	@Repository
 	public class ConsumerDAOImplementation implements ConsumerDAO {
 
@@ -150,15 +151,18 @@ import com.bcits.discomusecase.beans.SupportCustBeanPK;
 		@Override
 		public CurrentBill currentBillDetails(int rrNumber) {
 			EntityManager manager = factory.createEntityManager();
-			String jpql = " from CurrentBill where rrNumber= :rrNum";
-			Query query = manager.createQuery(jpql);
-			query.setParameter("rrNum", rrNumber);
-			CurrentBill billInfo = (CurrentBill) query.getSingleResult();
-			if(billInfo != null) {
-				return billInfo;
+			try {
+				String jpql = " from CurrentBill where rrNumber= :rrNum";
+				Query query = manager.createQuery(jpql);
+				query.setParameter("rrNum", rrNumber);
+				CurrentBill billInfo = (CurrentBill) query.getSingleResult();
+					return billInfo;
+			
+			} catch (Exception e) {
+				return null;
+			}finally {
+				manager.close();
 			}
-			manager.close();
-			return null;
 		}
 
 
@@ -175,8 +179,9 @@ import com.bcits.discomusecase.beans.SupportCustBeanPK;
 			
             BillHistory bill = new BillHistory();
             BillHistoryPK billPk = new BillHistoryPK();
-            bill.setBillAmount(amount);;
+            bill.setBillAmount(amount);
             bill.setStatus("Success");
+            bill.setRegion(bill.getRegion());
             billPk.setPayDate(date);
             billPk.setRrNumber(rrNumber);
             bill.setBillHistoryPk(billPk);
@@ -195,26 +200,37 @@ import com.bcits.discomusecase.beans.SupportCustBeanPK;
 		@Override
 		public List<BillHistory> getBillHistory(int rrNumber) {
 			EntityManager manager = factory.createEntityManager();
-            Query query = manager.createQuery(" from BillHistory where rrNumber= :rrNum");
-            query.setParameter("rrNum", rrNumber);
-            List<BillHistory> billList = query.getResultList();
-            if(billList != null) {
-            	return billList;
-            }
-            manager.close();
-			return null;
+			try {
+				Query query = manager.createQuery(" from BillHistory where billHistoryPk.rrNumber= :rrNum ");
+				query.setParameter("rrNum", rrNumber);
+				List<BillHistory> billList = query.getResultList();
+				if (billList != null) {
+					return billList;
+				}else {
+					return null;
+				}
+				
+				
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+				return null;
+			}finally {
+				manager.close();
+			}
 		}
 
 
 		@Override
-		public CurrentBill getBillAmount(int meterNumber) {
+		public CurrentBill getBillAmount(int rrNumber) {
 			EntityManager manager = factory.createEntityManager();
-			CurrentBill currentBill = manager.find(CurrentBill.class, meterNumber);
-			if (currentBill != null) {
-				return currentBill;
-			}
-			manager.close();
-			return null;
+				CurrentBill currentBill = manager.find(CurrentBill.class, rrNumber);
+				if(currentBill != null) {
+					return currentBill;
+				}else {
+					return null;
+				}
+			
 		}//end of getBillAmount()
 
 
@@ -240,7 +256,7 @@ import com.bcits.discomusecase.beans.SupportCustBeanPK;
 			}
 			return false;
 		}
-
+        
 
 		@Override
 		public List<SupportCustBean> getResponse(Integer rrNumber) {
@@ -258,7 +274,23 @@ import com.bcits.discomusecase.beans.SupportCustBeanPK;
 					return null;
 				}
 		}
-}
+
+
+		@Override
+		public boolean changePassword(String password, int rrNumber) {
+			EntityManager manager =factory.createEntityManager();
+			ConsumersMaster consumerInfoBean = manager.find(ConsumersMaster.class, rrNumber);
+			EntityTransaction transaction =  manager.getTransaction();
+			if(consumerInfoBean != null) {
+			transaction.begin();
+			consumerInfoBean.setPassword(password);
+			transaction.commit();
+			return true;
+			}
+			return false;
+		}
+		}
+
 		
 			
 		

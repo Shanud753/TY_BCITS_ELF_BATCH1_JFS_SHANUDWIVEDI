@@ -26,6 +26,7 @@ public interface ConsumerDAO {
 	public boolean billPayment(int rrNumber, Date date, double amount);
 	public List<BillHistory> getBillHistory(int rrNumber);
 	public CurrentBill getBillAmount(int meterNumber);
+	public boolean changePassword(String password, int rrNumber);
 	public boolean setSupportRequest(String supportMsg,Integer rrNumber,String region);
 	 public List<SupportCustBean> getResponse(Integer rrNumber);
 

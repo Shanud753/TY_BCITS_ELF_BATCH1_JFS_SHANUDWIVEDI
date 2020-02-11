@@ -10,6 +10,7 @@ import javax.persistence.PersistenceUnit;
 
 import org.springframework.stereotype.Repository;
 
+import com.bcits.discomusecase.beans.AdminInfo;
 import com.bcits.discomusecase.beans.EmployeeMaster;
 @Repository
 public class AdminDaoImpl implements AdminDao{
@@ -17,41 +18,32 @@ public class AdminDaoImpl implements AdminDao{
 	@PersistenceUnit
 	private EntityManagerFactory factory ;
 	
+
+
 	@Override
-	public boolean registerEmployee(int empId) {
-		
+	public AdminInfo authenticate(String username, String password) {
+		EntityManager manager = factory.createEntityManager();
+		AdminInfo adminInfo = manager.find(AdminInfo.class, username);
+		if(adminInfo != null && adminInfo.getPassword().equals(password)) {
+			return adminInfo;
+		}
+		manager.close();
+			return null;
+		}
+	
+
+	@Override
+	public boolean addEMployee(EmployeeMaster empInfo) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		EmployeeMaster employee = new EmployeeMaster();
-		employee.setEmpId(121);
-		employee.setDesignation("Manager");
-		employee.setEmpName("Mr Rajesh S");
-		employee.setRegion("Bangalore North");
-		employee.setPassword("north");
-		
-		EmployeeMaster employee1 = new EmployeeMaster();
-		employee1.setEmpId(122);
-		employee1.setDesignation("Manager");
-		employee1.setEmpName("Mr Nagesh S");
-		employee1.setRegion("Bangalore South");
-		employee1.setPassword("south");
-		
-		List<EmployeeMaster> employeeList = new ArrayList<>();
-		employeeList.add(employee);
-		employeeList.add(employee1);
-		boolean isAdded = true;
 		try {
 			transaction.begin();
-			manager.persist(employeeList);
+			manager.persist(empInfo);
 			transaction.commit();
-			isAdded = true;
-			return isAdded;
-		}catch(Exception e) {
+			return true;
+		}catch (Exception e) {
 			e.printStackTrace();
-			transaction.rollback();	
 		}
-		
-		return false;
+	return false;
 	}
-
 }

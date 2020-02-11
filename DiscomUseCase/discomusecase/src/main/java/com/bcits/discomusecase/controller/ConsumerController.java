@@ -27,6 +27,8 @@ import com.bcits.discomusecase.beans.MonthlyConsumption;
 import com.bcits.discomusecase.beans.SupportCustBean;
 import com.bcits.discomusecase.service.ConsumerService;
 
+
+
 @Controller
 public class ConsumerController {
 
@@ -63,8 +65,34 @@ public class ConsumerController {
 		}
 		
 	}//End of authenticate()
-
-
+	  @GetMapping("/displayForgotPasswordPage")
+	public String displayPasswordForgot(HttpSession session, ModelMap modelMap) {
+		  ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
+		if (master != null) {
+			return "forgotPasswordPage";
+		} else {
+			modelMap.addAttribute("errMsg", "Please Login First..");
+			return "consumerLoginPage";
+		}
+	}
+	  
+	  @PostMapping("/resetPassword")
+		public String changePassword(HttpSession session, ModelMap modelMap ,String password ,String confPassword) {
+		  ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
+			if (master != null) {
+				if(service.changePassword(password, confPassword, master.getRrNumber())) {
+					modelMap.addAttribute("msg", "Password Changed Successfully");
+					return "forgotPasswordPage";
+				}else {
+				modelMap.addAttribute("errMsg", "Failed to change the password!!");
+				return "forgotPasswordPage";
+				}
+			}else {
+				modelMap.addAttribute("errMsg", "Please Login First..");
+				return "consumerLoginPage";
+			}
+		}
+	  
 	@GetMapping("/consumerRegister")
 	public String displayConsumerRegistrationform() {
 		return "consumerRegistration";
@@ -108,29 +136,36 @@ public class ConsumerController {
 	public String getCurrentBill(HttpSession session, ModelMap modelMap) {
 	ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 	int rrNumber = master.getRrNumber();
-	if(!session.isNew()) {
+	 
 		if(master != null) {
 			CurrentBill billInfo = service.currentBillDetails(rrNumber);
-			modelMap.addAttribute("billInfo", billInfo);
-			return "currentBillDetails";
+			if(billInfo != null) {
+				modelMap.addAttribute("billInfo", billInfo);
+				return "currentBillDetails";
+			}else {
+            modelMap.addAttribute("errMsg", "Bill Not Generated for You");
+				return "actionSuccessFullPage";
+			}
 
 		}else {
-			modelMap.addAttribute("errMsg", "Current Bill Not Found");
-			return "currentBillDetails";	
+			session.invalidate();
+			return "consumerLoginPage";	
 		}
-	}else {
-		session.invalidate();
-		return "consumerLoginPage";
-	}
 }
 	@GetMapping("/payment")
 	public String paymentPage(HttpSession session, ModelMap modelMap) {
 		ConsumersMaster consumerBean = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 		if(consumerBean != null) {
-			int meterNumber = consumerBean.getRrNumber();
-			CurrentBill currentBillBean = service.getBillAmount(meterNumber);
+			int rrNumber = consumerBean.getRrNumber();
+			CurrentBill currentBillBean = service.getBillAmount(rrNumber);
+			if(currentBillBean != null) {
 			modelMap.addAttribute("currentBillBean",currentBillBean);
 			return "paymentPage";
+			}else {
+				modelMap.addAttribute("errMsg", "Bill Not Generated for You So No need to Pay");
+				return "actionSuccessFullPage";
+			}
+			
 		}else {
 			modelMap.addAttribute("errMsg", "Please Login First!!");
 			return "consumerLoginPage";
@@ -144,13 +179,13 @@ public class ConsumerController {
 	  if(master != null) {
 		    int meterNumber = master.getRrNumber();
 			CurrentBill currentBillBean = service.getBillAmount(meterNumber);
-			 Double amount = currentBillBean.getBillAmount();
+			 double amount = currentBillBean.getBillAmount();
 		  if(service.billPayment(master.getRrNumber(), date, amount)) {
 			  modelMap.addAttribute("currentBillBean",currentBillBean);
 			  return "paymentSuccessFullPage";
 		  }else {
 			  modelMap.addAttribute("errMsg", "Unable to Process try Again Later !!");
-			  return "consumerFailedPage";
+			  return "actionSuccessFullPage";
 		  }
 	  }else {
 		  return "consumerLoginPage";
@@ -166,8 +201,8 @@ public class ConsumerController {
 				modelMap.addAttribute("billHistory", billHistory);
 				return "billHistoryPage";
 			}else {
-				modelMap.addAttribute("errMsg", "Unable to Process Try Again Later!!");
-				return "consumerFailedPage";
+				modelMap.addAttribute("errMsg", "No Bill History For You..:(");
+				return "actionSuccessFullPage";
 			}
 		}else {
 			modelMap.addAttribute("errMsg", "Please Login First...");
