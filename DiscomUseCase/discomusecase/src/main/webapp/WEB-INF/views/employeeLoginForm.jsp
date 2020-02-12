@@ -5,7 +5,7 @@
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
-
+<jsp:include page="Header.jsp"></jsp:include>
     <%String errMsg = (String) request.getAttribute("errMsg");%>
 
 <!DOCTYPE html>
@@ -25,25 +25,6 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
     <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;">
             <form onsubmit="validation(); return false" action="./employeeLoginHome" method="post">

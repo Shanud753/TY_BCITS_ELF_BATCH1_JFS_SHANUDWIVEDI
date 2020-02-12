@@ -41,7 +41,7 @@
         </nav>
     </header>
 
-<body>
+
  <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;background-image: url('${images}/b17.jpg');">
             <form id="formData"  method="post" action="./adminLogin" >

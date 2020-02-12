@@ -1,0 +1,15 @@
+
+.table{
+    padding:10px;
+    font-size: 20px;
+}
+.welcome{
+	margin-top:-10px;
+	 text-align: center;
+	 background-color:rgba(37, 40, 53, 0.952); 
+	 color: white;
+	 height: 60px;
+}
+body{
+   background-color:  rgb(218, 229, 238);
+}

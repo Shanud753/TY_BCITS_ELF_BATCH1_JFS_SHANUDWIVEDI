@@ -19,11 +19,13 @@ nav.navbar{
      padding-left:  575px; 
       margin-left: -1010px;
 }
-#lang{
-    font-size:larger;
-    margin-left: 120px;
-    margin-top: -59px;
+.homelink{
+    padding-left: 750px;
+    margin-top: -29px;
+    font-size: 22px;
+
 }
+
 #consumerlogo{
     width: 140px; 
     height: 130px;

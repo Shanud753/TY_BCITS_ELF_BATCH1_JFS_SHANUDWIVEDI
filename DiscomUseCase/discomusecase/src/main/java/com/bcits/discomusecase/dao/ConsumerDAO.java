@@ -29,7 +29,10 @@ public interface ConsumerDAO {
 	public boolean changePassword(String password, int rrNumber);
 	public boolean setSupportRequest(String supportMsg,Integer rrNumber,String region);
 	 public List<SupportCustBean> getResponse(Integer rrNumber);
-
+	public boolean forgotPassword(ConsumersMaster consumersMaster);
+	public boolean authenticationForgotPassword(ConsumersMaster consumersMaster);
+		
+		
 
 	
 }

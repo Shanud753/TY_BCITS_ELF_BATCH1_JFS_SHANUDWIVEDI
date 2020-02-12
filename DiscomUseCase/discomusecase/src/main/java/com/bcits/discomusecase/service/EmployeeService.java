@@ -23,6 +23,10 @@ public interface EmployeeService {
 	 public  List<MonthlyConsumption> getCollectedBill(String region);
 	 public List<BillHistory> getBillList(String region);
 	 public boolean removeConsumer(int rrNumber);
-	 public boolean sendMail(int rrNumber);
+	 public boolean sendMail(int rrNumber,ConsumersMaster master);
 	 public List<MonthlyConsumption> getCollectedBill();
+	 public boolean clearDueAmount(int rrNumber,Date date);
+	 public List<Object[]> monthlyCollectedBills(String region);
+	 public List<Object[]> monthlyBillsPending(String region);
+	 public List<Object[]> totalRevenueGenerated(String region);
 }

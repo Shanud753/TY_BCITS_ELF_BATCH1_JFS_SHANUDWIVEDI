@@ -43,4 +43,6 @@ public class CurrentBill implements Serializable{
 	 private String region;
 	 @Column(name = "statement_date")
 	private Date statementDate;
+	 @Column
+	 private String status;
 }

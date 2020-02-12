@@ -125,5 +125,25 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 				}
 				return dao.changePassword(password,rrNumber); 
 			}
+
+		@Override
+		public boolean forgotPassword(ConsumersMaster consumersMaster, String confPassword) {
+			if(!consumersMaster.getPassword().equals(confPassword)) {
+				return false;
+			}
+			return dao.forgotPassword(consumersMaster);
+		}//end of reSetPassword()
+		
+
+		@Override
+		public boolean authenticationForgotPassword(ConsumersMaster consumersMaster) {
+			return dao.authenticationForgotPassword(consumersMaster);
+		}//end of authenticationForSetPassword()
+
+		
+
+	
+
+		
 		}
 

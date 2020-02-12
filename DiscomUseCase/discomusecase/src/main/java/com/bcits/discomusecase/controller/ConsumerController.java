@@ -46,6 +46,13 @@ public class ConsumerController {
 		return "consumerLoginPage";
 	}
 	
+	
+	@GetMapping("/consumerContentPage")
+	public String displayconsumerContentPage() {
+		return "consumerContent";
+	}
+	
+	
 	@GetMapping("/ConsumerLogout")
 	public String employeeLogOut(ModelMap modelMap, HttpSession session) {
 		session.invalidate();
@@ -116,20 +123,19 @@ public class ConsumerController {
 	public String consumptionPage(HttpSession session, ModelMap modelMap) {
 		ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 		int rrNumber = master.getRrNumber();
-		if(!session.isNew()) {
 			if(master != null) {
 				List<MonthlyConsumption> consumption2 = service. getConsumption(rrNumber);
-				modelMap.addAttribute("monthlyConsumption", consumption2);
-				return "electricityConsumption";
-
+				if(consumption2 != null && !consumption2.isEmpty()) {
+					modelMap.addAttribute("monthlyConsumption", consumption2);
+					return "electricityConsumption";
+				}else {
+					modelMap.addAttribute("errMsg", "Monthly Consumption Not Found");
+					return "electricityConsumption";
+				}
 			}else {
-				modelMap.addAttribute("errMsg", "Monthly Consumption Not Found");
-				return "electricityConsumption";	
-			}
-		}else {
-			session.invalidate();
-			return "consumerLoginPage";
-		}
+				session.invalidate();
+				return "consumerLoginPage";	
+			}	
 	}
 
 	@GetMapping("/currentBill")
@@ -197,12 +203,12 @@ public class ConsumerController {
 		ConsumersMaster consumerMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 		if(consumerMaster != null) {
 			List<BillHistory> billHistory = service.getBillHistory(consumerMaster.getRrNumber());
-			if(billHistory != null) {
+			if(billHistory != null && !billHistory.isEmpty()) {
 				modelMap.addAttribute("billHistory", billHistory);
 				return "billHistoryPage";
 			}else {
 				modelMap.addAttribute("errMsg", "No Bill History For You..:(");
-				return "actionSuccessFullPage";
+				return "billHistoryPage";
 			}
 		}else {
 			modelMap.addAttribute("errMsg", "Please Login First...");
@@ -217,11 +223,15 @@ public class ConsumerController {
 	@PostMapping("/getQueryInfo")
 	public String getQuery(HttpSession session, ModelMap modelMap,String request) {
 		ConsumersMaster consumersMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");
-		if (consumersMaster != null) {
+		if (consumersMaster != null ) {
 			if(service.setSupportRequest(request, consumersMaster.getRrNumber(), consumersMaster.getRegion())) {
 				modelMap.addAttribute("msg","request sent.");
+				return "complaintsDetailsPage";
+			}else {
+				modelMap.addAttribute("errMsg","No query to display!!");
+				return "complaintsDetailsPage";
 			}
-			return "complaintsDetailsPage";
+			
 		}else {
 			modelMap.addAttribute("errMsg", "Please Login First..");
 			return "consumerLoginPage";
@@ -232,18 +242,41 @@ public class ConsumerController {
 		ConsumersMaster consumersMaster = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 		if(consumersMaster != null) {
 			List<SupportCustBean> supportList = service.getResponse(consumersMaster.getRrNumber());
-			if(supportList != null) {
+			if(supportList != null && !supportList.isEmpty()) {
 				modelMap.addAttribute("supportList",supportList);
+				return "consumerComplaintResolvedPage";
 			}else {
 				modelMap.addAttribute("errMsg","No Response found..");
+				return "consumerComplaintResolvedPage";
 			}
-			return "consumerComplaintResolvedPage";
+			
 		}else {
 			modelMap.addAttribute("errMsg", "Invalid Credential !!");
 			return "consumerLoginPage";
 		}
 	}
+	@GetMapping("/forgotPasswordPage")
+	public String displayConsumerForgotPasswordPage(){
+		return "consumerForgotPassword";
+	}// end of displayConsumerForgotPasswordPage()
 	
+	@PostMapping("/forgotPassword")
+	public String consumerPasswordChange(ConsumersMaster consumersMaster, String confPassword,ModelMap modelMap){
+		if(service.authenticationForgotPassword(consumersMaster)){
+			if(service.forgotPassword(consumersMaster, confPassword)){
+				modelMap.addAttribute("msg", "Password Changed successfully !!");
+				return "consumerForgotPassword";
+			}else{
+				modelMap.addAttribute("errMsg", "Unable To Change The Password!!");
+				return "consumerForgotPassword";
+			}
+			
+		}else{
+			modelMap.addAttribute("errMsg", "Invalid Meter Number Or Email");
+			return "consumerForgotPassword";
+		}
+	}// end of consumerPasswordSet()
+
 	
 	@GetMapping("/homePage")
 	public String displayhomePage() {

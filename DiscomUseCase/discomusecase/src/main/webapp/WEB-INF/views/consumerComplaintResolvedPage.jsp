@@ -7,6 +7,7 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+    <jsp:include page="consumerHeader.jsp"></jsp:include>
      <% String errMsg = (String) request.getAttribute("errMsg");%>
      <% 
      List<SupportCustBean> supportList =(List<SupportCustBean>) request.getAttribute("supportList");
@@ -22,37 +23,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
      <link rel="stylesheet" href="${css}/navbar.css">
-     
-
-
+    
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+ 
 <% if(errMsg != null && !errMsg.isEmpty()) { %>
-<h2 style ="color:white;"><%=errMsg %></h2>
+<h2 style ="color:orange;"><%=errMsg %></h2>
 <%} %>
 
 <%
-    	if(supportList != null){
+    	if(supportList != null && !supportList.isEmpty()){
     %>
     <div style="margin-left: 40px">
 	<table class="table" style="color: blue;">

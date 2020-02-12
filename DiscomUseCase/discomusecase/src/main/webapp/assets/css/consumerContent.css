@@ -1,12 +1,12 @@
-body {
+/* body {
     background-image: url('../images/bc22.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
-
+ */
 nav.navbar {
-    width: 1590px;
+    width: 1600px;
     height: 110px;
 }
 
@@ -22,11 +22,11 @@ nav.navbar {
     padding-left: 575px;
     margin-left: -1010px;
 }
+.homelink{
+    padding-left: 500px;
+    margin-top: -29px;
+    font-size: 22px;
 
-#lang {
-    font-size: larger;
-    margin-left: 120px;
-    margin-top: -59px;
 }
 
 #consumerlogo {
@@ -36,7 +36,14 @@ nav.navbar {
     margin-top: -30px;
 }
 
-#list {
+.table{
+    padding:10px;
+    font-size: 20px;
+}
+
+
+
+/* #list {
     width: 370px;
     height: 400px;
     text-align: center;
@@ -57,4 +64,4 @@ nav.navbar {
 
 #card-text {
     color: white;
-}
+} */

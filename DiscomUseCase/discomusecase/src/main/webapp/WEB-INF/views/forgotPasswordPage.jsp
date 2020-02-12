@@ -6,6 +6,7 @@
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
+<jsp:include page="consumerHeader.jsp"></jsp:include>
   <%String msg = (String) request.getAttribute("msg");
   String errMsg = (String) request.getAttribute("errMsg");
   %>
@@ -21,30 +22,26 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="./resources/fontawesome-free-5.12.0-web/css/all.css">
-<link rel="stylesheet" href="${css}/password.css">
 
+<style type="text/css">
+body{
+background-image: url(${images}/Lighting-lamps.jpg);
+background-position: center;
+background-size: cover;
+}
+form{
+margin-left: 100px;
+margin-top: 170px;
+}
+.formgroup{
+margin-left: 400px;
+
+}
+</style>
 
 </head>
 
 <body>
-	<header class="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="./homePage"><img
-				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<h3 id="h3">Electricity Supply Company Limited</h3>
-					<h6 id="h6">CIN - U04010KA2002SGC030438 | GST No -
-						29AACCB1412G1Z5</h6>
-				</div>
-
-				<div class="homelink " align="right">
-			<a style="color: blue;" href="./homePage"><i class="fas fa-home"></i>Home</a> &nbsp; &nbsp; 
-		</div>
-			</div>
-			
-		</nav>
-	</header>
 	
 	<% if(msg != null && !msg.isEmpty()) { %>
 	<h1 style="color: green;"><%=msg %></h1>
@@ -52,7 +49,7 @@
 	<% if(errMsg != null && !errMsg.isEmpty()) { %>
 	<h2 style="color: red;"><%=errMsg %></h2>
 	<%} %>
-	
+	<div class="formgroup">
 <fieldset style="width: 500px;">
 
   <form action="./resetPassword" method="post">
@@ -69,7 +66,6 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
  </fieldset>
-  </div>
-  </div>
+ </div>
 </body>
 </html>

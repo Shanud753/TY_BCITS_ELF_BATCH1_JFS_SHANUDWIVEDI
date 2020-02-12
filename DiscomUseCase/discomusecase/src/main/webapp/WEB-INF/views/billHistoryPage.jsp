@@ -6,8 +6,11 @@
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
-    
+  <jsp:include page="consumerHeader.jsp"></jsp:include>  
     <% List<BillHistory> billHistory =(List<BillHistory>) request.getAttribute("billHistory"); %>
+    <%String msg = (String) request.getAttribute("msg");
+  String errMsg = (String) request.getAttribute("errMsg");
+  %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,25 +28,12 @@
 </head>
 
 <body>
-	<header class="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="./homePage"><img
-				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<h3 id="h3">Electricity Supply Company Limited</h3>
-					<h6 id="h6">CIN - U04010KA2002SGC030438 | GST No -
-						29AACCB1412G1Z5</h6>
-				</div>
-
-				<div id="lang">
-					<a href="">English</a>&nbsp; |&nbsp; <a href="">Kannada</a>
-				</div>
-			</div>
-			</div>
-		</nav>
-	</header>
-	
+	 <% if(msg != null && !msg.isEmpty()) { %>
+	<h1 style="color: green;"><%=msg %></h1>
+	<%} %>
+	<% if(errMsg != null && !errMsg.isEmpty()) { %>
+	<h2 style="color: red;"><%=errMsg %></h2>
+	<%} %>
  <% if(billHistory != null && !billHistory.isEmpty()) { %>
   <table border ="1" style='width:70%; margin-left: 200px; margin-top: 200px'>
     <thead style='background-color: navy; color: white'>

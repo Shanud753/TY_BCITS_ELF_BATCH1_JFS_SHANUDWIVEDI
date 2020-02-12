@@ -4,41 +4,6 @@ body{
     background-size: cover;
 }
 
-nav.navbar{
-    width: 1610px;
-    height: 110px;
-}
-#h3{
-    padding-left:21px; 
-    padding-bottom: 70px;
-     padding-top: 20px;
-}
-#h6{
-     padding-top: 62px;
-     padding-right: 598px; 
-     padding-left:  575px; 
-      margin-left: -1010px;
-}
-#lang{
-    font-size:larger;
-    margin-left: 120px;
-    margin-top: -59px;
-}
-#consumerlogo{
-    width: 140px; 
-    height: 130px;
-     margin-left: -10px;
-      margin-top: -30px;
-}
-
-#rrnumber{
-    width: 310px;
-    height: 46px;
-}
-#pwd{
-    width: 310px;
-    height: 46px;
-}
 #form-group{
     margin-left: 200px;
     margin-top: -210px;

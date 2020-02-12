@@ -47,7 +47,7 @@ public class EmployeeController {
 		return "employeeLoginForm";
 	}
 
-
+  
 	@PostMapping("/employeeContent")
 	public String employeeContent(int empId ,String designation,HttpServletRequest req, ModelMap modelMap) {
 		return "employeeContent";
@@ -148,7 +148,8 @@ public class EmployeeController {
 		if(employeeMaster!= null) {
 			CurrentBill currentBill1 = service.addCurrentBill(currentBill,employeeMaster.getRegion());
 			if (currentBill1 != null) {
-				if(service.sendMail(currentBill1.getRrNumber())) {
+				ConsumersMaster consumer= conService.getConsumer(currentBill1.getRrNumber());
+				if(service.sendMail(currentBill1.getRrNumber(), consumer)) {
 					modelMap.addAttribute("msg", "Bill Generated for RR Number " + currentBill.getRrNumber() + " Sucessfully..");
 					return "actionSuccessFullPage";
 
@@ -257,17 +258,38 @@ public class EmployeeController {
 	public String consumptionPage(HttpSession session, ModelMap modelMap) {
 		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
 		if(empMasterInfo != null) {
-		       List<MonthlyConsumption> consumptionslist =service.getCollectedBill();
-		       if(consumptionslist != null) {
-		    	   modelMap.addAttribute("consumptionslist",consumptionslist); 
-		    	   return "monthRevenue";
-		       }else {
-		    	   modelMap.addAttribute("errMsg","No record is found.");
-		    	   return "employeeLoginPage";
-		       }
+		       List<Object[]> billCollectedList =service.monthlyCollectedBills(empMasterInfo.getRegion());
+		       List<Object[]> billsPending =service.monthlyBillsPending(empMasterInfo.getRegion());
+		       List<Object[]> totalRevenue =service.totalRevenueGenerated(empMasterInfo.getRegion());
+		       modelMap.addAttribute("billCollectedList",billCollectedList);
+		       modelMap.addAttribute("billsPending",billsPending);
+		       modelMap.addAttribute("totalRevenue",totalRevenue);
+		       return "monthRevenue";
+		       
 		}else {
 			session.invalidate();
-			return "consumerLoginPage";
+			return "employeeLoginPage";
+		}
+	}
+	
+	@PostMapping("/clearDueAmount")
+	public String clearDue(HttpSession session, ModelMap modelMap,int rrNumber,Date date) {
+		EmployeeMaster empMasterInfo = (EmployeeMaster) session.getAttribute("loggedInEmp");
+		if(empMasterInfo != null) {
+		 if(service.clearDueAmount(rrNumber, date)) {
+			 List<MonthlyConsumption> monthlyBillList = service.getCollectedBill(empMasterInfo.getRegion());
+			 if(monthlyBillList != null && !monthlyBillList.isEmpty()) {
+				 modelMap.addAttribute("monthlyBillList",monthlyBillList);
+				}else {
+					modelMap.addAttribute("errMsg","No record is found.");
+				} 
+			 }else {
+				 modelMap.addAttribute("errMsg","No record is found."); 
+		 }
+		 return "PendingBills";
+		}else {
+			modelMap.addAttribute("errMsg", "Please Login First..");
+			return "employeeLoginPage";
 		}
 	}
 }

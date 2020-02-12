@@ -101,14 +101,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		@Override
-		public boolean sendMail(int rrNumber) {
+		public boolean sendMail(int rrNumber,ConsumersMaster master) {
 			
-			return dao.sendMail(rrNumber);
+			return dao.sendMail(rrNumber,master);
 		}
 
 		@Override
 		public List<MonthlyConsumption> getCollectedBill() {
 		return dao.getCollectedBill();
+		}
+
+		@Override
+		public boolean clearDueAmount(int rrNumber, Date date) {
+			
+			return dao.clearDueAmount(rrNumber, date);
+		}
+
+		@Override
+		public List<Object[]> monthlyCollectedBills(String region) {
+			
+			return dao.monthlyCollectedBills(region);
+		}
+
+		@Override
+		public List<Object[]> monthlyBillsPending(String region) {
+			
+			return dao.monthlyBillsPending(region);
+		}
+
+		@Override
+		public List<Object[]> totalRevenueGenerated(String region) {
+			
+			return dao.totalRevenueGenerated(region);
 		}	
 		
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bcits.discomusecase.beans.BillHistory;
+import com.bcits.discomusecase.beans.BillHistoryPK;
 import com.bcits.discomusecase.beans.ConsumersMaster;
 import com.bcits.discomusecase.beans.CurrentBill;
 import com.bcits.discomusecase.beans.EmployeeMaster;
@@ -146,10 +147,11 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	}//End of addCurrentBill()
 
 	@Override
-	public boolean sendMail(int rrNumber) {
+	public boolean sendMail(int rrNumber,ConsumersMaster master) {
 		EntityManager manager = factory.createEntityManager();
 		CurrentBill bill = manager.find(CurrentBill.class, rrNumber);
-		if(mail.sendMail(bill)) {
+		
+		if(mail.sendMail(bill,master)) {
 			return true;
 		}
 		return false;
@@ -263,6 +265,103 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+
+	@Override
+	public boolean clearDueAmount(int rrNumber, Date date) {
+		EntityManager manager = factory.createEntityManager();
+		EntityTransaction transaction = manager.getTransaction();
+		String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum and consumptionPk.Date(date)= :date1 ";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("rrNum", rrNumber);
+		query.setParameter("date1", date);
+		MonthlyConsumption monthlyConsumption = (MonthlyConsumption) query.getSingleResult();
+		
+		CurrentBill currentBill = manager.find(CurrentBill.class,rrNumber);
+		BillHistory bill = new BillHistory();
+        BillHistoryPK billPk = new BillHistoryPK();
+        if(monthlyConsumption != null) {
+        	transaction.begin();
+        	monthlyConsumption.setStatus("paid");
+        	currentBill.setStatus("paid");
+        	bill.setBillAmount(monthlyConsumption.getBillAmount());
+        	bill.setRegion(monthlyConsumption.getRegion());
+        	bill.setStatus("Success");
+        	billPk.setPayDate(new Date());
+        	billPk.setRrNumber(rrNumber);
+        	bill.setBillHistoryPk(billPk);
+        	manager.persist(bill);
+        	transaction.commit();
+        	return true;
+        }
+  
+		return false;
+	}//End of clearDueAmount()
+
+
+
+	@Override
+	public List<Object[]> monthlyCollectedBills(String region) {
+		EntityManager manager = factory.createEntityManager();
+		try {
+			String jpql =" select sum(billAmount) , Date_FORMAT(consumptionPk.date,'%Y-%m') from MonthlyConsumption"
+					+ "  where region=:reg and status = 'paid' GROUP BY MONTH(consumptionPk.date) ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("reg", region);
+			List<Object[]> collectedBillsRevenue = query.getResultList();
+			return collectedBillsRevenue;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			manager.close();
+		}			
+	}
+
+
+
+	@Override
+	public List<Object[]> monthlyBillsPending(String region) {
+		EntityManager manager = factory.createEntityManager();
+		try {
+			String jpql =" select sum(billAmount) , Date_FORMAT(consumptionPk.date,'%Y-%m') from MonthlyConsumption"
+					+ "  where region=:reg and status = 'paid' GROUP BY MONTH(consumptionPk.date) ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("reg", region);
+			
+			List<Object[]> monthlyBillsPending = query.getResultList();
+			return monthlyBillsPending;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			manager.close();
+		}			
+	}
+
+
+
+	@Override
+	public List<Object[]> totalRevenueGenerated(String region) {
+		EntityManager manager = factory.createEntityManager();
+		try {
+			String jpql =" select sum(billAmount) , Date_FORMAT(consumptionPk.date,'%Y-%m') from MonthlyConsumption"
+					+ "  where region=:reg and status = 'paid' GROUP BY MONTH(consumptionPk.date) ";
+			Query query = manager.createQuery(jpql);
+			query.setParameter("reg", region);
+			
+			List<Object[]> totalRevenueGenerated = query.getResultList();
+			return totalRevenueGenerated;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			manager.close();
+		}			
 	}
 
 

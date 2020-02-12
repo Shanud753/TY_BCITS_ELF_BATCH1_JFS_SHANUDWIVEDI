@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+    <jsp:include page="empHeader.jsp"></jsp:include>
     <%List<ConsumersMaster> consumersMasterList = (List<ConsumersMaster>)request.getAttribute("consumersMasterList"); %>  
     <spring:url var="css" value="/resources/css"/>
     <spring:url var="js" value="/resources/js"/>
@@ -23,28 +24,10 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+    
      <% if(consumersMasterList != null ){ %>
 <table border ="1" style='width:70%; margin-left: 200px; margin-top: 200px'>
-	     <thead style='background-color: navy; color: white'>
+	     <thead style='background-color: black; color: white'>
 	         <tr style="height:35px">
 	         <th>Meter Number</th>
 	         <th>Name</th>
@@ -64,8 +47,8 @@
 	    		 :consumersMasterList){ %>
 	    		 <form action="./deleteConsumer">
 	    		 <input name="rrNumber" type="text" value=" <%= consumersMasterBean.getRrNumber() %>" hidden="true">
-	      <tr style="height:35px">
-	        <td><%= consumersMasterBean.getMeterNumber() %></td>
+	      <tr style="height:35px; color:white;">
+	        <td  style="height:10px;"><%= consumersMasterBean.getMeterNumber() %></td>
 	        <td><%= consumersMasterBean.getFirstName() %></td>
 	        <td><%= consumersMasterBean.getEmail() %></td>
 	        <td><%= consumersMasterBean.getPhnNo() %></td>

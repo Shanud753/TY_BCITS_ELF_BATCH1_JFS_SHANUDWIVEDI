@@ -4,6 +4,8 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+    <jsp:include page="Header.jsp"></jsp:include>
+   
     
     <%String errMsg = (String) request.getAttribute("errMsg");%>
         
@@ -23,25 +25,6 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
 <% if(errMsg != null && !errMsg.isEmpty()) { %>
 <h2 style ="color:red;"><%=errMsg %></h2>
 <%} %>
@@ -52,22 +35,23 @@
                 <div id="consumerlogo1">
                     <img src="${images}/img-01.png" alt="IMG" style="width: 160px; height:140px; margin-top: 60px;">
                 </div>
-                <div id="form">
+             
                 <div id="form-group">
                     <label for="emai" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Email-Id</label>
                     <input type="email" class="form-control" id="emai" placeholder="enter  email" style="font-size: 14px;" name="email">
                     <span id="ema"  class="text-danger font-weight-bold"></span>
                     <br>
-                    <label for="pwd" style="font-size: 17px;  padding-top: 22px; font-weight: bolder;">Password</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="enter  password" style="font-size: 14px;"name="password">
-                    <span id="userpass" class="text-danger font-weight-bold"></span>
+                    <label for="pwd" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Email-Id</label>
+                    <input type="password" class="form-control" id="emai" placeholder="enter  Password" style="font-size: 14px;" name="password">
+                    <span id="pwd1"  class="text-danger font-weight-bold"></span>
+                    <br>
                 </div>
                 <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Submit </button><br>
                 <div class="text-center p-t-12">
                     <span id="txt1" style=" color: black;">
                     Forgot
                 </span>
-                    <a id="txt1" href="./displayForgotPasswordPage">
+                    <a id="txt1" href="./forgotPasswordPage">
                     Password?
                 </a>
                 </div><br>
@@ -80,7 +64,7 @@
                 </div>
             </div>
             </form>
-        </div>
+       
     </div>
 
     <!-- <div class="list-group" style="width: 270px; height: 300px; margin-left: 160px; margin-top: 0px;">

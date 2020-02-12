@@ -6,6 +6,7 @@
 <spring:url var="js" value="/resources/js" />
 <spring:url var="html" value="/resources/html" />
 <spring:url var="images" value="/resources/images" />
+<jsp:include page="consumerHeader.jsp"></jsp:include>
   <%CurrentBill currentBillBean= (CurrentBill)request.getAttribute("currentBillBean");
   String errMsg = (String) request.getAttribute("errMsg");
   %>
@@ -28,23 +29,6 @@
 </head>
 
 <body>
-	<header class="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="./homePage"><img
-				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<h3 id="h3">Electricity Supply Company Limited</h3>
-					<h6 id="h6">CIN - U04010KA2002SGC030438 | GST No -
-						29AACCB1412G1Z5</h6>
-				</div>
-
-				<div class="homelink " align="right">
-			<a style="color: blue;" href="./homePage"><i class="fas fa-home"></i>Home</a> &nbsp; &nbsp; 
-		</div>
-			</div>
-		</nav>
-	</header>
 <% if(errMsg != null && !errMsg.isEmpty()) { %>
 	<h2 style="color: red;"><%=errMsg %></h2>
 	<%} %>

@@ -1,8 +1,9 @@
-body {
-   /*  background-image: url('../images/bc22.jpg'); */
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+body{
+	background-color: rgb(218, 229, 238);
+}
+#page-content-wrapper{
+	margin-left: 50px;
+	color: rgb(23, 32, 42);
 }
 
 nav.navbar {
@@ -23,10 +24,11 @@ nav.navbar {
     margin-left: -1010px;
 }
 
-#lang {
-    font-size: larger;
-    margin-left: 120px;
-    margin-top: -59px;
+.homelink{
+    padding-left: 750px;
+    margin-top: -29px;
+    font-size: 22px;
+
 }
 
 #consumerlogo {

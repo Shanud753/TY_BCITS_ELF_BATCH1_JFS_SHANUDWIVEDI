@@ -6,9 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
- <% List<MonthlyConsumption> billList = (List<MonthlyConsumption>) request.getAttribute("billList"); %>
+ <% List<MonthlyConsumption> billList = (List<MonthlyConsumption>) request.getAttribute("monthlyBillList"); %>
 <% String errMsg =(String) request.getAttribute("errMsg"); %>
-
+<jsp:include page="consumerHeader.jsp"></jsp:include>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
@@ -26,25 +26,7 @@
   
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+    
 <div id="page-content-wrapper bill">
 		<div style="margin-left: 40px">
 			<br>	
@@ -64,13 +46,15 @@
   <tbody id="myTable">
     <%int i=1; 
     for(MonthlyConsumption bill : billList) {
-      	Calendar cal = Calendar.getInstance();
+    	Calendar cal = Calendar.getInstance();
       	cal.setTime(new Date());
       	Calendar cal1 = Calendar.getInstance();
       	cal1.setTime(bill.getConsumptionPk().getDate());
       	if(cal.get(Calendar.MONTH) == cal1.get(Calendar.MONTH) && bill.getStatus().equals("Not Paid")){	
     %>
-    
+    <form action="./clearDueAmount" method="post">
+    <input type="text" name="rrNumber" value="<%= bill.getConsumptionPk().getRrNumber()%>" hidden="true">
+    <input type="text" name="date" value="<%= bill.getConsumptionPk().getDate()%>" hidden="true">
   	<tr>
       <th scope="row"><%= i %></th>
       <td><strong><%= bill.getConsumptionPk().getRrNumber()%></strong></td>
@@ -78,7 +62,9 @@
       <td><strong> <% SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy"); %>
       <%= formatter.format(bill.getConsumptionPk().getDate()) %></strong></td>
       <td style="color: red;"><strong><%= bill.getStatus()%></strong></td>
+       <td><button type="submit" class="btn btn-secondary" >Clear Due</button></td>
     </tr>
+    </form>
     <%  i++ ; } }%>
    		</tbody>
 	</table>

@@ -13,61 +13,154 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employee's Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-    <link rel="stylesheet" href="${css}/employeeContent.css">
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Consumer's Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./resources/fontawesome-free-5.12.0-web/css/all.css">
+
+<style type="text/css">
+
+body{
+background-image: url(${images}/Lighting-lamps.jpg);
+background-position: center;
+background-size: cover;
+}
+
+nav.navbar {
+	width: 1600px;
+	height: 110px;
+}
+
+#h3 {
+	padding-left: 21px;
+	padding-bottom: 70px;
+	padding-top: 20px;
+}
+
+#h6 {
+	padding-top: 62px;
+	padding-right: 598px;
+	padding-left: 575px;
+	margin-left: -1010px;
+}
+
+#consumerlogo {
+	width: 140px;
+	height: 130px;
+	margin-left: -10px;
+	margin-top: -30px;
+}
+
+table {
+	font-size: 20px;
+	margin-left: 440px;
+	margin-top: -400px;
+}
+#pageContent{
+
+}
+</style>
 </head>
 
-<body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
+<body style="background-color: #d9f7f7;">
+	<header class="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="./homePage"><img
+				src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<h3 id="h3">Electricity Supply Company Limited</h3>
+					<h6 id="h6">CIN - U04010KA2002SGC030438 | GST No -
+						29AACCB1412G1Z5</h6>
+				</div>
 
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+				<div class="links"
+					style="padding-left: 100px; margin-top: 39px; font-size: 22px;">
+					<!-- <a style="color: blue;" href="./homePage"><i
+						class="fas fa-home"></i>Home</a>  -->
+						
+						<a style="color: blue; margin-left: 20px;"
+						href="./employeeLogout" ><i class="fas fa-sign-out-alt"></i>Logout</a>
+					&nbsp; &nbsp;
+				</div>
+			</div>
 
-    <div class="list-group" id="list">
-        <a href="./billGeneration"><button type="button" class="list-group-item list-group-item-action active">Months Bill Generation</button></a>
-        <a href="./BillCollected"><button type="button" class="list-group-item list-group-item-action">Month Bill Collection</button></a>
-        <a href="./billPending"><button type="button" class="list-group-item list-group-item-action">Bills Pending</button></a>
-        <a href="./getAllConsumer"> <button type="button" class="list-group-item list-group-item-action">Consumer Details</button></a>
-        <a href="./consumerComplaintsDetails"> <button type="button" class="list-group-item list-group-item-action">Consumer Complaints</button></a>
-        <a href="./monthlyrevenue"><button type="button" class="list-group-item list-group-item-action" >Month on Month revenue</button></a>
-        <a href="./employeeLogout"><button type="button" class="list-group-item list-group-item-action" >Logout</button></a>
-    </div>
+		</nav>
+	</header>
+	
+
+<div class="row" >
+		<div class="col-3">
+			<br>
+			<div class="list-group"
+				style="text-align: center; font: bold; font-size: 20px; margin-left: 40px; margin-right:">
+				<a href="./" class="list-group-item list-group-item-action active">My
+					Account</a> 
+					
+					<a href="./getAllConsumer"
+					class="list-group-item list-group-item-action ">Consumer Details</a> 
+					<a
+					href="./billGeneration"
+					class="list-group-item list-group-item-action"> Months Bill Generation</a>
+					
+					 <a href="./BillCollected"
+					class="list-group-item list-group-item-action">Month Bill Collection</a>
+					
+					 <a href="./billPending"
+					class="list-group-item list-group-item-action">Bills Pending</a>
+					
+					<a href="./"
+					class="list-group-item list-group-item-action">Month On Month Revenue</a>
+					
+				<a href="./consumerComplaintsDetails"
+					class="list-group-item list-group-item-action">Complaints
+					Details</a>
+
+			</div>
+		</div>
+		</div>
     
-  <div class="card"  id="card">
-        <div class="card-body">
-            <h5 class="card-title" style="color: white;">Employee Details</h5>
-            <h6 class="card-subtitle mb-2 text-muted"style="color:white" > Meter Number:<%=master.getDesignation() %> </h6>
-            <p id="card-text" style="color:white">Employee  Id:            <%=master.getEmpId() %></p>
-            <p id="card-text" style="color:white">Employee  Name:          <%=master.getEmpName() %></p>
-            <p id="card-text" style="color:white">Region:            <%=master.getRegion() %></p>
-            <p id="card-text" style="color:white">No Of Consumers:            <%=count %></p>
-            <a href="./homePage" class="card-link">Home Page</a>
-        </div>
-    </div>
+	  
+       <div id="pageContent" ><br>
+            <table  style="font-size: 20px">
+             <tr>
+                    <td><strong>Employee Details</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Employee ID</strong></td>
+                    <td>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><strong><%= master.getEmpId() %></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>employee Name</strong></td>
+                    <td>:</td>
+                    <td><strong><%= master.getEmpName()%></strong></td>
+                </tr>
+                <tr>
+                    <td><Strong>Designation</Strong></td>
+                    <td>:</td>
+                    <td><strong><%= master.getDesignation() %></strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Region</strong></td>
+                    <td>:</td>
+                    <td><strong><%= master.getRegion() %></strong></td>
+                </tr>
+                <tr>
+                    <td><Strong>Number of Consumer</Strong></td>
+                    <td>:</td>
+                    <td><strong><%= count%></strong></td>
+                </tr>
+            </table><br><br>
+  </div>
+  </div>
 
-    <script src="/jquery-3.4.1.js"></script>
-    <script src="/bootstrap.min.js"></script>
+   <script src="${js}/jquery-3.4.1.js"></script>
+	<script src="${js}/bootstrap.min.js"></script>
 </body>
 
 </html>

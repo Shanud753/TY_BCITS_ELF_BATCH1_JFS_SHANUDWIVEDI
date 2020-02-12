@@ -32,9 +32,6 @@ public class ConsumersMaster implements Serializable {
 	@Column
 	private String password;
 	
-	@Column(name="confirm_password")
-	private String confirmPassword;
-	
 	@Column
 	private String region;
 	

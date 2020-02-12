@@ -38,5 +38,7 @@ public interface ConsumerService {
 	public CurrentBill getBillAmount(int meterNumber);
 	public boolean setSupportRequest(String supportMsg,Integer rrNumber,String region);
 	 public List<SupportCustBean> getResponse(Integer rrNumber);
-
+	 
+	   public boolean forgotPassword(ConsumersMaster consumersMasterBean, String confPassword);
+		public boolean authenticationForgotPassword(ConsumersMaster consumersMaster);
 }
