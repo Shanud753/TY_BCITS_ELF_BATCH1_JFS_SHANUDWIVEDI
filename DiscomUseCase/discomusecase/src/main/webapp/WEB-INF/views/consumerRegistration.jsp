@@ -4,6 +4,7 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
+     <jsp:include page="Header.jsp"></jsp:include>
       <%String msg = (String) request.getAttribute("msg");
   String errMsg = (String) request.getAttribute("errMsg");
   %>
@@ -20,25 +21,7 @@
 
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="./homePage"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+    
     <% if(msg != null && !msg.isEmpty()) { %>
 	<h1 style="color: white;"><%=msg %></h1>
 	<%} %>
@@ -47,7 +30,7 @@
 	<%} %>
 
     <div class="container">
-        <form onsubmit="validation(); return false" action="./addConsumer" method="post">
+        <form id="formData" onsubmit="validation(); return false" method="post" action="./addConsumer" >
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="fname" style="padding-top: 30px; font-weight: bolder; font-size: 18px;">First-Name</label>
@@ -124,13 +107,13 @@
                 </div>
                  <div class="form-group col-md-2">
                 <label for="meterNum" style="font-weight: bold; font-size: 18px;">Meter number</label>
-                <input type="tel" class="form-control" id="meterNum" placeholder="Mobile Number" name="meterNumber">
+                <input type="tel" class="form-control" id="meterNum" placeholder="Mobile Number" name="meterNumber" required="required">
                 <span id="meterNumber"  class="text-danger font-weight-bold"></span>
                 </div>
                  <div class="form-group col-md-2">
                 <label for="dateConnection" style="font-weight: bold; font-size: 18px;">Date of Connection</label>
-                <input type="date" class="form-control" id="dateConnection" placeholder="Enter Date Of Connection" name="dateOfConnection">
-                <span id="meterNumber"  class="text-danger font-weight-bold"></span>
+                <input type="date" class="form-control" id="dateConnection" placeholder="Enter Date Of Connection" name="dateOfConnection" required="required">
+                <span id="dateCon"  class="text-danger font-weight-bold"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -144,8 +127,9 @@
             <button type="submit" class="btn btn-primary">Sign in</button>
           </form>
     </div>
+     <script src="${js}/consumerRegister.js"></script>
      <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
-    <script src="${js}/consumerRegister.js"></script>
+    
 </body>
 </html>

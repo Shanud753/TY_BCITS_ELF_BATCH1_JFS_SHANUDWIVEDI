@@ -122,7 +122,7 @@ public class ConsumerController {
 	@GetMapping("/electricityConsumption")
 	public String consumptionPage(HttpSession session, ModelMap modelMap) {
 		ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
-		int rrNumber = master.getRrNumber();
+		String rrNumber = master.getRrNumber();
 			if(master != null) {
 				List<MonthlyConsumption> consumption2 = service. getConsumption(rrNumber);
 				if(consumption2 != null && !consumption2.isEmpty()) {
@@ -141,7 +141,7 @@ public class ConsumerController {
 	@GetMapping("/currentBill")
 	public String getCurrentBill(HttpSession session, ModelMap modelMap) {
 	ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
-	int rrNumber = master.getRrNumber();
+	String rrNumber = master.getRrNumber();
 	 
 		if(master != null) {
 			CurrentBill billInfo = service.currentBillDetails(rrNumber);
@@ -162,7 +162,7 @@ public class ConsumerController {
 	public String paymentPage(HttpSession session, ModelMap modelMap) {
 		ConsumersMaster consumerBean = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 		if(consumerBean != null) {
-			int rrNumber = consumerBean.getRrNumber();
+			String rrNumber = consumerBean.getRrNumber();
 			CurrentBill currentBillBean = service.getBillAmount(rrNumber);
 			if(currentBillBean != null) {
 			modelMap.addAttribute("currentBillBean",currentBillBean);
@@ -183,8 +183,8 @@ public class ConsumerController {
 	  ConsumersMaster master = (ConsumersMaster) session.getAttribute("loggedInconInfo");
 	  Date date = new Date();
 	  if(master != null) {
-		    int meterNumber = master.getRrNumber();
-			CurrentBill currentBillBean = service.getBillAmount(meterNumber);
+		  String rrNumber = master.getRrNumber();
+			CurrentBill currentBillBean = service.getBillAmount(rrNumber);
 			 double amount = currentBillBean.getBillAmount();
 		  if(service.billPayment(master.getRrNumber(), date, amount)) {
 			  modelMap.addAttribute("currentBillBean",currentBillBean);
@@ -272,7 +272,7 @@ public class ConsumerController {
 			}
 			
 		}else{
-			modelMap.addAttribute("errMsg", "Invalid Meter Number Or Email");
+			modelMap.addAttribute("errMsg", "Invalid rr Number Or Email");
 			return "consumerForgotPassword";
 		}
 	}// end of consumerPasswordSet()

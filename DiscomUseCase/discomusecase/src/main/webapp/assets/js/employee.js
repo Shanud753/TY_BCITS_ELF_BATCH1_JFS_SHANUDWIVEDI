@@ -1,7 +1,8 @@
 function validation() {
 
-	var empIdVal = document.getElementById('empId').value;
-	var desigVal = document.getElementById('desig').value;
+	var empIdVal = document.getElementById('empId1').value;
+	var desigVal = document.getElementById('passwd').value;
+	
 	var empIdValid = false;
 	var desigValid = false;
 
@@ -18,10 +19,10 @@ function validation() {
 //	Designation Validation
 
 	if (desigVal == "") {
-		document.getElementById('desig1').innerHTML = " ** Please fill the Designation field";
+		document.getElementById('pwd2').innerHTML = " ** Please fill the Designation field";
 		return false;
 	} else {
-		document.getElementById('desig1').style.display = 'none';
+		document.getElementById('pwd2').style.display = 'none';
 		desigValid = true;
 	}
 

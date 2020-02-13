@@ -58,14 +58,14 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public ConsumersMaster getConsumer(int rrNumber) {
+	public ConsumersMaster getConsumer(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		ConsumersMaster consumerMaster = manager.find(ConsumersMaster.class, rrNumber);
 		return consumerMaster;
 	}
 
 	@Override
-	public boolean deleteConsumer(int rrNumber) {
+	public boolean deleteConsumer(String rrNumber) {
 		boolean isDeleted = false;
 
 		EntityManager manager = factory.createEntityManager();
@@ -123,7 +123,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public List<MonthlyConsumption> getConsumption(int rrNumber) {
+	public List<MonthlyConsumption> getConsumption(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		try {
 			String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum";
@@ -144,7 +144,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public CurrentBill currentBillDetails(int rrNumber) {
+	public CurrentBill currentBillDetails(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		try {
 			String jpql = " from CurrentBill where rrNumber= :rrNum";
@@ -161,7 +161,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public boolean billPayment(int rrNumber, Date date, double amount) {
+	public boolean billPayment(String rrNumber, Date date, double amount) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum ";
@@ -169,9 +169,12 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 		query.setMaxResults(1);
 		query.setParameter("rrNum", rrNumber);
 		MonthlyConsumption monthlyConsumption = (MonthlyConsumption) query.getSingleResult();
-
+        CurrentBill currentBill =  manager.find(CurrentBill.class, rrNumber);
+        
 		BillHistory bill = new BillHistory();
 		BillHistoryPK billPk = new BillHistoryPK();
+		
+		
 		bill.setBillAmount(amount);
 		bill.setStatus("Success");
 		bill.setRegion(monthlyConsumption.getRegion());
@@ -181,6 +184,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 		if (billPk != null) {
 			transaction.begin();
 			monthlyConsumption.setStatus("paid");
+			currentBill.setStatus("paid");
 			manager.persist(bill);
 			transaction.commit();
 			return true;
@@ -190,7 +194,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public List<BillHistory> getBillHistory(int rrNumber) {
+	public List<BillHistory> getBillHistory(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		try {
 			Query query = manager.createQuery(" from BillHistory where billHistoryPk.rrNumber= :rrNum ");
@@ -212,7 +216,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public CurrentBill getBillAmount(int rrNumber) {
+	public CurrentBill getBillAmount(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		CurrentBill currentBill = manager.find(CurrentBill.class, rrNumber);
 		if (currentBill != null) {
@@ -224,7 +228,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}// end of getBillAmount()
 
 	@Override
-	public boolean setSupportRequest(String supportMsg, Integer rrNumber, String region) {
+	public boolean setSupportRequest(String supportMsg, String rrNumber, String region) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		SupportCustBean supportBean = new SupportCustBean();
@@ -248,7 +252,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public List<SupportCustBean> getResponse(Integer rrNumber) {
+	public List<SupportCustBean> getResponse(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		try {
 			String jpql = " from SupportCustBean where supportBeanCustPK.rrNumber = :rrNum ";
@@ -265,7 +269,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	}
 
 	@Override
-	public boolean changePassword(String password, int rrNumber) {
+	public boolean changePassword(String password, String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		ConsumersMaster consumerInfoBean = manager.find(ConsumersMaster.class, rrNumber);
 		EntityTransaction transaction = manager.getTransaction();
@@ -282,7 +286,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 	public boolean forgotPassword(ConsumersMaster consumersMaster) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		int rrNumber = consumersMaster.getRrNumber();
+		String rrNumber = consumersMaster.getRrNumber();
 		String jpql = "from ConsumersMaster where rrNumber=:rrNum";
 		Query query = manager.createQuery(jpql);
 		query.setParameter("rrNum", rrNumber);
@@ -303,7 +307,7 @@ public class ConsumerDAOImplementation implements ConsumerDAO {
 
 	@Override
 	public boolean authenticationForgotPassword(ConsumersMaster consumersMaster) {
-		int rrNumber = consumersMaster.getRrNumber();
+		String rrNumber = consumersMaster.getRrNumber();
 		String email = consumersMaster.getEmail();
 		EntityManager manager = factory.createEntityManager();
 		ConsumersMaster master = manager.find(ConsumersMaster.class, rrNumber);

@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
- <% List<MonthlyConsumption> billList = (List<MonthlyConsumption>) request.getAttribute("monthlyBillList"); %>
+ <%List<MonthlyConsumption> billList = (List<MonthlyConsumption>) request.getAttribute("billList"); %>
 <% String errMsg =(String) request.getAttribute("errMsg"); %>
 <jsp:include page="consumerHeader.jsp"></jsp:include>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -33,24 +33,21 @@
      	
 	<% if(billList != null && !billList.isEmpty()){ %>	
   <br>
-	<table class="table" style="color: rgb(23, 32, 42);">
+	<table class="table" style="background-color: #ffe2ff;">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Sl.No</th>
       <th scope="col">RR Number</th>
       <th scope="col">Amount Due</th> 
       <th scope="col">Bill Generated Date</th> 
-      <th scope="col">Payment Status</th>     
+      <th scope="col">Payment Status</th> 
+      <th scope="col">Clear Due</th>    
     </tr>
   </thead>
   <tbody id="myTable">
     <%int i=1; 
     for(MonthlyConsumption bill : billList) {
-    	Calendar cal = Calendar.getInstance();
-      	cal.setTime(new Date());
-      	Calendar cal1 = Calendar.getInstance();
-      	cal1.setTime(bill.getConsumptionPk().getDate());
-      	if(cal.get(Calendar.MONTH) == cal1.get(Calendar.MONTH) && bill.getStatus().equals("Not Paid")){	
+    	if(bill.getStatus().equals("Not Paid")){	
     %>
     <form action="./clearDueAmount" method="post">
     <input type="text" name="rrNumber" value="<%= bill.getConsumptionPk().getRrNumber()%>" hidden="true">

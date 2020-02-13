@@ -30,9 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		@Override
 		public EmployeeMaster authentication(Integer empId, String password) {
-			if(empId<1 && password.isEmpty()) {
-				return null;
-			}
+			
 			return dao.authentication(empId, password);
 			
 		}
@@ -49,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		@Override
-		public double getPreviousReading(int rrNumber) {
+		public double getPreviousReading(String rrNumber) {
 			
 			return dao.getPreviousReading(rrNumber);
 		}
@@ -71,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			}
 
 		@Override
-		public boolean sendResponse(Integer rrNumber, String response, Date date) {
+		public boolean sendResponse(String rrNumber, String response, Date date) {
 		
 			return dao.sendResponse(rrNumber, response, date);
 		}
@@ -95,13 +93,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		@Override
-		public boolean removeConsumer(int rrNumber) {
+		public boolean removeConsumer(String rrNumber) {
 			
 			return dao.removeConsumer(rrNumber);
 		}
 
 		@Override
-		public boolean sendMail(int rrNumber,ConsumersMaster master) {
+		public boolean sendMail(String rrNumber,ConsumersMaster master) {
 			
 			return dao.sendMail(rrNumber,master);
 		}
@@ -112,7 +110,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		@Override
-		public boolean clearDueAmount(int rrNumber, Date date) {
+		public boolean clearDueAmount(String rrNumber, Date date) {
 			
 			return dao.clearDueAmount(rrNumber, date);
 		}
@@ -124,16 +122,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		@Override
-		public List<Object[]> monthlyBillsPending(String region) {
+		public List<Object[]> monthlyPendingBills(String region) {
 			
-			return dao.monthlyBillsPending(region);
+			return dao.monthlyPendingBills(region);
 		}
 
-		@Override
-		public List<Object[]> totalRevenueGenerated(String region) {
 			
-			return dao.totalRevenueGenerated(region);
-		}	
 		
 }
 		

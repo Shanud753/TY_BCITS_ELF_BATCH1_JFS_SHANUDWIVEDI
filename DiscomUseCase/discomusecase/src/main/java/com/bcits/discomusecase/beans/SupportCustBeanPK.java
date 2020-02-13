@@ -11,7 +11,7 @@ import lombok.Data;
 @Embeddable
 public class SupportCustBeanPK implements Serializable {
 	@Column(name="rr_number")
-	private Integer rrNumber;
+	private String rrNumber;
 	@Column
 	private Date date;
 }

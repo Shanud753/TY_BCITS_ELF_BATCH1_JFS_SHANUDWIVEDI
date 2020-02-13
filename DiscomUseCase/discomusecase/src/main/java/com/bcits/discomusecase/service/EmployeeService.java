@@ -16,17 +16,16 @@ public interface EmployeeService {
 	
 	public List<ConsumersMaster> getAllConsumer(String region );
 	public int noOfConsumers(String region);
-	 public double getPreviousReading(int rrNumber);
+	 public double getPreviousReading(String rrNumber);
 	 public CurrentBill addCurrentBill(CurrentBill currentBill,String region);
 	 public List<SupportCustBean> getComplaints(String region);
-	 public boolean sendResponse(Integer rrNumber,String response, Date date);
+	 public boolean sendResponse(String rrNumber,String response, Date date);
 	 public  List<MonthlyConsumption> getCollectedBill(String region);
 	 public List<BillHistory> getBillList(String region);
-	 public boolean removeConsumer(int rrNumber);
-	 public boolean sendMail(int rrNumber,ConsumersMaster master);
-	 public List<MonthlyConsumption> getCollectedBill();
-	 public boolean clearDueAmount(int rrNumber,Date date);
+	 public boolean removeConsumer(String rrNumber);
+	 public boolean sendMail(String rrNumber,ConsumersMaster master);
+	 public  List<MonthlyConsumption> getCollectedBill();
+	 public boolean clearDueAmount(String rrNumber,Date date);
 	 public List<Object[]> monthlyCollectedBills(String region);
-	 public List<Object[]> monthlyBillsPending(String region);
-	 public List<Object[]> totalRevenueGenerated(String region);
+	 public List<Object[]> monthlyPendingBills(String region);
 }

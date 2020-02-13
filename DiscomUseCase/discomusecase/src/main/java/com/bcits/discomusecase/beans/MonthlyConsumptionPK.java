@@ -13,7 +13,7 @@ import lombok.Data;
 public class MonthlyConsumptionPK implements Serializable {
 
 	@Column(name="rr_number")
-	private Integer rrNumber;
+	private String rrNumber;
 	@Column
 	private Date date;
 	

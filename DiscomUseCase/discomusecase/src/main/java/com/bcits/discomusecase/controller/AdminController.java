@@ -64,7 +64,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/logOut")
-	public String logOut(HttpSession session ,ModelMap modelMap) {
+	public String logout(HttpSession session ,ModelMap modelMap) {
 		session.invalidate();
 		modelMap.addAttribute("errMsg", "You Are Sucessfully Logged Out !!");
 		return "adminLoginPage";

@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+  <jsp:include page="empHeader.jsp"></jsp:include>
     <% List<BillHistory> billHistroyList = (List<BillHistory>)request.getAttribute("billHistroy"); %>
 <% String errMsg =(String) request.getAttribute("errMsg"); %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -24,37 +24,90 @@
     <title>Consumer Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-      <link rel="stylesheet" href="${css}/complaint.css">
-        <link rel="stylesheet" href="${css}/navbar.css">
+    <style type="text/css">
+
+body{
+background-image: url(${images}/Lighting-lamps.jpg);
+background-position: center;
+background-size: cover;
+width:100%;
+height:600px;"
+}
+
+nav.navbar {
+	width: 1600px;
+	height: 110px;
+}
+
+#h3 {
+	padding-left: 21px;
+	padding-bottom: 70px;
+	padding-top: 20px;
+}
+
+#h6 {
+	padding-top: 62px;
+	padding-right: 598px;
+	padding-left: 575px;
+	margin-left: -1010px;
+}
+
+#consumerlogo {
+	width: 140px;
+	height: 130px;
+	margin-left: -10px;
+	margin-top: -30px;
+}
+
+table {
+	font-size: 20px;
+	margin-left: 440px;
+	margin-top: -400px;
+}
+#pageContent{
+
+}
+</style> 
      
 
 
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index"><img src="${images}/discomlogo.png" alt="" id="consumerlogo"></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <h3 id="h3">Electricity Supply Company Limited
-                    </h3>
-                    <h6 id="h6">
-                        CIN - U04010KA2002SGC030438 | GST No - 29AACCB1412G1Z5 </h6>
-                </div>
-
-                <div id="lang">
-                    <a href="">English</a>&nbsp; |&nbsp;
-                    <a href="">Kannada</a>
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+   
     <% if(errMsg != null && !errMsg.isEmpty()) { %>
 <h2 style ="color:white;"><%=errMsg %></h2>
 <%} %>
+<div class="row" >
+		<div class="col-3">
+			<br>
+			<div class="list-group"
+				style="text-align: center; font: bold; font-size: 20px; margin-left: 40px; margin-right:">
+				<a href="./" class="list-group-item list-group-item-action active">My
+					Account</a> 
+					
+					<a href="./getAllConsumer"
+					class="list-group-item list-group-item-action ">Consumer Details</a> 
+					<a
+					href="./billGeneration"
+					class="list-group-item list-group-item-action"> Months Bill Generation</a>
+					
+					 <a href="./BillCollected"
+					class="list-group-item list-group-item-action">Month Bill Collection</a>
+					
+					 <a href="./billPending"
+					class="list-group-item list-group-item-action">Bills Pending</a>
+					
+					<a href="./monthlyrevenue"
+					class="list-group-item list-group-item-action">Month On Month Revenue</a>
+					
+				<a href="./consumerComplaintsDetails"
+					class="list-group-item list-group-item-action">Complaints
+					Details</a>
 
+			</div>
+		</div>
+		</div>
 <% if(billHistroyList != null && !billHistroyList.isEmpty()){ %>	
        <input class="form-control" id="myInput" type="text" placeholder="Search Month..">
   <br>
@@ -84,11 +137,13 @@
    		</tbody>
 	</table>
 	<%} else{%>
-	<h3 style="color: navy;"><%=errMsg %></h3>
+
 	<% } %>	
 	</div>
 		</div>
 		</div>
+		
+		<script src="${js}/bootstrap.min.js"></script>
 	<script src="${js}/jquery-3.4.1.js"></script>
 </body>
 </html>

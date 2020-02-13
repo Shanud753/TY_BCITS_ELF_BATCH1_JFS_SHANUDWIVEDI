@@ -12,7 +12,6 @@
 <jsp:include page="empHeader.jsp"></jsp:include>
 <% List<Object[]> billCollectedList = (List<Object[]>) request.getAttribute("billCollectedList");
 List<Object[]> billsPending = (List<Object[]>) request.getAttribute("billsPending");
-List<Object[]> totalRevenue = (List<Object[]>) request.getAttribute("totalRevenue");
 %>
 
 <!DOCTYPE html>
@@ -31,31 +30,96 @@ List<Object[]> totalRevenue = (List<Object[]>) request.getAttribute("totalRevenu
 </head>
 
 <body>
-    <%int i=0;
-    for(i=0;i<billCollectedList.size();i++) {%>
-       <% Object[] collected = billCollectedList.get(i);%>
-    <%} %>
+    <div class=" col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 " style="margin-top: 100px;margin-left: 260px">
+		 <legend><h4 style="padding-top: 2mm;padding-bottom:2mm;font-size: larger;text-align: center;">Monthly Revenue</h4></legend>
+         <table class="table table-bordered table-info mt-2" style="border-style: solid; background-color: #a4c7dd;">
+            <thead>
+              <tr >    
+               
+                <th scope="col">Date</th>    
+                <th scope="col">TotalRevenue</th> 
+                <th scope="col" >Collected Amount</th> 
+                <th scope="col">Pending</th> 
+              </tr>
+            </thead>
+		<tbody>
+		<% double totalRevenue = 0.0;
+		
+		for( int i=0 ;i<billCollectedList.size();i++) {
+			Object[] collectedBills = billCollectedList.get(i);
+		      for( int j=0 ;j<billsPending.size();j++) {
+			      Object[] pendingBills = billsPending.get(j);
+	 			if(pendingBills[1].equals(collectedBills[1])){
+	 				totalRevenue = (double)collectedBills[0]+(double)pendingBills[0];
+	 				%>
+	 				<tr >
+	 				  <td ><%=collectedBills[1]%></td>
+	 				  <td ><%=totalRevenue %></td>
+	 				  <td ><%=collectedBills[0]%></td>
+	 				  <td ><%=pendingBills[0] %></td>
+	 				</tr> 
+	 			<%}    
+		 }
+	  } 
+   
+		
+		 Object[] collectedBills = null;
+		
+		 for( int i=0 ;i<billCollectedList.size();i++)   {
+		boolean isPresent = false; 
+		collectedBills = billCollectedList.get(i);	
+			  Object[] pendingBills=null;
+			for( int j=0 ; j <billsPending.size();j++){
+				pendingBills  = billsPending.get(j);
+	 			if(pendingBills[1].equals(collectedBills[1])){
+	 				isPresent = true;
+					break;
+	 			}	
+	 			
+		 }
+			if(!isPresent){	%>
+			<tr >
+		       <td><%=collectedBills[1] %></td>
+		       <td><%=collectedBills[0] %></td>
+			   <td><%=0.0 %></td>
+			    <td><%=collectedBills[0] %></td>
+			   
+		</tr> 
+		<%}    
+		      		
+		}
+		 
+		for( int i=0 ;i<billsPending.size();i++) {
+			Object[] pendingBills = billsPending.get(i);
+			collectedBills = null;
+        boolean isPresent = false;
+		      for( int j=0 ; j<billCollectedList.size();j++) {
+		    	  collectedBills  = billCollectedList.get(j);
+	 			
+		    	  if(collectedBills[1].equals(pendingBills[1])){
+		    		  isPresent = true;
+					break;
+	 			}
+	 			
+		 }
+		      if(!isPresent){	%>
+				<tr >
+			       <td><%=pendingBills[1] %></td>
+			       <td><%=pendingBills[0] %></td>
+			       <td><%=0.0%></td>
+				   <td><%=pendingBills[0] %></td>
+			</tr> 
+			<%} 		      	
+		}
+	%>
+			</tbody>
+			</table>
+		 </div>
+	
     
-    
-     <%int j=0;
-    for(j=0;j<billsPending.size();j++) {%>
-       <% Object[] pending = billsPending.get(j);%>
-    <%} %>
-    
-     <%int k=0;
-    for(k=0;k<totalRevenue.size();k++) {%>
-       <% Object[] totalRevenue1 = totalRevenue.get(i);%>
-    <%} %>
-    
-   <table border ="1" style='width:70%; margin-left: 200px; margin-top: 200px'>
-	     <thead style='background-color: navy; color: white'>
-	         
-	      
-	        
-	    		 
-	      </table>
-    <script src="${js}/jquery-3.4.1.js"></script>
-    <script src="${js}/bootstrap.min.js"></script>
 
+
+   <script src="${js}/jquery-3.2.1.min.js"></script> 
+ 
 </body>
 </html>

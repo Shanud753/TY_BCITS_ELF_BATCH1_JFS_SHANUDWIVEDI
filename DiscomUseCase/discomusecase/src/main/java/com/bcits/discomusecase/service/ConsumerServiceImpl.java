@@ -35,7 +35,7 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		}
 
 		@Override
-		public ConsumersMaster getConsumer(int rrNumber) {
+		public ConsumersMaster getConsumer(String rrNumber) {
 
 			return dao.getConsumer(rrNumber);
 		}
@@ -52,7 +52,7 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 
 
 		@Override
-		public boolean deleteConsumer(int rrNumber) {
+		public boolean deleteConsumer(String rrNumber) {
 
 			return dao.deleteConsumer(rrNumber);
 		}//End of Delete()
@@ -77,49 +77,49 @@ import com.bcits.discomusecase.dao.ConsumerDAO;
 		}
 
 		@Override
-		public List<MonthlyConsumption> getConsumption(int rrNumber) {
+		public List<MonthlyConsumption> getConsumption(String rrNumber) {
 			
 			return dao.getConsumption(rrNumber);
 		}
 
 		@Override
-		public CurrentBill currentBillDetails(int rrNumber) {
+		public CurrentBill currentBillDetails(String rrNumber) {
 			
 			return dao.currentBillDetails(rrNumber);
 		}
 
 		@Override
-		public boolean billPayment(int rrNumber, Date date, double amount) {
+		public boolean billPayment(String rrNumber, Date date, double amount) {
 			
 			return dao.billPayment(rrNumber, date, amount);
 		}
 
 		@Override
-		public List<BillHistory> getBillHistory(int rrNumber) {
+		public List<BillHistory> getBillHistory(String rrNumber) {
 			
 			return dao.getBillHistory(rrNumber);
 		}
 
 		@Override
-		public CurrentBill getBillAmount(int rrNumber) {
+		public CurrentBill getBillAmount(String rrNumber) {
 			
 			return dao.getBillAmount(rrNumber);
 		}
 
 		@Override
-		public boolean setSupportRequest(String supportMsg, Integer rrNumber, String region) {
+		public boolean setSupportRequest(String supportMsg, String rrNumber, String region) {
 			
 			return dao.setSupportRequest(supportMsg, rrNumber, region);
 		}
 
 		@Override
-		public List<SupportCustBean> getResponse(Integer rrNumber) {
+		public List<SupportCustBean> getResponse(String rrNumber) {
 			
 			return dao.getResponse(rrNumber);
 		}
 
 		@Override
-		public boolean changePassword(String password, String confPassword, int rrNumber) {
+		public boolean changePassword(String password, String confPassword, String rrNumber) {
 				if(!password.equals(confPassword)) {
 					return false;
 				}

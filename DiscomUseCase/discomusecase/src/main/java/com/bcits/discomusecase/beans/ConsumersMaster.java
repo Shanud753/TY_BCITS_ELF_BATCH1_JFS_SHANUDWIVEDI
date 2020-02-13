@@ -15,7 +15,7 @@ import lombok.Data;
 public class ConsumersMaster implements Serializable {
 	@Id
 	@Column(name="rr_number")
-	private Integer rrNumber;
+	private String rrNumber;
 	
 	@Column(name="first_Name")
 	private String firstName;

@@ -35,7 +35,7 @@ margin-left: 400px;
                     <h3><strong style="padding-bottom: 100px;"><u>Reset Password</u></strong></h3>
                     <div>
                         <label>rrNumber</label>
-                        <input type="number" class="form-control" name="rrNumber" placeholder=" Enter rr Number">
+                        <input type="text" class="form-control" name="rrNumber" placeholder=" Enter rr Number">
                     </div>
                     <div>
                         <label>Email</label>

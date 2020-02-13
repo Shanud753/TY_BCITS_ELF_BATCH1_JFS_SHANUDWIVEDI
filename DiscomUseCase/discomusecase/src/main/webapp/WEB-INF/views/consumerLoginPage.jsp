@@ -41,8 +41,8 @@
                     <input type="email" class="form-control" id="emai" placeholder="enter  email" style="font-size: 14px;" name="email">
                     <span id="ema"  class="text-danger font-weight-bold"></span>
                     <br>
-                    <label for="pwd" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Email-Id</label>
-                    <input type="password" class="form-control" id="emai" placeholder="enter  Password" style="font-size: 14px;" name="password">
+                    <label for="pwd" style="font-size: 17px; padding-top: 20px; font-weight: bolder;">Password</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="enter  Password" style="font-size: 14px;" name="password">
                     <span id="pwd1"  class="text-danger font-weight-bold"></span>
                     <br>
                 </div>
@@ -66,16 +66,9 @@
             </form>
        
     </div>
-
-    <!-- <div class="list-group" style="width: 270px; height: 300px; margin-left: 160px; margin-top: 0px;">
-        <button type="button" class="list-group-item list-group-item-action active">
-          Consumer Login
-        </button>
-        <button type="button" class="list-group-item list-group-item-action">Consumer Registration</button>
-        <button type="button" class="list-group-item list-group-item-action">View Bill</button>
-        <button type="button" class="list-group-item list-group-item-action" disabled>Download Payment Reciept</button>
-    </div> -->
-
+ 
+   <script src="${js}/consumerlogin.js"></script>
+  <!--  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -->
     <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
 

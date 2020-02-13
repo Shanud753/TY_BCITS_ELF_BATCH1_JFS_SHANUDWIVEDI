@@ -29,7 +29,7 @@
 <table border ="1" style='width:70%; margin-left: 200px; margin-top: 200px'>
 	     <thead style='background-color: black; color: white'>
 	         <tr style="height:35px">
-	         <th>Meter Number</th>
+	         <th>RR Number</th>
 	         <th>Name</th>
 	         <th>Email</th>
 	         <th>Phone Number</th>
@@ -48,7 +48,7 @@
 	    		 <form action="./deleteConsumer">
 	    		 <input name="rrNumber" type="text" value=" <%= consumersMasterBean.getRrNumber() %>" hidden="true">
 	      <tr style="height:35px; color:white;">
-	        <td  style="height:10px;"><%= consumersMasterBean.getMeterNumber() %></td>
+	        <td  style="height:10px;"><%= consumersMasterBean.getRrNumber() %></td>
 	        <td><%= consumersMasterBean.getFirstName() %></td>
 	        <td><%= consumersMasterBean.getEmail() %></td>
 	        <td><%= consumersMasterBean.getPhnNo() %></td>
@@ -67,7 +67,7 @@
 	<h2 style="color: red">No Record To Display..</h2>
 	<%} %>
     
-    <script src="/Jquery/jquery-3.4.1.js"></script>
-    <script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="${js}/jquery-3.4.1.js"></script>
+	<script src="${js}/bootstrap.min.js"></script>
 </body>
 </html>

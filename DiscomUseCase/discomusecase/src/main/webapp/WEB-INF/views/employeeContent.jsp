@@ -6,7 +6,7 @@
    <spring:url var="css" value="/resources/css" />
     <spring:url var="js" value="/resources/js" />
     <spring:url var="images" value="/resources/images" />
-    
+    <jsp:include page="empHeader.jsp"></jsp:include>
     <% EmployeeMaster master = (EmployeeMaster) session.getAttribute("loggedInEmp"); %>
     <% int count = (int) request.getAttribute("count"); %>
 <!DOCTYPE html>
@@ -28,6 +28,8 @@ body{
 background-image: url(${images}/Lighting-lamps.jpg);
 background-position: center;
 background-size: cover;
+width:100%;
+height:600px;"
 }
 
 nav.navbar {
@@ -80,8 +82,8 @@ table {
 
 				<div class="links"
 					style="padding-left: 100px; margin-top: 39px; font-size: 22px;">
-					<!-- <a style="color: blue;" href="./homePage"><i
-						class="fas fa-home"></i>Home</a>  -->
+					<a style="color: blue;" href="./homePage"><i
+						class="fas fa-home"></i>Home</a> 
 						
 						<a style="color: blue; margin-left: 20px;"
 						href="./employeeLogout" ><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -113,7 +115,7 @@ table {
 					 <a href="./billPending"
 					class="list-group-item list-group-item-action">Bills Pending</a>
 					
-					<a href="./"
+					<a href="./monthlyrevenue"
 					class="list-group-item list-group-item-action">Month On Month Revenue</a>
 					
 				<a href="./consumerComplaintsDetails"

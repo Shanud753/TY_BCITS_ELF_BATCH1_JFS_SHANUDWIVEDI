@@ -12,23 +12,23 @@ import com.bcits.discomusecase.beans.SupportCustBean;
 public interface ConsumerDAO {
 	public ConsumersMaster authenticate(String email, String password);
 	
-	public ConsumersMaster getConsumer(int rrNumber);
+	public ConsumersMaster getConsumer(String rrNumber);
 	
 	public boolean addConsumer(ConsumersMaster consumersMaster);
 	
-	public boolean deleteConsumer(int rrNumber);
+	public boolean deleteConsumer(String rrNumber);
 	public List<ConsumersMaster> getAllConsumers();
 	public boolean updateConsumer(ConsumersMaster bean);
 	public List<CurrentBill>  currentBillGeneration(CurrentBill billDetails);
 	public boolean addCurrentBillDetails(CurrentBill billInfo);
-	public List<MonthlyConsumption> getConsumption(int rrNumber);
-	public CurrentBill currentBillDetails(int rrNumber);
-	public boolean billPayment(int rrNumber, Date date, double amount);
-	public List<BillHistory> getBillHistory(int rrNumber);
-	public CurrentBill getBillAmount(int meterNumber);
-	public boolean changePassword(String password, int rrNumber);
-	public boolean setSupportRequest(String supportMsg,Integer rrNumber,String region);
-	 public List<SupportCustBean> getResponse(Integer rrNumber);
+	public List<MonthlyConsumption> getConsumption(String rrNumber);
+	public CurrentBill currentBillDetails(String rrNumber);
+	public boolean billPayment(String rrNumber, Date date, double amount);
+	public List<BillHistory> getBillHistory(String rrNumber);
+	public CurrentBill getBillAmount(String rrNumber);
+	public boolean changePassword(String password, String rrNumber);
+	public boolean setSupportRequest(String supportMsg,String rrNumber,String region);
+	 public List<SupportCustBean> getResponse(String rrNumber);
 	public boolean forgotPassword(ConsumersMaster consumersMaster);
 	public boolean authenticationForgotPassword(ConsumersMaster consumersMaster);
 		

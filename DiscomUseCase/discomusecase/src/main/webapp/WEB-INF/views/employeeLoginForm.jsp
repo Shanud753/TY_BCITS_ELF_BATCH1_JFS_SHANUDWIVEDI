@@ -27,17 +27,17 @@
 <body>
     <div class="container">
         <div class="card col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto d-block mt-5" style="width: 600px; height: 440px; box-shadow: 0 0 20px;">
-            <form onsubmit="validation(); return false" action="./employeeLoginHome" method="post">
+            <form id="formData" onsubmit="validation(); return false" method="post" action="./employeeLoginHome" >
                 <legend style="font-size: 25px; color: white;"><u>Employee Login</u></legend>
                 <div id="form">
                 <div id="form-group">
-                    <label for="empId" style="font-size: 17px; padding-top: 20px; font-weight: bolder; color: white;">Employee Id</label>
-                    <input type="number" class="form-control" id="emp" placeholder="Enter  Employee ID" style="font-size: 14px;" name="empId">
+                    <label for="empId1" style="font-size: 17px; padding-top: 20px; font-weight: bolder; color: white;">Employee Id</label>
+                    <input type="number" class="form-control" id="empId1" placeholder="Enter  Employee ID" style="font-size: 14px;" name="empId">
                     <span id="emp1"  class="text-danger font-weight-bold"></span>
                     <br>
                     <label for="passwd" style="font-size: 17px;  padding-top: 22px; font-weight: bolder; color: white;">Password</label>
                     <input type="password" class="form-control" id="passwd" placeholder="Enter Employee Password" style="font-size: 14px;" name="password">
-                    <span id="desig1" class="text-danger font-weight-bold"></span>
+                    <span id="pwd2" class="text-danger font-weight-bold"></span>
                 </div>
                 <button type="submit" class="btn btn-success mx-auto d-block" id="btn" >Submit </button><br>
                 <div class="text-center p-t-12">
@@ -53,11 +53,11 @@
         </div>
     </div>
 
-
+     <script src="${js}/employee.js"></script>
     <script src="${js}/jquery-3.4.1.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
-<%--     <script src="${js}/employee.js"></script>
- --%>
+  
+
 </body>
 
 </html>

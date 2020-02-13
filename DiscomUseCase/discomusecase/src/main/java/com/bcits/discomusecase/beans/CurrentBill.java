@@ -17,13 +17,11 @@ public class CurrentBill implements Serializable{
 
 	@Id
 	@Column(name="rr_number")
-	private Integer rrNumber;
+	private String rrNumber;
 	
 	@Column(name="due_date")
 	private Date dueDate;
-	
-	@Column(name="meter_number")
-	private Long meterNumber;
+
 	
 	@Column(name="initial_reading")
 	private double initialReading;

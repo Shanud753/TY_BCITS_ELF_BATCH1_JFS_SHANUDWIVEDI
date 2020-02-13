@@ -53,7 +53,7 @@ margin-left: 400px;
 <fieldset style="width: 500px;">
 
   <form action="./resetPassword" method="post">
-  <h3 id="form">Enter the Password to Change </h3>
+  <h3 id="form">Change Password </h3>
   
   <div class="form-group" id="form">
     <label for="exampleInputEmail1">Password</label>

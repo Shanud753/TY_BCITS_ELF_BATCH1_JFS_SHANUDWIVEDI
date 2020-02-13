@@ -38,12 +38,20 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	@Override
 	public EmployeeMaster authentication(Integer empId, String password) {
 		EntityManager manager = factory.createEntityManager();
-		EmployeeMaster empMasterInfo = manager.find(EmployeeMaster.class, empId);
-		if((empMasterInfo != null && empMasterInfo.getEmpId()== empId)&&
-				(empMasterInfo != null && empMasterInfo.getPassword().equals(password))) {
-			return empMasterInfo;
+		try {
+			EmployeeMaster empMasterInfo = manager.find(EmployeeMaster.class, empId);
+			if(empMasterInfo != null  && empMasterInfo.getPassword().equals(password)) {
+				return empMasterInfo;
+			}else {
+				return null;
+			}
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return null;
 		}
-		return null;
+		
 	}//end of authentication()
 
 
@@ -85,7 +93,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 
 	@Override
-	public double getPreviousReading(int rrNumber) {
+	public double getPreviousReading(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		double  previousReading=0.0;
 		try {
@@ -116,7 +124,15 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 		MonthlyConsumption monthlyConsumption = new MonthlyConsumption();
 		MonthlyConsumptionPK mothlyPk = new MonthlyConsumptionPK();
 		CurrentBill bill = manager.find(CurrentBill.class, currentBill.getRrNumber());
-	
+		if(bill != null) {
+			Calendar cal = Calendar.getInstance();
+		  	cal.setTime(new Date());
+		  	Calendar cal1 = Calendar.getInstance();
+		  	cal1.setTime(bill.getStatementDate());
+		  	if(cal.get(Calendar.MONTH) == cal1.get(Calendar.MONTH)) {
+		  		return null;
+		  	}
+		}
 		double amount = generateBill.billCalculator(units, currentBill.getTypeOfConsumer());
 		try {
 			transaction.begin();
@@ -134,6 +150,8 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			monthlyConsumption.setConsumptionPk(mothlyPk);
 			currentBill.setBillAmount(amount);
 			currentBill.setUnitsConsumed(units);
+			currentBill.setRegion(monthlyConsumption.getRegion());
+			currentBill.setStatus("Not Paid");
 			currentBill.setStatementDate(new Date());
 			manager.persist(monthlyConsumption);
 			manager.persist(currentBill);
@@ -147,7 +165,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	}//End of addCurrentBill()
 
 	@Override
-	public boolean sendMail(int rrNumber,ConsumersMaster master) {
+	public boolean sendMail(String rrNumber,ConsumersMaster master) {
 		EntityManager manager = factory.createEntityManager();
 		CurrentBill bill = manager.find(CurrentBill.class, rrNumber);
 		
@@ -177,7 +195,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 
 	@Override
-	public boolean sendResponse(Integer rrNumber, String response, Date date) {
+	public boolean sendResponse(String rrNumber, String response, Date date) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		try {
@@ -211,7 +229,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			return billList;
 		}catch (Exception e) {
 			e.printStackTrace();
-
 			return null;
 		}
 	}
@@ -236,7 +253,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 
 	@Override
-	public boolean removeConsumer(int rrNumber) {
+	public boolean removeConsumer(String rrNumber) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		try {
@@ -270,10 +287,10 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 
 	@Override
-	public boolean clearDueAmount(int rrNumber, Date date) {
+	public boolean clearDueAmount(String rrNumber, Date date) {
 		EntityManager manager = factory.createEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
-		String jpql = " from MonthlyConsumption where consumptionPk.rrNumber= :rrNum and consumptionPk.Date(date)= :date1 ";
+		String jpql = " from MonthlyConsumption where consumptionPk.rrNumber=:rrNum and consumptionPk.date= :date1 ";
 		Query query = manager.createQuery(jpql);
 		query.setParameter("rrNum", rrNumber);
 		query.setParameter("date1", date);
@@ -311,6 +328,9 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 			Query query = manager.createQuery(jpql);
 			query.setParameter("reg", region);
 			List<Object[]> collectedBillsRevenue = query.getResultList();
+			Object bill1[] = collectedBillsRevenue.get(0);
+			System.out.println(bill1[0]);
+			System.out.println(bill1[1]);
 			return collectedBillsRevenue;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -323,15 +343,18 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 
 
 	@Override
-	public List<Object[]> monthlyBillsPending(String region) {
+	public List<Object[]> monthlyPendingBills(String region) {
 		EntityManager manager = factory.createEntityManager();
 		try {
 			String jpql =" select sum(billAmount) , Date_FORMAT(consumptionPk.date,'%Y-%m') from MonthlyConsumption"
-					+ "  where region=:reg and status = 'paid' GROUP BY MONTH(consumptionPk.date) ";
+					+ "  where region=:reg and status = 'Not Paid' GROUP BY MONTH(consumptionPk.date) ";
 			Query query = manager.createQuery(jpql);
 			query.setParameter("reg", region);
 			
 			List<Object[]> monthlyBillsPending = query.getResultList();
+			Object bill2[] = monthlyBillsPending.get(0);
+			System.out.println(bill2[0]);
+			System.out.println(bill2[1]);
 			return monthlyBillsPending;
 			
 		} catch (Exception e) {
@@ -343,26 +366,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO {
 	}
 
 
-
-	@Override
-	public List<Object[]> totalRevenueGenerated(String region) {
-		EntityManager manager = factory.createEntityManager();
-		try {
-			String jpql =" select sum(billAmount) , Date_FORMAT(consumptionPk.date,'%Y-%m') from MonthlyConsumption"
-					+ "  where region=:reg and status = 'paid' GROUP BY MONTH(consumptionPk.date) ";
-			Query query = manager.createQuery(jpql);
-			query.setParameter("reg", region);
-			
-			List<Object[]> totalRevenueGenerated = query.getResultList();
-			return totalRevenueGenerated;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}finally {
-			manager.close();
-		}			
-	}
 
 
 

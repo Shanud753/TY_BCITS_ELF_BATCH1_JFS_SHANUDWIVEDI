@@ -56,8 +56,9 @@ public class EmailGenerator {
 
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			return false;
 		}
-        return false;
+		return true;
 	}
 
 }
